@@ -1,0 +1,76 @@
+version: "3.2"
+services:
+  redis:
+    restart: always
+    image: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - db-net
+    volumes:
+      - redis-data:/data
+
+  db:
+    restart: always
+    image: mysql
+    environment:
+      - MYSQL_HOST=localhost
+      - MYSQL_PORT=3306
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_DATABASE=chat
+      - MYSQL_USER=lord
+      - MYSQL_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3302:3306"
+    networks:
+      - db-net
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+  backend:
+    restart: always
+    container_name: chat_server
+    command : bash -c "python manage.py migrate &&
+                      python manage.py runserver 0.0.0.0:8000"
+    env_file:
+      - ./server/.env
+    build:
+      context: ./server/
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    networks:
+      - db-net
+    volumes:
+      - project-data:/app/project
+
+  frontend:
+    restart: always
+    command : npm start
+    container_name: chat_front
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    depends_on:
+      - backend
+    networks:
+      - db-net
+    volumes:
+      - frontend-data:/app/frontend
+
+networks:
+  db-net:
+    driver: bridge
+
+volumes:
+  redis-data:
+  mysql-data:
+  project-data:
+  frontend-data:
