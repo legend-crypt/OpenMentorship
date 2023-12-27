@@ -17,7 +17,7 @@ def generate_token(otp_length)-> str:
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(otp_length))
 
 
-def create_user(email:str, password:str)-> YelloUser:
+def create_user(email:str, password:str, role:str)-> YelloUser:
     """Creates a user
 
     Args:
@@ -27,7 +27,7 @@ def create_user(email:str, password:str)-> YelloUser:
     Returns:
         YelloUser: user json object
     """
-    user = YelloUser.objects.create_user(email=email, password=password)
+    user = YelloUser.objects.create_user(email=email, password=password, role=role)
     queryset = YelloUserSerializer(user)
     return queryset
 
@@ -43,7 +43,7 @@ def create_verification_token(email:str, token:str)-> VerificationCode:
         Verification: verification json object
     """
     time_generated = UTC.localize(datetime.now())
-    verification_code = Verification.objects.create(email=email, otp=token, time=time_generated)
+    verification_code = VerificationCode.objects.create(email=email, otp=token, time=time_generated)
     return verification_code
 
 

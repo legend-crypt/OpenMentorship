@@ -1,5 +1,5 @@
 from rest_framework import viewsets, status
-from rest_framework.permissions import isAuthenticated
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from core.senders.accounts import *
 import threading
@@ -10,6 +10,7 @@ class AccountCreationViewSet(viewsets.ViewSet):
     def create(self, request):
         email = request.data.get('email')
         password = request.data.get('password')
+        role = request.data.get('role')
         if email is None or password is None:
             context = {
                 "error": "Please provide both email and password"
@@ -21,15 +22,31 @@ class AccountCreationViewSet(viewsets.ViewSet):
             }
             return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
         
-        user = create_user(email=email, password=password)
+        user = create_user(email=email, password=password, role=role)
         context = {
             "detail": "User created successfully",
-            "user" : get_user_information(user)
+            "user" : get_user_information(email)
         }
         thread = threading.Thread(target=email_verification, args=(email, 4))
-        thraed.start()
+        thread.start()
         return Response(context, status=status.HTTP_201_CREATED)
-        
+    
+    
+    def get_mentors(self, request) -> Response:
+        """Get mentors
+
+        Args:
+            request (http): http request
+
+        Returns:
+            Response: http response
+        """
+        mentors = get_mentors()
+        context = {
+            "detail": "Mentors retrieved successfully",
+            "data": mentors
+        }
+        return Response(context, status=status.HTTP_200_OK)
         
         
     def send_verification_email(self, request):
@@ -78,20 +95,20 @@ class AccountCreationViewSet(viewsets.ViewSet):
         otp = request.data.get("otp")
 
         user = get_user_by_email(email)
-        if not account:
-            context = {"detail": "No account associated with this email"}
+        if not user:
+            context = {"error": "No account associated with this email"}
             return Response(context, status=status.HTTP_404_NOT_FOUND)
         if user.verified:
-            context = {"detail": "Your account has already been verified"}
+            context = {"error": "Your account has already been verified"}
             return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
 
-        otp_detail = VerificationToken.objects.get(email=email)
-        if otp == otp_detail.token:
+        otp_detail = VerificationCode.objects.get(email=email)
+        if otp == otp_detail.otp:
             if UTC.localize(datetime.now()) < otp_detail.time + timedelta(
                 minutes=10
             ):
-                account.verified = True
-                account.save()
+                user.verified = True
+                user.save()
                 otp_detail.delete()
                 email_thread = threading.Thread(
                     target=verification_confirmation_email, args=[email]
@@ -100,7 +117,7 @@ class AccountCreationViewSet(viewsets.ViewSet):
                 email_thread.start()
                 context = {
                     "detail": "Your email has been verified successfully",
-                    "user": get_user_information(account),
+                    "user": get_user_information(email),
                 }
 
                 return Response(context, status=status.HTTP_200_OK)
@@ -110,5 +127,5 @@ class AccountCreationViewSet(viewsets.ViewSet):
                 context = {"detail": "This otp has expired Request a new one"}
                 return Response(context, status=status.HTTP_400_BAD_REQUEST)
 
-        context = {"detail": "The otp you have provided is invalid"}
+        context = {"error": "The otp you have provided is invalid"}
         return Response(context, status=status.HTTP_400_BAD_REQUEST)

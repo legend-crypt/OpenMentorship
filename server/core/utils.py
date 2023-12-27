@@ -16,6 +16,9 @@ def generate_token(otp_length):
     """Generate token"""
     return "".join([random.choice(string.digits) for i in range(otp_length)])
 
+def generate_meeting_id():
+    return "".join([random.choice(string.digits) for i in range(10)])
+
 
 def email_verification(email: str, otp_length: int):
     """
@@ -85,10 +88,10 @@ def password_reset_email(email, otp_length):
     if email_obj.send():
         token = get_password_token(receiver)
         if token:
-            update_password_token(token, pin)
+            update_password_reset_code(token, pin)
         else:
             print(f"receiver: {receiver}")
-            pin_created = create_password_token(receiver[0], pin)
+            pin_created = create_password_reset_token(receiver[0], pin)
             print(f"pin created: {pin_created}")
         return True
     return False

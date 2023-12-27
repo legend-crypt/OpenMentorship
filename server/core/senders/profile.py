@@ -20,7 +20,7 @@ def update_profile(data, profile):
     else:
         return None
     
-def send_profile_information(profile):
+def get_profile_information(profile):
     serializer = YelloUserProfileSerializer(profile)
     if serializer.is_valid:
         return serializer.data

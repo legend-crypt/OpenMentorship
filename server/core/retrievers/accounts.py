@@ -1,5 +1,5 @@
 from core.models import *
-from core.serializers import CleaningServiceSerializer, VerificationTokenSerializer, PasswordTokenSerializer
+from core.serializers import *
 
 
 def get_user_information(email):
@@ -21,6 +21,12 @@ def get_user_by_id(user_id):
         return YellowUser.objects.get(user_id=user_id)
     except YelloUser.DoesNotExist:
         return None
+    
+def get_mentors():
+    """Get mentors"""
+    queryset = YelloUser.objects.filter(role="Mentor")
+    serializer = YelloUserSerializer(queryset, many=True)
+    return serializer.data
 
 
 def get_all_users():

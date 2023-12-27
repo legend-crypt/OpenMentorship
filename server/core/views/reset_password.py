@@ -1,4 +1,4 @@
-from core.models import CleaningServiceUser, PasswordToken
+from core.models import *
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from core.senders.accounts import *
@@ -43,8 +43,8 @@ class PasswordResetViewset(viewsets.ViewSet):
                 'detail': 'Password reset token does not exist'
             }
             return Response(context, status=status.HTTP_404_NOT_FOUND)
-        print(f"usertoken {user_token.token} token {token}")
-        if user_token.token != token:
+        print(f"usertoken {user_token.otp} token {token}")
+        if user_token.otp != token:
             context = {
                 'detail': 'Password reset token is invalid'
             }

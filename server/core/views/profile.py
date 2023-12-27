@@ -1,10 +1,37 @@
 from rest_framework import viewsets, status
-from rest_framework.permissions import isAuthenticated
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.response import Response
 from core.senders.profile import *
 from core.utils import *
 
-class ProfileViewset(viewsets.Viewset):
+class ProfileViewset(viewsets.ViewSet):
+    def retrieve(self, request)->Response:
+        """Retrieve Profile
+
+        Args:
+            request (http): http request
+            id (uuid): profile id
+
+        Returns:
+            Response: http response
+        """
+        permission_classes = [IsAuthenticated]
+        user = get_user_from_jwttoken(request)
+        if user.profile:
+            profile = get_profile_by_id(user.profile.profile_id)
+            if not profile:
+                context = {
+                    "error": "Profile does not exist"
+                }
+                return Response(context, status=status.HTTP_404_NOT_FOUND)
+            context = {
+                "detail": "Profile retrieved successfully",
+                "data": get_profile_information(profile),
+            }  
+            return Response(context, status=status.HTTP_200_OK)
+        return Response({"error": "Profile does not exist"}, status=status.HTTP_404_NOT_FOUND)
+        
     
     def create(self, request)->Response:
         """Create Profile
@@ -15,19 +42,24 @@ class ProfileViewset(viewsets.Viewset):
         Returns:
             http Response: http response
         """
-        permission_classes = [isAuthenticated]
-        user = get_user_from_jwt(request)
+        parser_classes = [MultiPartParser, FormParser, JSONParser]
+        permission_classes = [IsAuthenticated]
+        user = get_user_from_jwttoken(request)
         if user.profile:
             context = {
                 "error": "Profile already exists"
             }
             return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
         profile = create_profile(request.data)
-        user.profile = get_profile_by_id(profile['id'])
+        print(request.data)
+        print(profile)
+        user.profile = get_profile_by_id(profile['profile_id'])
         user.save()
         context = {
             "detail": "Profile created successfully",
-            "profile": profile
+            "profile": profile,
+            "user": get_user_information(user.email)
+
         }
         
         return Response(context, status=status.HTTP_201_CREATED)  
@@ -42,8 +74,8 @@ class ProfileViewset(viewsets.Viewset):
         Returns:
             Response: http response
         """
-        permission_classes = [isAuthenticated]
-        user = get_user_from_jwt(request)
+        permission_classes = [IsAuthenticated]
+        user = get_user_from_jwttoken(request)
         if not user.profile:
             context = {
                 "error": "Profile does not exist"
