@@ -19,10 +19,12 @@ def get_mentorSession_information(mentorSession: MentorSession) -> MentorSession
     
 def get_mentor_by_email(email):
     mentor = get_user_by_email(email)
-    if mentor.role == "mentor":
+    if mentor and mentor.role == "Mentor":
         return mentor
+    else:
+        return None
     
-def get_mentor_by_id(id):
+def get_mentor_session_by_id(id):
     try:
         return MentorSession.objects.get(pk=id)
         
@@ -30,16 +32,61 @@ def get_mentor_by_id(id):
         return None
     
 
-def get_mentor_requests(mentor: YelloUser):
+def get_mentor_requests(mentor: YelloUser)-> MentorSession:
+    """ Get mentor pending requests
+
+    Args:
+        mentor (YelloUser): mentor
+
+    Returns:
+        MentorSession: mentor session
+    """
     try:
         return MentorSession.objects.filter(mentor=mentor, status="pending")
     except MentorSession.DoesNotExist:
         return None
 
-def get_mentee_request(student: YelloUser):
+def get_student_meeting(student: YelloUser) -> MentorSession:
+    """Get student meeting
+
+    Args:
+        student (YelloUser): student
+
+    Returns:
+        MentorSession: mentor session
+    """
     try:
-        return MentorSession.objects.filter(student=student)
+        return MentorSession.objects.filter(student=student, status="accepted")
     except MentorSession.DoesNotExist:
         return None
+    
+def get_mentor_session_by_student_id(id: uuid) -> MentorSession:
+    """Get mentor session by student id
+
+    Args:
+        id (uuid): student id
+
+    Returns:
+        MentorSession: mentor session object
+    """
+    try:
+        return MentorSession.objects.get(student=id)
+    except MentorSession.DoesNotExist:
+        return None
+    
+def get_mentor_meeting(mentor: YelloUser) -> MentorSession:
+    """Get student meeting
+
+    Args:
+        student (YelloUser): student
+
+    Returns:
+        MentorSession: mentor session
+    """
+    try:
+        return MentorSession.objects.filter(mentor=mentor, status="accepted")
+    except MentorSession.DoesNotExist:
+        return None
+
     
     

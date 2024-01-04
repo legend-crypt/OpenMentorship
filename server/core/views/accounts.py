@@ -31,23 +31,7 @@ class AccountCreationViewSet(viewsets.ViewSet):
         thread.start()
         return Response(context, status=status.HTTP_201_CREATED)
     
-    
-    def get_mentors(self, request) -> Response:
-        """Get mentors
-
-        Args:
-            request (http): http request
-
-        Returns:
-            Response: http response
-        """
-        mentors = get_mentors()
-        context = {
-            "detail": "Mentors retrieved successfully",
-            "data": mentors
-        }
-        return Response(context, status=status.HTTP_200_OK)
-        
+            
         
     def send_verification_email(self, request):
         """Send verification email

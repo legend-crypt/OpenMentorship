@@ -16,10 +16,28 @@ class MentorViewset(viewsets.ViewSet):
         serializer = MentorSerializer(queryset, many=True)
         return Response(serializer.data)
     
+    def list_mentors(self, request) -> Response:
+        """Get mentors
+
+        Args:
+            request (http): http request
+
+        Returns:
+            Response: http response
+        """
+        mentors = get_mentors()
+        context = {
+            "detail": "Mentors retrieved successfully",
+            "data": mentors
+        }
+        return Response(context, status=status.HTTP_200_OK)
+
+    
     def create_mentor_request(self, request):
         user = get_user_from_jwttoken(request)
         mentor_email = request.data.get("mentor_email")
         mentor = get_mentor_by_email(mentor_email)
+        print(f"user {user}; mentor {mentor}")
         if user and mentor:
             student = user
             mentor_request = create_mentor_request(student, mentor)
@@ -27,7 +45,7 @@ class MentorViewset(viewsets.ViewSet):
                 "detail": "Request successfully sent",
                 "data": mentor_request
             }
-            return Response(context, status=status.HTTP_200_OK)
+            return Response(context, status=status.HTTP_201_CREATED)
         return Response({"error": "Request not sent"}, status=status.HTTP_400_BAD_REQUEST)
     
     
@@ -42,8 +60,8 @@ class MentorViewset(viewsets.ViewSet):
         """
         user = get_user_from_jwttoken(request)
         
-        id = request.data.get("mentorSession_id")
-        mentor = get_mentor_by_id(id)
+        id = request.data.get("student_id")
+        mentor = get_mentor_session_by_student_id(id)
         
         if mentor and mentor.mentor == user:
             mentor.status = "accepted"
@@ -65,7 +83,7 @@ class MentorViewset(viewsets.ViewSet):
         Returns:
             http response: http response
         """
-        id = request.data.get("id")
+        id = request.data.get("mentorSession_id")
         mentor = get_mentor_by_id(id)
         if mentor:
             mentor.status = "rejected"
@@ -88,15 +106,14 @@ class MentorViewset(viewsets.ViewSet):
         """
         mentor = get_user_from_jwttoken(request)
         if mentor:
-            mentor_requests = get_mentor_requests(mentor)
             context = {
                 "detail": "Requests retrieved successfully",
-                "data": get_mentorSession_information(mentor_requests)
+                "data": get_mentorSession_information(get_mentor_meeting(mentor))
             }
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
     
-    def get_student_mentor_meetings(self, request):
+    def get_student_meetings(self, request):
         """ Get student mentor meetings
 
         Args:
@@ -107,16 +124,22 @@ class MentorViewset(viewsets.ViewSet):
         """
         student = get_user_from_jwttoken(request)
         if student:
-            mentor_requests = get_mentee_request(student)
-            context = {
-                "detail": "Requests retrieved successfully",
-                "data": get_mentorSession_information(mentor_requests)
-            }
-            return Response(context, status=status.HTTP_200_OK)
+            mentor_requests = get_student_meeting(student)
+            if mentor_requests:
+                # mentors = [(item["mentor"], item["mentor_session_id"]) for item in get_mentorSession_information(mentor_requests)]
+                # print(mentors)
+                
+                context = {
+                    "detail": "Requests retrieved successfully",
+                    "data": get_mentorSession_information(mentor_requests)
+                }
+                return Response(context, status=status.HTTP_200_OK)
+            else:
+                return Response({"detail": "No meetings found"}, status=status.HTTP_200_OK)
         return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
     
     
-    def get_mentor_requests(self, request):
+    def get_mentor_pending_requests(self, request):
         """ Get mentor requests
 
         Args:
@@ -128,9 +151,10 @@ class MentorViewset(viewsets.ViewSet):
         mentor = get_user_from_jwttoken(request)
         if mentor:
             mentor_requests = get_mentor_requests(mentor)
+            mentor_requests = [item["student"] for item in get_mentorSession_information(mentor_requests)]
             context = {
                 "detail": "Requests retrieved successfully",
-                "data": get_mentorSession_information(mentor_requests)
+                "data": mentor_requests
             }
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
@@ -147,7 +171,7 @@ class MentorViewset(viewsets.ViewSet):
         """
         id = request.data.get("mentor_id")
         meeting_schedule = request.data.get("time")
-        mentor = get_mentor_by_id(id)
+        mentor = get_mentor_session_by_id(id)
         if mentor:
             mentor = create_mentor_meeting(mentor, meeting_schedule)
             context = {

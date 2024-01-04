@@ -10,6 +10,7 @@ MENTOR_STATUS = [
     ("pending", "pending"),
     ("accepted", "accepted"),
     ("rejected", "rejected"),
+    ("scheduled", "scheduled")
 ]
 
 

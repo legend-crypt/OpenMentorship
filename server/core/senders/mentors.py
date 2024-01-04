@@ -28,7 +28,8 @@ def create_mentor_meeting(mentor_session:uuid, meeting_schedule:str) -> MentorSe
     """
     mentor_session.meeting_schedule = meeting_schedule
     meeting_id = generate_meeting_id()
-    mentor_session.save()
     mentor_session.meeting_id = meeting_id
+    mentor_session.status = "scheduled"
+    mentor_session.save()
     serializer = MentorSessionSerializer(mentor_session)
     return serializer.data
