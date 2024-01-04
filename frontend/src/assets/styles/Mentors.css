@@ -1,0 +1,207 @@
+*::after, *::before {
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .toggleContainer {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .toggleBackground {
+    position: relative;
+    background: var(--gray-50, #f4f4f4);
+    width: 35vh;
+    height: 8vh;
+    border-radius: 221px;
+    display: flex;
+    align-items: center;
+    padding: 0 1vh;
+    overflow: hidden;
+  }
+
+  .header--toggle {
+    padding-top: 6em;
+  }
+  
+  .leftText,
+  .rightText {
+    position: absolute;
+    width: 50%;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+    font-size: 1.5vh;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    color: black;
+    transition: color 0.3s ease;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  /* :left:hover, .rightText:hover {
+    cursor: pointer;
+  } */
+  
+  .leftText {
+    left: 0;
+  }
+  
+  .rightText {
+    right: 0;
+  }
+  
+  .toggleAccentContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+  
+  .toggleAccent {
+    position: relative;
+    background: var(--accent, #381dd9);
+    width: 17vh;
+    height: 6vh;
+    border-radius: 221px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+  }
+  
+  
+  .toggleAccent.toggled {
+    transform: translateX(-105%);
+  }
+  
+  .toggleBackground.toggled .leftText,
+  .toggleBackground:not(.toggled) .rightText {
+    color: white;
+  }
+  
+  .toggleBackground.toggled .rightText,
+  .toggleBackground:not(.toggled) .leftText {
+    color: black;
+  }
+  
+  .profileImage {
+    width: 4em;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+
+  .mentorsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+
+  .mentorInfo {
+    width: 40%;
+  }
+
+  .mentorButtonContainer {
+    width: 20%;
+  }
+
+.row-btn {
+  display: flex;
+}
+
+  .btn-collection {
+    background-color: var(--accent, #381dd9);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+
+  }
+
+  .btn-collection + .btn-collection {
+    margin-left: 0.5em;
+  }
+
+  .mentorButton {
+    width: 100%;
+    background-color: var(--accent, #381dd9);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5em;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.warning {
+  background-color: #3D3D3E;
+}
+.danger {
+  background-color: #D7251A;
+}
+
+.mentorNumbers {
+  margin-bottom: 1em;
+  color: var(--gray-900, #4f4f50bd);
+  
+}
+
+.mentorDescription {
+  margin-bottom: 1em;
+  color: var(--gray-900, #3D3D3E);
+}
+
+
+@media screen and (max-width: 580px) {
+  .mentorsContainer {
+    display: block;
+  }
+
+  .mentorButton {
+    width: 50%;
+    padding: 0.2em;
+    font-size: 1rem;
+}
+
+
+  .mentorInfo {
+    width: 100%;
+  }
+
+  .mentorButtonContainer {
+    width: 100%;
+  }
+  
+}
+
+.meeting__prompt {
+  margin: 5em auto;
+  padding: 7em 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
