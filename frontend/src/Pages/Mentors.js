@@ -34,7 +34,6 @@ function Mentors() {
         <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')} />} />
 
       </Routes>
-      {/* <h1>Hello</h1> */}
       <Outlet />
     </div>
   );
