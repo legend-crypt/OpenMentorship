@@ -13,7 +13,7 @@ export default function useDynamicLogic(url, attributeToAccess, cacheKey, req) {
 
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem(cacheKey));
-    console.log(`storedData: ${storedData[0].mentor.user_id}`)
+    // console.log(`storedData: ${storedData[0].mentor.user_id}`)
     if (storedData) {
       const newDataList = storedData.map(item => item.mentor.user_id);
       setDataList(newDataList);
@@ -28,7 +28,8 @@ export default function useDynamicLogic(url, attributeToAccess, cacheKey, req) {
 
     try {
       const response = await axios.post(url, formData, config);
-      alert(response.data.detail);
+      // alert(response.data.detail);
+      console.log(response.data.detail);
 
       const newItem = response.data.data.mentor;
       const existingData = JSON.parse(localStorage.getItem(cacheKey)) || [];
@@ -36,7 +37,8 @@ export default function useDynamicLogic(url, attributeToAccess, cacheKey, req) {
       setDataList(...newItem.user_id)
       localStorage.setItem(cacheKey, JSON.stringify(updatedData));
     } catch (error) {
-      alert(error.response.data.error);
+      // alert(error.response.data.error);
+      console.log(error.response.data.error);
     }
   };
   return { dataList, clickHandler };
