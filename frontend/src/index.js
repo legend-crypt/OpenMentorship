@@ -3,15 +3,22 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+<<<<<<< HEAD
 import { BrowserRouter } from "react-router-dom";
 
+=======
+>>>>>>> py-version-change-to-12
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+<<<<<<< HEAD
     <BrowserRouter>
       <App />
     </BrowserRouter>
+=======
+    <App />
+>>>>>>> py-version-change-to-12
   </React.StrictMode>
 );
 

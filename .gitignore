@@ -16,6 +16,13 @@ backend/node_modules/
 
 /.pnp
 .pnp.js
+frontend/node_modules/
+frontend/.pnp  
+frontend/.pnp.js
+server/.dockerignore
+frontend/.pnp
+frontend/.pnp.js
+frontend/build/
 
 # testing
 /coverage
@@ -33,3 +40,7 @@ backend/node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+server/server/dbsqlite.db
+server/.dockerignore
+server/.env
+venv/
