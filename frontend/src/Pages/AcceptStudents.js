@@ -7,7 +7,6 @@ import Cta from "../components/Cta";
 import useDynamicLogic from "../utils/useDynamicLogic";
 
 function AcceptStudents({isToggled, handleToggle}) {
-  // const {dataList, clickHandler} = useDynamicLogic("mentors/accept/", "user_id", "pendingRequests", "student_id");
 
 
 

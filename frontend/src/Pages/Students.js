@@ -1,20 +1,21 @@
 import * as React from "react";
 import "../assets/styles/Mentors.css";
 import DataFetcher from "../components/DataFetcher";
-import MentorList from "../components/MentorList";
 import Cta from "../components/Cta";
+import MentorSessionList from "../components/MentorSessionList";
 import Modal from "../components/Modal";
-import useDynamicLogic from "../utils/useDynamicLogic";
 
 function Students({isToggled, handleToggle}) {
-  const {dataList, clickHandler} = useDynamicLogic("mentors/create/", "email", "mentorMeetings", "mentor_email");
-  const [selectedStudent, setSelectedStudent] = React.useState(null);
 
-  const handleCTAClick = (item) => {
-    setSelectedStudent(item);
+  const [scheduleId, setScheduleId] = React.useState();
+  console.log(`scheduleId is ${scheduleId}`);
+
+  const clickHandler = (item) => {
+    setScheduleId(item);
   }
-  console.log(dataList)
+
   return (
+
     <div className="container">
       <div className="header--toggle">
         <div className="toggleContainer">
@@ -32,17 +33,20 @@ function Students({isToggled, handleToggle}) {
       </div>
       <DataFetcher url="mentors/meetings/" cacheKey="mentorMeetings" render={
         (data) => 
-          <MentorList data={data} divClass="mentorButtonContainer row-btn" entity="student">
-            { (item) => 
-              <>
-              <Cta btnClass="btn-collection col-btn" disabled={item.status === "scheduled"} onClick={() => handleCTAClick(item)}>{item.status === "scheduled"? "Meeting Scheduled": "Schedule Meeting"}</Cta>
-              <Cta btnClass="btn-collection col-btn danger">Remove Student</Cta>
+          <MentorSessionList data={data} divClass="mentorButtonContainer row-btn" entity="student">
+            {(item) => 
+            <>
+              <Cta btnClass="btn-collection col-btn" clickHandler={()=> clickHandler(item.mentor_session_id)}>Schedule Meeting</Cta>
+              <Cta btnClass="btn-collection danger col-btn">Remove Student</Cta>
             </>
-            }          
-          </MentorList>
+            }
+
+          </MentorSessionList>
       }
       />
-      {/* <Modal/> */}
+      {scheduleId &&
+       (<Modal onClose={() => setScheduleId(null)} title="Schedule Meeting" content="Select a date and time" confirmText="Schedule" isDateTimeInput={true} 
+       meetingId={scheduleId}/>)}
     </div>
   
   );
