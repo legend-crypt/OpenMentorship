@@ -3,10 +3,20 @@ import "../assets/styles/Mentors.css";
 import DataFetcher from "../components/DataFetcher";
 import MentorList from "../components/MentorList";
 import Cta from "../components/Cta";
+import MentorSessionList from "../components/MentorSessionList";
 
 
 
 function MyMentors({isToggled, handleToggle}) {
+  const renderBtn = (item) => {
+    return (
+      <>
+        <Cta btnClass="btn-collection col-btn warning">Cancel Meeting</Cta>
+        <Cta btnClass="btn-collection danger col-btn">Remove Mentor</Cta>
+
+      </>
+    )
+  }
   
   return (
     <div className="container">
@@ -27,14 +37,15 @@ function MyMentors({isToggled, handleToggle}) {
       </div>
     <DataFetcher url="mentors/students/meetings/" cacheKey="studentMentors" render={
       (data) =>
-        <MentorList data={data} divClass="mentorButtonContainer row-btn" entity="mentor">
-          { () =>
-           <>
-              <Cta btnClass="btn-collection warning col-btn">Cancel Meeting</Cta>
+        <MentorSessionList data={data}  entity="mentor">
+          {
+            (item) => 
+            <>
+              <Cta btnClass="btn-collection col-btn ">Cancel Meeting</Cta>
               <Cta btnClass="btn-collection danger col-btn">Remove Mentor</Cta>
-          </>
+            </>
           }
-        </MentorList>
+        </MentorSessionList>
       }
       />
 

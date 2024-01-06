@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
+import axios from '../utils/axios';
 
-export default function Modal({ isOpen, onClose, onConfirm, title, content, confirmText, isDateTimeInput }) {
+export default function Modal({ isOpen, onClose, title, content, confirmText, isDateTimeInput, meetingId }) {
     const [dateTime, setDateTime] = useState("");
+    const config = {
+        headers : {
+            Authorization: `Bearer ${JSON.parse(localStorage.getItem("access_token"))}`,
+        }
+    }
+    console.log(`config is ${config.headers.Authorization}`);
 
     const handleChange = (e) => {
         setDateTime(e.target.value);
@@ -17,14 +24,23 @@ export default function Modal({ isOpen, onClose, onConfirm, title, content, conf
     };
 
     const handleConfirmClick = () => {
-        if (onConfirm) {
-            onConfirm(dateTime);
-        }
-        onClose();
+        axios
+            .put("/mentors/meeting-schedule/", {
+                mentor_id: meetingId,
+                time: dateTime,
+            }, config)
+            .then((res) => {
+                console.log(res);
+                alert(res.data.detail);
+                onClose();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
     return (
-    <div id="modal" style={{ display: isOpen ? 'block' : 'none' }}>
+    <div id="modal">
         <div className="modal-container">
         <h1>{title}</h1>
         <p>{content}</p>
