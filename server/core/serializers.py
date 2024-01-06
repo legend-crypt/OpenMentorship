@@ -30,4 +30,4 @@ class MentorSessionSerializer(serializers.ModelSerializer):
     mentor = YelloUserSerializer()
     class Meta:
         model = MentorSession
-        fields = ['mentor_session_id','student', 'mentor', 'status', 'meeting_schedule', 'created_at']
+        fields = ['mentor_session_id','student', 'mentor', 'status', 'meeting_schedule', 'meeting_id']
