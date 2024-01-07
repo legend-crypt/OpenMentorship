@@ -30,8 +30,7 @@ urlpatterns = [
     path('mentors/meetings/', MentorViewset.as_view({'get':'get_mentor_meetings'})),
     path('mentors/schedule-meeting/', MentorViewset.as_view({'put':'schedule_meeting'})),
     path('mentors/students/meetings/', MentorViewset.as_view({'get': 'get_student_meetings'})),
-    path('mentors/student-meeting-schedule/', MentorViewset.as_view({'get': 'list_student_schedule_meetings'})),
-    path('mentors/mentor-meeting-schedule/', MentorViewset.as_view({'get': 'list_mentor_schedule_meetings'})),
+    path('mentors/meeting-schedule/', MentorViewset.as_view({'get': 'list_schedule_meetings'})),
 
     
     
