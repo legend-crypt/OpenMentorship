@@ -180,3 +180,47 @@ class MentorViewset(viewsets.ViewSet):
             }
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "Request not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    
+    def list_mentor_schedule_meetings(self, request):
+        """ List mentor schedule meetings
+
+        Args:
+            request (http request): 
+
+        Returns:
+            http response: http response
+        """
+        mentor = get_user_from_jwttoken(request)
+        if mentor:
+            mentor_requests = get_mentor_schedule_meeting(mentor)
+            if not mentor_requests:
+                return Response({"detail": "No meetings found"}, status=status.HTTP_200_OK)
+            context = {
+                "detail": "Requests retrieved successfully",
+                "data": get_mentorSession_information(mentor_requests)
+            }
+            return Response(context, status=status.HTTP_200_OK)
+        return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    
+    def list_student_schedule_meetings(self, request):
+        """ List schedule student meetings
+
+        Args:
+            request (http request): 
+
+        Returns:
+            http response: http response
+        """
+        student = get_user_from_jwttoken(request)
+        if student:
+            student_query = get_student_schedule_meeting(student)
+            if not student_query:
+                return Response({"detail": "No meetings found"}, status=status.HTTP_200_OK)
+            context = {
+                "detail": "Requests retrieved successfully",
+                "data": get_mentorSession_information(student_query)
+            }
+            return Response(context, status=status.HTTP_200_OK)
+        return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
