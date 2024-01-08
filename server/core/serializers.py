@@ -27,10 +27,12 @@ class VerificationSerializer(serializers.ModelSerializer):
         
 class MentorSessionSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField()
+    # mentor = YelloUserSerializer()
+    # student = YelloUserSerializer()
 
     class Meta:
         model = MentorSession
-        fields = ['mentor_session_id', 'user', 'status', 'time', 'created_at', 'meeting_id']
+        fields = ['mentor_session_id', 'status', 'user', 'time', 'created_at', 'meeting_id']
 
     def get_user(self, obj):
         user_role = self.context['request'].user.role  # Assuming you have a 'role' attribute in your user model
