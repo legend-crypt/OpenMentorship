@@ -28,7 +28,7 @@ def get_mentor_session_by_id(id):
     try:
         return MentorSession.objects.get(pk=id)
         
-    except Mentor.DoesNotExit:
+    except MentorSession.DoesNotExist:
         return None
     
 
@@ -46,7 +46,7 @@ def get_mentor_requests(mentor: YelloUser)-> MentorSession:
     except MentorSession.DoesNotExist:
         return None
 
-def get_student_meeting(student: YelloUser) -> MentorSession:
+def get_student_accepted_request(student: YelloUser) -> MentorSession:
     """Get student meeting
 
     Args:
@@ -56,7 +56,7 @@ def get_student_meeting(student: YelloUser) -> MentorSession:
         MentorSession: mentor session
     """
     try:
-        return MentorSession.objects.filter(student=student, status="accepted")
+        return MentorSession.objects.get(student=student, status="accepted")
     except MentorSession.DoesNotExist:
         return None
     
@@ -74,11 +74,11 @@ def get_mentor_session_by_student_id(id: uuid) -> MentorSession:
     except MentorSession.DoesNotExist:
         return None
     
-def get_mentor_meeting(mentor: YelloUser) -> MentorSession:
-    """Get student meeting
+def get_mentor_accepted_student(mentor: YelloUser) -> MentorSession:
+    """Get mentor accepted students
 
     Args:
-        student (YelloUser): student
+        mentor (YelloUser):   mentor
 
     Returns:
         MentorSession: mentor session
