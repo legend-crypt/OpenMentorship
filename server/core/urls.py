@@ -28,8 +28,10 @@ urlpatterns = [
     path('mentors/reject-request/', MentorViewset.as_view({'put':'reject_mentee_request'})),
     path('mentors/pending-requests/', MentorViewset.as_view({'get':'get_mentor_pending_requests'})),
     path('mentors/meetings/', MentorViewset.as_view({'get':'get_mentor_meetings'})),
-    path('mentors/meeting-schedule/', MentorViewset.as_view({'put':'schedule_meeting'})),
+    path('mentors/schedule-meeting/', MentorViewset.as_view({'put':'schedule_meeting'})),
     path('mentors/students/meetings/', MentorViewset.as_view({'get': 'get_student_meetings'})),
+    path('mentors/meeting-schedule/', MentorViewset.as_view({'get': 'list_schedule_meetings'})),
+
     
     
     path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),

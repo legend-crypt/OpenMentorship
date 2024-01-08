@@ -21,14 +21,18 @@ function Mentors() {
   return (
     <div>
       <nav>
-        <Link to="mentors/accept-student"/>
+        <Link to="mentors/accept-student" />
       </nav>
       <Header />
       <Routes>
-        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} />}/>
-        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')}/>}/>
-        <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')}/>}/>
-        <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')}/>}/>
+        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} />} />
+
+        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} />} />
+
+        <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')} />} />
+
+        <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')} />} />
+
       </Routes>
       <Outlet />
     </div>

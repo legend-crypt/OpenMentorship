@@ -23,7 +23,7 @@ function Header() {
                                 <li className='nav__right'><Link>Mentors</Link></li>                        <li className='nav__right'><Link>Meetings</Link></li>
                             </div>
                             <div className='menu'>
-                                <button class="menu__button"><img src={!clicked ? hamburger: close} alt='menu' onClick={handleClick}/></button>
+                                <button className="menu__button"><img src={!clicked ? hamburger: close} alt='menu' onClick={handleClick}/></button>
                             </div>
 
                     </ul>

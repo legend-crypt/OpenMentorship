@@ -124,6 +124,7 @@ img {
 
   .mentorButtonContainer {
     width: 20%;
+    display: flex;
   }
 
 .row-btn {

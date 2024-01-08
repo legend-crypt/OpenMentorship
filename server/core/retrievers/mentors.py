@@ -88,5 +88,34 @@ def get_mentor_meeting(mentor: YelloUser) -> MentorSession:
     except MentorSession.DoesNotExist:
         return None
 
+def get_mentor_schedule_meeting(user: YelloUser) -> MentorSession:
+    """Get mentor schedule meeting
+
+    Args:
+        student (YelloUser): student
+
+    Returns:
+        MentorSession: mentor session
+    """
+    try:
+        return MentorSession.objects.filter(mentor=user, status="scheduled")
+    except MentorSession.DoesNotExist:
+        return None
+
+
+def get_student_schedule_meeting(user: YelloUser) -> MentorSession:
+    """Get mentee schedule meeting
+
+    Args:
+        student (YelloUser): user
+
+    Returns:
+        MentorSession: mentor session
+    """
+    try:
+        return MentorSession.objects.filter(student=user, status="scheduled")
+    except MentorSession.DoesNotExist:
+        return None
+
     
     

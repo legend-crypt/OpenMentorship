@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from core.utils import *
 from core.retrievers.mentors import *
 from core.senders.mentors import *
-
+from core.serializers import MentorSessionSerializer
 
 
 
@@ -180,3 +180,28 @@ class MentorViewset(viewsets.ViewSet):
             }
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "Request not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    
+    def list_schedule_meetings(self, request):
+        """ List mentor schedule meetings
+
+        Args:
+            request (http request): 
+            user_id (uuid): user id
+
+        Returns:
+            http response: http response
+        """
+        user = get_user_from_jwttoken(request)
+        if user:
+            mentor_requests = get_mentor_schedule_meeting(user) if user.role == "Mentor" else get_student_schedule_meeting(user)
+            if not mentor_requests:
+                return Response({"detail": "No meetings found"}, status=status.HTTP_200_OK)
+
+            serializer = MentorSessionSerializer(mentor_requests, many=True, context={'request': request})
+            
+            context = {
+                "detail": "Requests retrieved successfully",
+                "data": serializer.data
+            }
+            return Response(context, status=status.HTTP_200_OK)

@@ -20,7 +20,8 @@ const DataFetcher = ({render, url, cacheKey}) => {
           }
         })
         .catch((error => {
-          alert(`Failed to retrieve ${cacheKey}`, error.data)
+          // alert(`Failed to retrieve ${cacheKey}`, error.data)
+          console.log(`Failed to retrieve ${cacheKey}`, error.data);
         }
         ))
       },[]);
