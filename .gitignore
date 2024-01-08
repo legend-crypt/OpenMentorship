@@ -29,7 +29,7 @@ frontend/build/
 
 # production
 /build
-
+/server/Pipfile
 # misc
 .DS_Store
 .env.local
