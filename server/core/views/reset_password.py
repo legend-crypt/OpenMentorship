@@ -13,7 +13,7 @@ class PasswordResetViewset(viewsets.ViewSet):
         user = get_user_by_email(email)
         if not user:
             context = {
-                'detail': 'User does not exist'
+                'error': 'User does not exist'
             }
             return Response(context, status=status.HTTP_404_NOT_FOUND)
         user_token = get_password_token(email)
