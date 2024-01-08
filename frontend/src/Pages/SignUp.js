@@ -1,3 +1,21 @@
+/*
+  The `SignUp` React component represents the user sign-up page. It utilizes Formik for form handling, Yup for form validation, and Axios for making API requests. Users can create a new account by providing their email, password, and role. The component also supports social sign-up through Google (or other OAuth providers).
+
+  Component:
+  - SignUp: Manages user sign-up functionality.
+
+  Key Functionalities:
+  - Utilizes Formik for form handling and Yup for form validation.
+  - Handles user sign-up using Axios to make a POST request to the server's create account endpoint.
+  - Alerts the user with success or failure messages based on API responses.
+  - Provides options to select a role during sign-up.
+  - Supports social sign-up through Google (or other OAuth providers).
+  - Redirects users to the email verification page upon successful registration.
+
+  Note: The component enhances the user experience by incorporating form validation, clear feedback messages, and support for both standard and social sign-up options.
+*/
+
+
 import React, {useState, useEffect} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import google from '../assets/images/google.svg';

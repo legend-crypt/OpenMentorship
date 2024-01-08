@@ -2,11 +2,11 @@ import React from 'react'
 import DataFetcher from '../components/DataFetcher'
 
 export default function MeetingSchedule() {
-    const listMeeting = (data, field) => {
+    const listMeeting = (data,) => {
         const meetingList = data.map(item => {
             return (
                 <div className='mentorsContainer' key={item.user_id}>
-                    <p>Your meeting                     <User name={`${item[field].profile?.first_name} ${item[field].profile?.last_name}`} />
+                    <p>Your meeting                     <User name={`${item.user.profile?.first_name} ${item.user.profile?.last_name}`} />
                     is schedule at {item.time}</p>
                     <p> Please join with this meeting ID :{item.meeting_id}</p>
                     <div className='mentorButtonContainer'>

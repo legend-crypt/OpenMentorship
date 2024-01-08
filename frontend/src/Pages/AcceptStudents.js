@@ -1,3 +1,19 @@
+/*
+  The `AcceptStudents` React component represents a section of the application dedicated to handling mentee requests. It displays a toggle switch, mentor information, and buttons for accepting or denying mentee requests. This component has commented-out code that hints at using the `DataFetcher` and `MentorList` components, but it's currently utilizing static content.
+
+  Component:
+  - AcceptStudents: Manages mentee requests, displays a toggle switch, and provides options to accept or deny mentees.
+
+  Key Functionalities:
+  - Displays a toggle switch allowing users to switch between mentee requests and viewing mentees.
+  - Exhibits mentor information with a name, member count, and description.
+  - Provides buttons for accepting or denying mentee requests.
+
+  Note: The commented-out code suggests potential integration with the `DataFetcher` and `MentorList` components, but it's currently displaying static content. Ensure to uncomment and integrate the code for dynamic mentee request handling.
+*/
+
+
+
 import * as React from "react";
 import "../assets/styles/Mentors.css";
 import DataFetcher from "../components/DataFetcher";

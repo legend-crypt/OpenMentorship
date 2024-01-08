@@ -37,7 +37,7 @@ function MyMentors({isToggled, handleToggle}) {
       </div>
     <DataFetcher url="mentors/students/meetings/" cacheKey="studentMentors" render={
       (data) =>
-        <MentorSessionList data={data}  entity="mentor">
+        <MentorSessionList data={data}>
           {
             (item) => 
             <>
