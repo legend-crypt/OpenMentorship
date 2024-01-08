@@ -13,8 +13,7 @@ def create_mentor_request(student:YelloUser, mentor:YelloUser) -> MentorSession:
         MentorSession: mentor session
     """
     query_set = MentorSession.objects.create(student=student, mentor=mentor)
-    serializer = MentorSessionSerializer(query_set)
-    return serializer.data
+    return query_set
 
 
 def create_mentor_meeting(mentor_session:uuid, meeting_schedule:str) -> MentorSession:
@@ -31,5 +30,4 @@ def create_mentor_meeting(mentor_session:uuid, meeting_schedule:str) -> MentorSe
     mentor_session.meeting_id = meeting_id
     mentor_session.status = "scheduled"
     mentor_session.save()
-    serializer = MentorSessionSerializer(mentor_session)
-    return serializer.data
+    return mentor_session

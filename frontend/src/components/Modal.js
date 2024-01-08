@@ -25,7 +25,7 @@ export default function Modal({ isOpen, onClose, title, content, confirmText, is
 
     const handleConfirmClick = () => {
         axios
-            .put("/mentors/meeting-schedule/", {
+            .put("/mentors/schedule-meeting/", {
                 mentor_id: meetingId,
                 time: dateTime,
             }, config)
