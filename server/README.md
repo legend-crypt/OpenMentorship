@@ -3,6 +3,66 @@
 ## Overview
 
 This API provides functionalities for user management in the Yello platform. It includes features such as account creation, email verification, password reset, and user profile retrieval.
+# Get Started with Yello API
+
+## Introduction
+
+Welcome to the OpenMentors API! This section provides a quick guide on how to get started with the Yello API for user profile, mentor management, and meeting scheduling.
+
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+
+1. **Dependencies**: Ensure that you have the required dependencies installed on your development environment.
+
+## Installing Dependencies
+
+To use the Yello API, you need to install the following dependencies:
+
+1. **Python**: Make sure you have Python installed on your machine. You can download it from [python.org](https://www.python.org/downloads/).
+
+2. **Django**: Yello API is built using the Django framework. Install Django using the following command:
+
+    ```bash
+    pip install django
+    ```
+
+3. **Django REST Framework**: Yello API leverages the Django REST Framework. Install it using:
+
+    ```bash
+    pip install djangorestframework
+    ```
+
+4. **Other Dependencies**: Depending on your specific environment, you may need to install additional libraries. Refer to the API documentation for any specific requirements.
+
+## Setting Up the OpenMentors API
+
+Follow these steps to set up and run the Yello API on your local machine:
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/legend-crypt/OpenMentorship
+cd OpenMentorship
+```
+### 2. Migrate Database
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+### 3. Create Superuser
+```bash
+python manage.py createsuperuser
+```
+### 4. Run Server
+```bash
+python manage.py runserver
+```
+Visit http://localhost:8000/api/ in your browser to access the OpenMentors API.
+
+
+
 
 ## Table of Contents
 
@@ -664,3 +724,50 @@ User's email address.
   ]
 }
 ```
+
+# Contributing to Yello API
+
+Welcome to the Yello API open-source project! We appreciate your interest in contributing. Follow the steps below to get started:
+
+## 1. Fork the Repository
+
+Click the "Fork" button on the top-right corner of this repository to create your fork. This will create a copy of the repository in your GitHub account.
+
+## 2. Clone Your Fork
+
+Clone your fork to your local machine using the following command:
+
+```bash
+git clone https://github.com/legend-crypt/OpenMentorship
+cd OpenMentorship
+```
+## 3. Create a Branch
+Create a new branch to work on your feature or bug fix:
+
+```bash
+git checkout -b feature-or-bugfix-name
+```
+## 4. Make Changes
+Make the necessary changes to the codebase. Ensure that your changes follow the project's coding standards.
+## 5. Test Your Changes
+Test your changes locally to ensure they work as expected. Run any existing tests and add new ones if applicable.
+
+## 6. Commit Your Changes
+Commit your changes with a clear and concise commit message
+
+```bash
+git add .
+git commit -m "commit message"
+```
+## 7. Push Changes
+Push your changes to your fork on GitHub:
+  
+  ```bash
+  git push origin feature-or-bugfix-name
+  ```
+## 8. Create a Pull Request
+Visit your fork on GitHub and click the "New Pull Request" button. Provide a clear title and description for your pull request, and submit it.
+## 9. Code Review
+Your pull request will be reviewed by the project maintainers. Address any feedback or changes requested.
+## 10. Merge
+Once your pull request is approved, it will be merged into the main repository. Congratulations! You have successfully contributed to the OpenMentors project.
