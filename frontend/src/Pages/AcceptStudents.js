@@ -59,7 +59,7 @@ function AcceptStudents({isToggled, handleToggle}) {
 
       </div>
     </div>
-    {/* <DataFetcher url="mentors/pending-requests/" cacheKey="pendingRequests" render={
+    <DataFetcher url="mentors/pending-requests/" cacheKey="pendingRequests" render={
       (data) => 
       <MentorList data={data} divClass="mentorButtonContainer row-btn" disablebutton={(studentId) => dataList.includes(studentId)}>
         {(item) => 
@@ -70,7 +70,7 @@ function AcceptStudents({isToggled, handleToggle}) {
         }
       </MentorList>
      }
-     /> */}
+     />
     </div>
   
   );

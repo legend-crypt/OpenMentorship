@@ -35,7 +35,7 @@ function MyMentors({isToggled, handleToggle}) {
           {/* <div className="profileImage"><img src="/profile.png"/></div> */}
         </div>
       </div>
-    <DataFetcher url="mentors/students/meetings/" cacheKey="studentMentors" render={
+    <DataFetcher url="mentors/students/accept/" cacheKey="studentMentors" render={
       (data) =>
         <MentorSessionList data={data}>
           {
