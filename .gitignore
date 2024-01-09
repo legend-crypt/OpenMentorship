@@ -44,3 +44,5 @@ server/db.sqlite3
 server/.dockerignore
 server/.env
 venv/
+server/db*
+server/media/
