@@ -68,7 +68,7 @@ console.log(initialValues.first_name)
     });
     }
 
-  }, [accessToken, userProfile]);
+  }, [accessToken, /*userProfile*/]); // here userProfile is causing infinite api call
 
   console.log(userProfile);
 
