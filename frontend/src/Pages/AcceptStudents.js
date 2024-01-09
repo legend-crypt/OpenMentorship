@@ -1,15 +1,16 @@
 /*
-  The `AcceptStudents` React component represents a section of the application dedicated to handling mentee requests. It displays a toggle switch, mentor information, and buttons for accepting or denying mentee requests. This component has commented-out code that hints at using the `DataFetcher` and `MentorList` components, but it's currently utilizing static content.
+  The `AcceptStudents` React component is responsible for displaying and managing mentee requests. It utilizes the `MentorSessionList` component to render a list of mentor-mentee session information. The component includes buttons for accepting and denying mentee requests, allowing mentors to take action on pending requests.
 
   Component:
-  - AcceptStudents: Manages mentee requests, displays a toggle switch, and provides options to accept or deny mentees.
+  - AcceptStudents: Manages and displays mentee requests, allowing mentors to accept or deny them.
 
   Key Functionalities:
-  - Displays a toggle switch allowing users to switch between mentee requests and viewing mentees.
-  - Exhibits mentor information with a name, member count, and description.
-  - Provides buttons for accepting or denying mentee requests.
+  - Utilizes the `MentorSessionList` component to display a list of mentor-mentee session information.
+  - Includes buttons for accepting and denying mentee requests within each session item.
+  - Uses a `DataFetcher` to fetch and render pending mentee requests.
+  - Provides a flexible structure for managing and responding to mentee requests.
 
-  Note: The commented-out code suggests potential integration with the `DataFetcher` and `MentorList` components, but it's currently displaying static content. Ensure to uncomment and integrate the code for dynamic mentee request handling.
+  Note: This component enhances the mentor's experience by providing a clear interface for handling mentee requests with options to accept or deny each request.
 */
 
 
@@ -17,13 +18,13 @@
 import * as React from "react";
 import "../assets/styles/Mentors.css";
 import DataFetcher from "../components/DataFetcher";
-import MentorList from "../components/MentorList";
-import axios from "../utils/axios"
 import Cta from "../components/Cta";
-import useDynamicLogic from "../utils/useDynamicLogic";
+import MentorSessionList from "../components/MentorSessionList";
 
 function AcceptStudents({isToggled, handleToggle}) {
+  const clickHandler = () => {
 
+  }
 
 
   return (
@@ -61,14 +62,14 @@ function AcceptStudents({isToggled, handleToggle}) {
     </div>
     <DataFetcher url="mentors/pending-requests/" cacheKey="pendingRequests" render={
       (data) => 
-      <MentorList data={data} divClass="mentorButtonContainer row-btn" disablebutton={(studentId) => dataList.includes(studentId)}>
+      <MentorSessionList data={data} divClass="mentorButtonContainer row-btn">
         {(item) => 
           <>
             <Cta btnClass="btn-collection col-btn" clickHandler={() => clickHandler(item)}>Accept</Cta>
             <Cta btnClass="btn-collection danger col-btn" clickHandler={() => clickHandler(item)}>Deny</Cta>
           </>
         }
-      </MentorList>
+      </MentorSessionList>
      }
      />
     </div>

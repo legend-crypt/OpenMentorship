@@ -48,7 +48,7 @@ function Students({isToggled, handleToggle}) {
           </div>
         </div>
       </div>
-      <DataFetcher url="mentors/meetings/" cacheKey="mentorMeetings" render={
+      <DataFetcher url="mentors/mentor-students/" cacheKey="mentorMeetings" render={
         (data) => 
           <MentorSessionList data={data} divClass="mentorButtonContainer row-btn">
             {(item) => 

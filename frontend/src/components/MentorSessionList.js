@@ -29,7 +29,6 @@ export default function ({data, children}) {
             </div>
         )
     })
-    console.log(sessionList)
   return (
     <div>
         {sessionList}
