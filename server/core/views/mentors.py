@@ -119,7 +119,7 @@ class MentorViewset(viewsets.ViewSet):
         return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
     
     def get_student_mentor_accept(self, request):
-        """ Get student mentor meetings
+        """ Get student accept request
 
         Args:
             request (http request): 

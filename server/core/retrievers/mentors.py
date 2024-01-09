@@ -56,7 +56,7 @@ def get_student_accepted_request(student: YelloUser) -> MentorSession:
         MentorSession: mentor session
     """
     try:
-        return MentorSession.objects.get(student=student, status="accepted")
+        return MentorSession.objects.filter(student=student, status="accepted")
     except MentorSession.DoesNotExist:
         return None
     

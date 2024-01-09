@@ -316,7 +316,7 @@ User's email address.
 ```
 ## 4. Mentor Management
 ### 4.1 List Mentor
-**Endpoint**: `GET mentor/list/`
+**Endpoint**: `GET mentors/list/`
 **Description**: List all mentors.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -343,7 +343,7 @@ User's email address.
 }
 ```
 ### 4.2 Create Mentor Request
-**Endpoint**: `POST mentor/create/`
+**Endpoint**: `POST mentors/create/`
 **Description**: Create a mentor request.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -392,7 +392,7 @@ User's email address.
 }
 ```
 ### 4.3 Accept Mentee Request
-**Endpoint**: `POST mentor/accept/`
+**Endpoint**: `POST mentors/accept/`
 **Description**: Accept a mentee request.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -441,7 +441,7 @@ User's email address.
 }
 ```
 ### 4.4 Reject Mentee Request
-**Endpoint**: `POST mentor/reject-request/`
+**Endpoint**: `POST mentors/reject-request/`
 **Description**: Reject a mentee request.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -469,8 +469,10 @@ User's email address.
 }
 ```
 ### 4.5 Get Mentor Accepted Students
-**Endpoint**: `GET mentor/mentor-students/`
-**Description**: Get all mentor meetings.
+**Endpoint**: `GET mentors/mentor-students/`
+
+**Description**: Get all mentor accepted students.
+
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
 **Response Body**:
@@ -509,7 +511,9 @@ User's email address.
 ### 4.6 Get Student Mentor Accept
 
 **Endpoint**: `GET mentors/student/accept/`
-**Description**: Get all student meetings.
+
+**Description**: Get all students accepted mentors.
+
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
 **Response Body**:
@@ -548,7 +552,7 @@ User's email address.
 ```
 ### 4.7 Get Mentor Pending Requests
 
-**Endpoint**: `GET mentor/pending-requests/`
+**Endpoint**: `GET mentors/pending-requests/`
 **Description**: Get all pending requests for a mentor.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -611,7 +615,7 @@ User's email address.
 }
 ```
 ### 4.8 Schedule Meeting
-**Endpoint**: `POST mentor/schedule-meeting/`
+**Endpoint**: `POST mentors/schedule-meeting/`
 **Description**: Schedule a meeting between a mentor and a mentee.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -641,7 +645,7 @@ User's email address.
 }
 ```
 ### 4.9 List Scheduled Meetings
-**Endpoint**: `GET mentor/scheduled-meetings/`
+**Endpoint**: `GET mentors/scheduled-meetings/`
 **Description**: List all scheduled meetings for a mentor.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -660,8 +664,3 @@ User's email address.
   ]
 }
 ```
-
-
-
-
-
