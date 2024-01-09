@@ -27,6 +27,14 @@ frontend/build/
 # testing
 /coverage
 
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+/server/media
+
 # production
 /build
 /server/Pipfile
