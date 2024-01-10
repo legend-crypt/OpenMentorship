@@ -4,13 +4,17 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
-
+import { Provider } from 'react-redux' // required to store & manage states in entire application 
+import store from './store/store'; // holds/stores all the states of application here
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+    {/* Here we are providing all the states to our react App:: Each component inside App can access states */}
+      <Provider store={store}> 
+        <App />
+      </Provider>
     </BrowserRouter>
   </React.StrictMode>
 );

@@ -6,8 +6,18 @@ import { Routes, Route } from "react-router-dom";
 import Mentors from './Pages/Mentors';
 import Profile from './Pages/Profile';
 import Verification from './Pages/Verification';
+import { useEffect } from 'react';
+import { fetchActiveUser } from './store/slices/userAuth/userAuthSlice';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 function App() {
+
+  const dispatch = useDispatch();
+  // useEffect(()=>{
+  //    dispatch(fetchActiveUser())
+  // })
+
   return (
     <div className="App">
       <Routes>
