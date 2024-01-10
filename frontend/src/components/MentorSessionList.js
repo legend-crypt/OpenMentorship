@@ -9,7 +9,7 @@
   - Utilizes the `User` component to display mentor information within each session item.
   - Allows customization of additional content within each session item through the `children` prop.
 
-  Note: This component promotes reusability by providing a flexible structure for displaying mentor-mentee session information with the ability to include custom content.
+  Note: This component promotes reusability by providing a flexible structure for displaying mentor-mentee session information with the ability to include custom content
 */
 
 
