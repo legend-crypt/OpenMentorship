@@ -36,7 +36,7 @@ const initialValues = {
     bio: userProfile ? userProfile.bio : '',
     profile_picture: userProfile ? userProfile.profile_picture : '',
 };
-console.log(initialValues.first_name)
+// console.log(initialValues.first_name)
 
 
   const config = {
@@ -51,7 +51,7 @@ console.log(initialValues.first_name)
     const storedProfile = JSON.parse(localStorage.getItem('profile'));
     const access_token = JSON.parse(localStorage.getItem('access_token'));
     setAccessToken(access_token);
-    console.log(accessToken);
+    // console.log(accessToken);
 
     if(accessToken) {
       storedProfile? 
@@ -70,7 +70,7 @@ console.log(initialValues.first_name)
 
   }, [accessToken, /*userProfile*/]); // here userProfile is causing infinite api call
 
-  console.log(userProfile);
+  // console.log(userProfile);
 
 
   const basicValidationSchema = Yup.object({
