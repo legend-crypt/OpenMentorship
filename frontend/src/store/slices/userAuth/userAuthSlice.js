@@ -3,6 +3,8 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "../../../utils/axios"
+import { useSelector, useDispatch } from 'react-redux' 
+
 // import useDynamicLogic from '../../../utils/useDynamicLogic'
 
 /* You can use/call this `fetchActiveUser` function to check
@@ -12,6 +14,7 @@ import axios from "../../../utils/axios"
 */
 export const fetchActiveUser = createAsyncThunk("fetchActiveUser", async (_, { rejectWithValue }) => {
     const accessToken = JSON.parse(localStorage.getItem('access_token'));
+    
     let responseData = {
         loginStatus: null,
         userDetails: null
@@ -29,7 +32,7 @@ export const fetchActiveUser = createAsyncThunk("fetchActiveUser", async (_, { r
                 responseData.loginStatus = true;
                 responseData.userDetails = res.data.data;
                 return responseData;
-            } else {
+            } else if(res.status){
                 responseData.loginStatus = false;
                 return responseData;
             }
@@ -55,11 +58,20 @@ export const userAuthSlice = createSlice({
     reducers: {
         // stores login status
         loginUser: (state) => {
-
+           state.loginStatus = true;
+           /*Here user might be new or has not set profile details before or the new one just get registered newly. 
+             once the user login the login status changes to true & then behind the scene fetchActiveUser user is called to fetch user details
+           */
+           
+           // state.userDetails = 
         },
+
         // removes all login credentials including local storage data
         logOutUser: (state) => {
-
+             // clear local storage items
+            localStorage.clear()
+            state.loginStatus = false
+            state.userDetails = null;
         },
     },
     extraReducers: (builder) => {
@@ -79,5 +91,5 @@ export const userAuthSlice = createSlice({
     }
 })
 
-export const { loginUser } = userAuthSlice.actions;
+export const { loginUser, logOutUser } = userAuthSlice.actions;
 export default userAuthSlice.reducer
