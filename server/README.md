@@ -705,7 +705,7 @@ User's email address.
 }
 ```
 ### 4.9 List Scheduled Meetings
-**Endpoint**: `GET mentors/scheduled-meetings/`
+**Endpoint**: `GET mentors/meeting-schedule/`
 **Description**: List all scheduled meetings for a mentor.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -725,7 +725,7 @@ User's email address.
 }
 ```
 
-# Contributing to Yello API
+# Contributing to OpenMentors API
 
 Welcome to the Yello API open-source project! We appreciate your interest in contributing. Follow the steps below to get started:
 
