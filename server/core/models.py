@@ -55,7 +55,7 @@ class YelloUser(AbstractBaseUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(verbose_name="email address", max_length=255, unique=True)
     profile = models.OneToOneField(
-        YelloUserProfile, on_delete=models.CASCADE, null=True
+        YelloUserProfile, on_delete=models.CASCADE, null=True, blank=True
     )
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)

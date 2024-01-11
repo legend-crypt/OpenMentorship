@@ -326,25 +326,43 @@ User's email address.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
 **Response Body**:
-- Success Response (200 OK):
-```json
-{
-  "detail": "Profile retrieved successfully",
-  "data": {
-    // User profile information
-  }
-}
-```
-```json
-{
-  "error": "Profile does not exist"
-}
-```
-```json
-{
-  "detail": "User is not authenticated"
-}
-```
+- Success Response (200 OK) user has created profile:
+  - ```json
+      {
+          "success": true,
+          "message": "Profile found",
+          "data": {
+              "profile_id": "818e807d",
+              "first_name": "john",
+              "last_name": "Doe",
+              "phone_number": "",
+              "profile_picture": "/media/profile_pictures/repair.jpg",
+              "bio": "",
+              "created_at": "2024",
+              "updated_at": "2025"
+          }
+      }
+    ```
+- Success Response (200 OK) user has not created profile:
+  - ```json
+      {
+          "success": false,
+          "message": "Profile does not exist",
+          "data": {null}
+      }
+    ```
+- Error Response (404 Not Found):
+   - ```json
+      {
+        "error": "User does not exist"
+      }
+      ```
+- Error Response (401 Unauthorized):
+  - ```json
+    {
+      "detail": "User is not authenticated"
+    }
+    ```
 ### 3.2 Create Profile
 **Endpoint**: `POST profile/create/`
 **Description**: Create a user's profile information.

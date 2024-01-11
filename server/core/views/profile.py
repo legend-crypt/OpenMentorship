@@ -18,19 +18,23 @@ class ProfileViewset(viewsets.ViewSet):
         """
         permission_classes = [IsAuthenticated]
         user = get_user_from_jwttoken(request)
-        if user.profile:
-            profile = get_profile_by_id(user.profile.profile_id)
-            if not profile:
+        if user:
+            try:
+                profile = get_profile_by_id(user.profile.profile_id)
                 context = {
-                    "error": "Profile does not exist"
+                    "success": True,
+                    "message": "Profile found",
+                    "data": get_profile_information(profile),
+                }  
+                return Response(context, status=status.HTTP_200_OK)
+            except:
+                context = {
+                    "success": False,
+                    "message": "Profile does not exist",
+                    "data": None
                 }
-                return Response(context, status=status.HTTP_404_NOT_FOUND)
-            context = {
-                "detail": "Profile retrieved successfully",
-                "data": get_profile_information(profile),
-            }  
-            return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Profile does not exist"}, status=status.HTTP_404_NOT_FOUND)
+                return Response(context, status=status.HTTP_200_OK)
+        return Response({"error": "user does not exist"}, status=status.HTTP_404_NOT_FOUND)
         
     
     def create(self, request)->Response:
