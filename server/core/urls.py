@@ -32,9 +32,6 @@ urlpatterns = [
     
     path('mentors/students/accept/', MentorViewset.as_view({'get': 'get_student_mentor_accept'})),
     path('mentors/meeting-schedule/', MentorViewset.as_view({'get': 'list_schedule_meetings'})),
-
     
-    
-    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('login/', SignIn.as_view({'post':'post'})),
 ]
