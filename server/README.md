@@ -70,6 +70,7 @@ Visit http://localhost:8000/api/ in your browser to access the OpenMentors API.
   - [1.1 Create Account](#11-create-account)
   - [1.2 Verify Email](#12-verify-email)
   - [1.3 Send Verification Email](#13-send-verification-email)
+  - [1.4 Login](#14-login)
 - [2. Password Reset](#2-password-reset)
   - [2.1 Request Password Reset](#21-request-password-reset)
   - [2.2 Confirm Password Reset](#22-confirm-password-reset)
@@ -212,6 +213,46 @@ User's email address.
   "error": "Your account has already been verified"
 }
 ```
+### 1.4 Login
+**Endpoint**: `POST /accounts/login/`
+**Description**: Login a user.
+**Request Body**:
+```json
+{
+  "email": "example@mail.com",
+  "password": "password123"
+}
+```
+- `email` (string, required): User's email address.
+- `password` (string, required): User's password.
+**Response Body**:
+
+- Response 200 OK
+  - ```json
+      {
+        "detail": "Sign in successful",
+        "user": {
+          // User information
+            "profile" // Profile Information
+        },
+        "token": {
+          "access": "your-access-token",
+          "refresh": "your-refresh-token"
+        }
+      }
+    ```
+- Response 404 Bad Request
+  - ```json
+      {
+        "error": "User not found"
+      }
+    ```
+- Response 401 Unauthorized
+  - ```json
+      {
+        "error": "Invalid credentials"
+      }
+    ```
 ## 2. Password Reset
 ### 2.1 Request Password Reset
 **Endpoint**: `POST /accounts/password-reset-request/`
@@ -285,25 +326,43 @@ User's email address.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
 **Response Body**:
-- Success Response (200 OK):
-```json
-{
-  "detail": "Profile retrieved successfully",
-  "data": {
-    // User profile information
-  }
-}
-```
-```json
-{
-  "error": "Profile does not exist"
-}
-```
-```json
-{
-  "detail": "User is not authenticated"
-}
-```
+- Success Response (200 OK) user has created profile:
+  - ```json
+      {
+          "success": true,
+          "message": "Profile found",
+          "data": {
+              "profile_id": "818e807d",
+              "first_name": "john",
+              "last_name": "Doe",
+              "phone_number": "",
+              "profile_picture": "/media/profile_pictures/repair.jpg",
+              "bio": "",
+              "created_at": "2024",
+              "updated_at": "2025"
+          }
+      }
+    ```
+- Success Response (200 OK) user has not created profile:
+  - ```json
+      {
+          "success": false,
+          "message": "Profile does not exist",
+          "data": {null}
+      }
+    ```
+- Error Response (404 Not Found):
+   - ```json
+      {
+        "error": "User does not exist"
+      }
+      ```
+- Error Response (401 Unauthorized):
+  - ```json
+    {
+      "detail": "User is not authenticated"
+    }
+    ```
 ### 3.2 Create Profile
 **Endpoint**: `POST profile/create/`
 **Description**: Create a user's profile information.
@@ -705,7 +764,7 @@ User's email address.
 }
 ```
 ### 4.9 List Scheduled Meetings
-**Endpoint**: `GET mentors/scheduled-meetings/`
+**Endpoint**: `GET mentors/meeting-schedule/`
 **Description**: List all scheduled meetings for a mentor.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -725,7 +784,8 @@ User's email address.
 }
 ```
 
-# Contributing to Yello API
+
+# Contributing to OpenMentors API
 
 Welcome to the Yello API open-source project! We appreciate your interest in contributing. Follow the steps below to get started:
 

@@ -1,12 +1,32 @@
 from core.models import *
 from core.serializers import *
+from core.senders.profile import *
 
 
 def get_user_information(email):
-    """Get user information"""
+    """Get user information by email
+
+    Args:
+        email (str): user email
+
+    Returns:
+        dict: user information
+    """
     user = get_user_by_email(email)
-    serializer = YelloUserSerializer(user)
-    return serializer.data
+    profile = get_profile_by_id(user.profile_id)
+    if profile:
+        return {
+            "user_id": user.user_id,
+            "email": user.email,
+            "role": user.role,
+            "verified": user.verified,
+            "profile": get_profile_information(profile)
+        }
+    return {
+        "user_id": user.user_id,
+        "email": user.email,
+        "verified": user.verified,
+    }
 
 def get_user_by_email(email):
     """Get user by email"""
