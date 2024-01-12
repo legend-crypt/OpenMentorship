@@ -40,28 +40,35 @@ export default function SignIn() {
     password: Yup.string().min(4, 'Must be 6 characters or more').required('Required'),
   });
 
-  const handleSubmit = async (values) => {
+  const handleSubmit = (values) => {
 
-    await axios.post('login/', values)
+     axios.post('login/', values)
       .then((response) => {
-        console.log(response);
         if (response.status === 200) {
-          // console.log(response)
-          localStorage.setItem("access_token", JSON.stringify(response.data.access));
+          localStorage.setItem("access_token", JSON.stringify(response.data.token.access));
           alert("logged in successfully");
           // change user login status
-          dispatch(loginUser())
-          navigate('/profile') // this will be uncomment after userDetails is sent along with the auth token
-        }
-        else {
+          if (!response.data.user.profile) {
+            // if user does not have a profile then redirect to 
+            dispatch(loginUser({
+              isProfileFound : false,
+              userDetails : response.data.user
+            }))
+            navigate('/profile') 
+          }else{
+            dispatch(loginUser({
+              isProfileFound : true,
+              userDetails :  response.data.user
+            }))
+            navigate("/")
+          }
+        }else {
           alert(response.data.error);
         }
       })
       .catch((error) => {
         alert('Failed to register user:', error.response.data);
       })
-
-
   };
 
   return (

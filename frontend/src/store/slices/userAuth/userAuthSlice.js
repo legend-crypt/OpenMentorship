@@ -3,7 +3,7 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "../../../utils/axios"
-import { useSelector, useDispatch } from 'react-redux' 
+import { useSelector, useDispatch } from 'react-redux'
 
 // import useDynamicLogic from '../../../utils/useDynamicLogic'
 
@@ -14,7 +14,6 @@ import { useSelector, useDispatch } from 'react-redux'
 */
 export const fetchActiveUser = createAsyncThunk("fetchActiveUser", async (_, { rejectWithValue }) => {
     const accessToken = JSON.parse(localStorage.getItem('access_token'));
-    
     let responseData = {
         loginStatus: null,
         userDetails: null
@@ -30,9 +29,12 @@ export const fetchActiveUser = createAsyncThunk("fetchActiveUser", async (_, { r
             const res = await axios.get("/profile/retrieve", config);
             if (res.status === 200) {
                 responseData.loginStatus = true;
-                responseData.userDetails = res.data.data;
+                if (res.data.success) {
+                    // user has setup their profile before
+                    responseData.userDetails = res.data
+                }
                 return responseData;
-            } else if(res.status){
+            } else {
                 responseData.loginStatus = false;
                 return responseData;
             }
@@ -57,18 +59,17 @@ export const userAuthSlice = createSlice({
     },
     reducers: {
         // stores login status
-        loginUser: (state) => {
-           state.loginStatus = true;
-           /*Here user might be new or has not set profile details before or the new one just get registered newly. 
-             once the user login the login status changes to true & then behind the scene fetchActiveUser user is called to fetch user details
-           */
-           
-           // state.userDetails = 
+        loginUser: (state, action) => {
+            /*Here user might be new or has not set profile details before or the new one just get registered newly. 
+            once the user login the login status changes to true & then behind the scene fetchActiveUser user is called to fetch user details
+            */
+            state.loginStatus = true;
+            state.userDetails = action.payload.userDetails
         },
 
         // removes all login credentials including local storage data
         logOutUser: (state) => {
-             // clear local storage items
+            // clear local storage items
             localStorage.clear()
             state.loginStatus = false
             state.userDetails = null;
