@@ -28,7 +28,7 @@ import React from "react";
 function Mentors() {
   const [isToggled, setIsToggled] = React.useState();
 
-  const toggleOptions = {
+  const menteeToggleOptions = {
     userType : "mentee",
     options : {
       toggle1 : {
@@ -39,6 +39,20 @@ function Mentors() {
         name : "Mentors",
         path : "/mentors/my-mentors"
       }
+    }
+  }
+
+  const mentorToggleOptions = {
+    userType : "mentor",
+    options : {
+      toggle1:{
+        name : "Mentees",
+        path : "/mentors/students"
+      },
+      toggle2 : {
+        name : "Mentee Requests",
+        path : "/mentors/students"
+      },
     }
   }
 
@@ -56,13 +70,13 @@ function Mentors() {
       </nav>
       <Header />
       <Routes>
-        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} toggleOptions={toggleOptions} />} />
+        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} toggleOptions={menteeToggleOptions} />} />
 
-        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} toggleOptions={toggleOptions} />} />
+        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} toggleOptions={menteeToggleOptions} />} />
 
-        <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')} />} />
+        <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')} toggleOptions={mentorToggleOptions} />} />
 
-        <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')} />} />
+        <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')} toggleOptions={mentorToggleOptions} />} />
 
       </Routes>
       <Outlet />
