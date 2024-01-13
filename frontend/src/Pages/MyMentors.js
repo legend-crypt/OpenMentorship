@@ -4,10 +4,13 @@ import DataFetcher from "../components/DataFetcher";
 import MentorList from "../components/MentorList";
 import Cta from "../components/Cta";
 import MentorSessionList from "../components/MentorSessionList";
+import MentorToggleButton from "../components/MentorToggleButton";
 
 
+// meant for the users who are actually mentee
+// listing - users mentors
 
-function MyMentors({isToggled, handleToggle}) {
+function MyMentors({ isToggled, handleToggle, toggleOptions }) {
   const renderBtn = (item) => {
     return (
       <>
@@ -16,12 +19,13 @@ function MyMentors({isToggled, handleToggle}) {
       </>
     )
   }
-  
+
   return (
     <div className="container">
       <div className="header--toggle">
         <div className="toggleContainer">
-          <div
+          <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions}  />
+          {/* <div
             className={`toggleBackground ${isToggled ? "toggled" : ""}`}
             onClick={handleToggle}
           >
@@ -30,12 +34,12 @@ function MyMentors({isToggled, handleToggle}) {
             <div className="toggleAccentContainer">
               <div className={`toggleAccent ${isToggled ? "toggled" : ""}`} />
             </div>
-          </div>
+          </div> */}
           {/* <div className="profileImage"><img src="/profile.png"/></div> */}
         </div>
-            <h1>Hello</h1>
+        <h1>Hello</h1>
       </div>
-    <DataFetcher url="mentors/students/accept/" cacheKey="studentMentors" render={
+    {/* <DataFetcher url="mentors/students/accept/" cacheKey="studentMentors" render={
       (data) =>
         <MentorSessionList data={data}>
           {
@@ -47,11 +51,9 @@ function MyMentors({isToggled, handleToggle}) {
           }
         </MentorSessionList>
       }
-      />
-
-
+      /> */}
     </div>
-  
+
   );
 }
 

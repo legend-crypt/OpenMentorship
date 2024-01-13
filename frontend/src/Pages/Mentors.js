@@ -28,6 +28,20 @@ import React from "react";
 function Mentors() {
   const [isToggled, setIsToggled] = React.useState();
 
+  const toggleOptions = {
+    userType : "mentee",
+    options : {
+      toggle1 : {
+        name : "Find Mentors",
+        path : "/mentors"
+      },
+      toggle2:{
+        name : "Mentors",
+        path : "/mentors/my-mentors"
+      }
+    }
+  }
+
   const navigate = useNavigate()
 
   const handleToggle = (path) => {
@@ -42,9 +56,9 @@ function Mentors() {
       </nav>
       <Header />
       <Routes>
-        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} />} />
+        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} toggleOptions={toggleOptions} />} />
 
-        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} />} />
+        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} toggleOptions={toggleOptions} />} />
 
         <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')} />} />
 
