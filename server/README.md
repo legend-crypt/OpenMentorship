@@ -84,7 +84,7 @@ Visit http://localhost:8000/api/ in your browser to access the OpenMentors API.
     - [4.3 Accept Mentee Request](#43-Mentee-request)
     - [4.4 Reject Mentee Request](#44-reject-mentee-request)
     - [4.5 Get  Mentor Accepted Students](#45-get-mentor-accepted-students)
-    - [4.6 Get  student Mentor Accept](#46-get-student-mentor-accept)
+    - [4.6 Get  student Mentors](#46-get-student-mentor-accept)
     - [4.7 Get Mentor Pending Requests](#47-get-mentor-pending-requests)
     - [4.8 Schedule Meeting](#48-schedule-meeting)
     - [4.9 List Scheduled Meetings](#49-list-scheduled-meetings)
