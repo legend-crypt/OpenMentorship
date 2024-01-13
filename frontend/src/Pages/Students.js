@@ -21,8 +21,9 @@ import DataFetcher from "../components/DataFetcher";
 import Cta from "../components/Cta";
 import MentorSessionList from "../components/MentorSessionList";
 import Modal from "../components/Modal";
+import MentorToggleButton from "../components/MentorToggleButton";
 
-function Students({isToggled, handleToggle}) {
+function Students({isToggled, handleToggle, toggleOptions}) {
 
   const [scheduleId, setScheduleId] = React.useState();
   console.log(`scheduleId is ${scheduleId}`);
@@ -36,7 +37,8 @@ function Students({isToggled, handleToggle}) {
     <div className="container">
       <div className="header--toggle">
         <div className="toggleContainer">
-          <div
+          <MentorToggleButton toggleOptions={toggleOptions} handleToggle={handleToggle} />
+          {/* <div
             className={`toggleBackground ${isToggled ? "toggled" : ""}`}
             onClick={handleToggle}
           >
@@ -45,7 +47,7 @@ function Students({isToggled, handleToggle}) {
             <div className="toggleAccentContainer">
               <div className={`toggleAccent ${isToggled ? "toggled" : ""}`} />
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <DataFetcher url="mentors/mentor-students/" cacheKey="mentorMeetings" render={

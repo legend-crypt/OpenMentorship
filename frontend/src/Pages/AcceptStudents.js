@@ -20,8 +20,9 @@ import "../assets/styles/Mentors.css";
 import DataFetcher from "../components/DataFetcher";
 import Cta from "../components/Cta";
 import MentorSessionList from "../components/MentorSessionList";
+import MentorToggleButton from "../components/MentorToggleButton";
 
-function AcceptStudents({isToggled, handleToggle}) {
+function AcceptStudents({isToggled, handleToggle, toggleOptions}) {
   const clickHandler = () => {
 
   }
@@ -31,7 +32,8 @@ function AcceptStudents({isToggled, handleToggle}) {
     <div className="container">
       <div className="header--toggle">
         <div className="toggleContainer">
-          <div
+          <MentorToggleButton handleToggle={handleToggle} toggleOptions={toggleOptions} />
+          {/* <div
             className={`toggleBackground ${isToggled ? "toggled" : ""}`}
             onClick={handleToggle}
           >
@@ -40,7 +42,7 @@ function AcceptStudents({isToggled, handleToggle}) {
             <div className="toggleAccentContainer">
               <div className={`toggleAccent ${isToggled ? "toggled" : ""}`} />
             </div>
-          </div>
+          </div> */}
           {/* <div className="profileImage"><img src="/profile.png"/></div> */}
         </div>
       </div>

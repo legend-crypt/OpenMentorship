@@ -21,15 +21,12 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Hero />} />
-        <Route path="/signIn" element={<SignIn />} />
-        <Route path="/signUp" element={<SignUp />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
-        <Route path="/profile" element={<ProtectedPages Component={<Profile />} />} />
-        <Route path="/verification" element={<Verification />} />  
-        {/* <Route path="mentors/*" element={<Mentors />}> */}
-        <Route path="mentors/*" element={<ProtectedPages Component={<Mentors />} />}>
-        </Route>
+          <Route path="/" element={<Hero />} />
+          <Route path="/signIn" element={<SignIn />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/profile" element={<ProtectedPages Component={<Profile />} />} />
+          <Route path="/verification" element={<Verification />} />  
+          <Route path="mentors/*" element={<ProtectedPages Component={<Mentors />} />} />
       </Routes>
       {/* <Profile/> */}
     </div>

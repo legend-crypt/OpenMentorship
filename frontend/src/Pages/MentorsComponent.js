@@ -19,14 +19,16 @@
 import "../assets/styles/Mentors.css";
 import DataFetcher from "../components/DataFetcher";
 import MentorList from "../components/MentorList";
-function MentorsComponent({isToggled, handleToggle}) {
+import MentorToggleButton from "../components/MentorToggleButton";
+function MentorsComponent({isToggled, handleToggle, toggleOptions}) {
 
 
   return (
       <div className="container">
         <div className="header--toggle">
           <div className="toggleContainer">
-            <div
+            <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions} />
+            {/* <div
               className={`toggleBackground ${isToggled ? "toggled" : ""}`}
               onClick={handleToggle}
             >
@@ -36,7 +38,7 @@ function MentorsComponent({isToggled, handleToggle}) {
               <div className="toggleAccentContainer">
                 <div className={`toggleAccent ${isToggled ? "toggled" : ""}`} />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <DataFetcher url="mentors/" cacheKey="mentors" render={
