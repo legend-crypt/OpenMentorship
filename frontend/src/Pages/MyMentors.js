@@ -13,7 +13,6 @@ function MyMentors({isToggled, handleToggle}) {
       <>
         <Cta btnClass="btn-collection col-btn warning">Cancel Meeting</Cta>
         <Cta btnClass="btn-collection danger col-btn">Remove Mentor</Cta>
-
       </>
     )
   }

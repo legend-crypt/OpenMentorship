@@ -37,9 +37,14 @@ export default function useDynamicLogic(url, atr) {
   const fetchData = () => {
     axios.get(url, config)
       .then(res => {
-        const newDataList = res.data.data.map(item => item[atr].user_id);
-        console.log(`newDataList ${newDataList}`);
-        setDataList(newDataList);
+        if (res.data.data) {
+          // meetings found
+          const newDataList = res.data.data.map(item => item[atr].user_id);
+          console.log(`newDataList ${newDataList}`);
+          setDataList(newDataList);
+        }
+        // If no meetings not found
+        // response is like --> {data : {"detail": "No meetings found"}, ...other}
       })
       .catch(err => {
         console.log(err);
