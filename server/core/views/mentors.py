@@ -210,3 +210,23 @@ class MentorViewset(viewsets.ViewSet):
                 "data": serializer.data
             }
             return Response(context, status=status.HTTP_200_OK)
+
+
+    def get_student_pending_requests(self, request):
+        """ Get student pending request
+
+        Args:
+            request (http request): 
+
+        Returns:
+            http response: http response
+        """
+        student = get_user_from_jwttoken(request)
+        if student:
+            mentor_requests = get_student_mentorSession_by_status(student, "pending")
+            serializer = MentorSessionSerializer(mentor_requests, many=True, context={'request': request})
+            context = {
+                "detail": "Requests retrieved successfully",
+                "data": serializer.data
+            }
+            return Response(context, status=status.HTTP_200_OK)

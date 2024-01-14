@@ -60,6 +60,21 @@ def get_student_accepted_request(student: YelloUser) -> MentorSession:
     except MentorSession.DoesNotExist:
         return None
     
+def get_student_mentorSession_by_status(student: YelloUser, status) -> MentorSession:
+    """Get student mentors session by status
+
+    Args:
+        student (YelloUser): student
+
+    Returns:
+        MentorSession: mentor session
+    """
+    try:
+        return MentorSession.objects.filter(student=student, status=status)
+    except MentorSession.DoesNotExist:
+        return None
+
+    
 def get_mentor_session_by_student_id(id: uuid) -> MentorSession:
     """Get mentor session by student id
 
@@ -116,6 +131,3 @@ def get_student_schedule_meeting(user: YelloUser) -> MentorSession:
         return MentorSession.objects.filter(student=user, status="scheduled")
     except MentorSession.DoesNotExist:
         return None
-
-    
-    

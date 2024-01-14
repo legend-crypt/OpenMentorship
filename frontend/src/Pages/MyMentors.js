@@ -11,47 +11,20 @@ import MentorToggleButton from "../components/MentorToggleButton";
 // listing - users mentors
 
 function MyMentors({ isToggled, handleToggle, toggleOptions }) {
-  const renderBtn = (item) => {
-    return (
-      <>
-        <Cta btnClass="btn-collection col-btn warning">Cancel Meeting</Cta>
-        <Cta btnClass="btn-collection danger col-btn">Remove Mentor</Cta>
-      </>
-    )
-  }
 
   return (
     <div className="container">
       <div className="header--toggle">
         <div className="toggleContainer">
           <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions}  />
-          {/* <div
-            className={`toggleBackground ${isToggled ? "toggled" : ""}`}
-            onClick={handleToggle}
-          >
-            <span className="leftText">Find Mentors</span>
-            <span className="rightText">Mentors</span>
-            <div className="toggleAccentContainer">
-              <div className={`toggleAccent ${isToggled ? "toggled" : ""}`} />
-            </div>
-          </div> */}
-          {/* <div className="profileImage"><img src="/profile.png"/></div> */}
         </div>
         <h1>Hello</h1>
       </div>
-    {/* <DataFetcher url="mentors/students/accept/" cacheKey="studentMentors" render={
+    <DataFetcher url="mentors/students/accept/" cacheKey="studentMentors" render={
       (data) =>
-        <MentorSessionList data={data}>
-          {
-            (item) => 
-            <>
-              <Cta btnClass="btn-collection col-btn ">Cancel Meeting</Cta>
-              <Cta btnClass="btn-collection danger col-btn">Remove Mentor</Cta>
-            </>
-          }
-        </MentorSessionList>
+        <MentorSessionList data={data} />
       }
-      /> */}
+      />
     </div>
 
   );

@@ -27,16 +27,22 @@ export default function MentorList({ data }) {
         return (
             <div className='mentorsContainer' key={item.user_id}>
                 <User name={`${item.profile?.first_name} ${item.profile?.last_name}`} bio={item.profile?.bio} />
-                {!dataList.includes(item.user_id) && <div className='mentorButtonContainer'>
-                    <Cta btnClass="btn-collection col-btn" clickHandler={() => clickHandler(item, "mentor_email", "mentors/create/")}>Request Mentoring</Cta>
-                </div>}
+                {!dataList.includes(item.user_id) &&
+                    <div className='mentorButtonContainer'>
+                        <Cta btnClass="btn-collection col-btn" clickHandler={() => clickHandler(item, "mentor_email", "mentors/create/")}>Request Mentoring</Cta>
+                    </div>
+                }
             </div>
         )
     })
+    console.log(mentorList)
     return (
         <>
-            {data.length !== 0 ? { mentorList } :
-                <><p className='text-center mt-10 opacity-35' >No mentors found</p></>}
+            {data.length !== 0 ? mentorList :
+                <>
+                    <p className='text-center mt-10 opacity-35' >No mentors found</p>
+                </>
+            }
         </>
     )
 }

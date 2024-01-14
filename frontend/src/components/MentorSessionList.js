@@ -14,6 +14,7 @@
 
 import React from "react";
 import User from "./User";
+import Cta from "./Cta";
 
 export default function ({ data, children }) {
   console.log(data);
@@ -24,7 +25,10 @@ export default function ({ data, children }) {
           name={`${item.user.profile?.first_name} ${item.user.profile?.last_name}`}
           bio={item.user.profile?.bio}
         />
-        <div className="mentorButtonContainer">{children(item)}</div>
+        <div className="mentorButtonContainer">
+              <Cta btnClass="btn-collection col-btn ">Cancel Meeting</Cta>
+              <Cta btnClass="btn-collection danger col-btn">Remove Mentor</Cta>
+        </div>
       </div>
     );
   });

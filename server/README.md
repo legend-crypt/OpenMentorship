@@ -369,39 +369,39 @@ User's email address.
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
 **Request Body**:
-```json
-{
-    "first_name": "John",
-    "last_name": "Doe",
-    "bio": "I am a software engineer",
-    "profile_picture": "https://example.com/profile_picture.jpg",
+  ```json
+  {
+      "first_name": "John",
+      "last_name": "Doe",
+      "bio": "I am a software engineer",
+      "profile_picture": "https://example.com/profile_picture.jpg",
 
-}
-```
+  }
+  ```
 **Response Body**:
 - Success Response (200 OK):
-```json
-{
-  "detail": "Profile created successfully",
-  "profile": {
-    // User profile information
-  },
-  "user": {
-    // User information
-  }
-}
-```
+  - ```json
+    {
+      "detail": "Profile created successfully",
+      "profile": {
+        // User profile information
+      },
+      "user": {
+        // User information
+      }
+    }
+    ```
 - Error Response (400 Bad Request):
-```json
-{
-  "error": "Profile already exists"
-}
-```
-```json
-{
-  "error": "User is not authenticated"
-}
-```
+  - ```json
+    {
+      "error": "Profile already exists"
+    }
+    ```
+  - ```json
+    {
+      "error": "User is not authenticated"
+    }
+    ```
 ### 3.3 Update Profile
 **Endpoint**: `PUT profile/update/`
 **Description**: Update a user's profile information.
@@ -783,6 +783,45 @@ User's email address.
   ]
 }
 ```
+### 4.10 List Student's Pending Requests
+**Endpoint**: `GET mentors/student-pending-requests/`
+**Description**: List all pending requests for a student.
+**Request Headers:**
+- `Authorization`: (string, required): JWT token for authentication.
+**Response Body**:
+- Success Response (200 OK):
+```json
+      {
+    "detail": "Requests retrieved successfully",
+    "data": [
+        {
+            "mentor_session_id": "7e5271d2-4779-4b4c-b5db-d8fac9b6773d",
+            "status": "pending",
+            "user": {
+                "user_id": "b6475df1-57de-40cb-baad-05a940f22c5b",
+                "email": "example@gmai.com",
+                "profile": {
+                    "profile_id": "617b0bb4-5e30-48b0-9385-97b8b8e70102",
+                    "first_name": "mentor12",
+                    "last_name": "mentor",
+                    "phone_number": "",
+                    "profile_picture": "/media/profile_pictures/msg1008385288-19258.jpg",
+                    "bio": "",
+                    "created_at": "2024-01-09T05:09:55.888874Z",
+                    "updated_at": "2024-01-09T05:09:55.890128Z"
+                },
+                "created_at": "2024-01-09T05:08:47.613845Z",
+                "verified": true,
+                "role": "Mentor"
+            },
+            "time": "2024-01-09T05:10:19Z",
+            "created_at": "2024-01-09T05:10:20.426768Z",
+            "meeting_id": null
+        }
+    ]
+}
+```
+
 
 
 # Contributing to OpenMentors API
