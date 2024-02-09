@@ -115,3 +115,14 @@ class MentorSession(models.Model):
     
     def __str__(self):
         return f"{self.student} || {self.mentor}"
+    
+    
+
+class MeetingDetails(models.Model):
+    meeting = models.ForeignKey(MentorSession, on_delete=models.CASCADE)
+    sdp_offer = models.CharField(max_length=255)
+
+    
+    def __str__(self):
+        return self.meeting.meeting_id
+    

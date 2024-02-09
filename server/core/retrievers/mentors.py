@@ -131,3 +131,19 @@ def get_student_schedule_meeting(user: YelloUser) -> MentorSession:
         return MentorSession.objects.filter(student=user, status="scheduled")
     except MentorSession.DoesNotExist:
         return None
+
+
+
+def get_sdp_by_meetingId(meeting_id) -> MeetingDetails.sdp_offer:
+    """Get sdp by meeting id
+
+    Args:
+        meeting_id (str): meeting id
+
+    Returns:
+        MeetingDetails.sdp_offer: sdp offer
+    """
+    try:
+        return MeetingDetails.objects.get(meeting__meeting_id=meeting_id)
+    except MeetingDetails.DoesNotExist:
+        return None

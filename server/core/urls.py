@@ -34,4 +34,6 @@ urlpatterns = [
     path('mentors/meeting-schedule/', MentorViewset.as_view({'get': 'list_schedule_meetings'})),
     
     path('login/', SignIn.as_view({'post':'post'})),
+    ####websocket
+    # path("<str:meeting_id>")
 ]
