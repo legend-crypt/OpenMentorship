@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import { fetchActiveUser } from './store/slices/userAuth/userAuthSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import ProtectedPages from './components/protected/ProtectedPages';
+import CallRoom from './Pages/CallRoom';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="mentors/*" element={<ProtectedPages Component={<Mentors />} />} />
       </Routes>
       {/* <Profile/> */}
+      {/* <CallRoom/> */}
     </div>
   );
 }
