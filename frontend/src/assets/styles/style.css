@@ -386,18 +386,25 @@ footer {
   
   }
 
+  .header {
+    padding: 0;
+  }
+
   #nav__left{
     margin-left: auto;
     display: flex;
     justify-content: flex-end;
     gap: 2em;
     width: 80%;
-    border: none;
     padding: 0;
-    position: relative;
+    /* position: relative; */
     max-width: 1000px;
     margin-right: 0;
-    background: transparent;
+    margin-top: 0;
+    margin-bottom: 0;
+    /* background: transparent; */
+    align-items: center;
+    border: 1px solid #934343;
 
   }
 
