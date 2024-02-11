@@ -514,30 +514,18 @@ User's email address.
 ```json
 {
     "detail": "Request Accepted Successfully",
-    "data": {
-        "mentor_session_id": "34e9827f-1086-44f5-a71",
-        "status": "accepted",
-        "user": {
-            "user_id": "1b046a6",
-            "email": "example@mail.com",
-            "profile": {
-                "profile_id": "0c49cfa5-7e52-4b1f-8b06-7abda3e57fe7",
-                "first_name": "John",
-                "last_name": "Doe",
-                "phone_number": "05555545",
-                "profile_picture": "/media/profile_pictures/msg1008385288-19259.jpg",
-                "bio": "",
-                "created_at": "2024-01-08T09:57:12.087033Z",
-                "updated_at": "2024-01-08T09:57:12.087163Z"
-            },
-            "created_at": "2024-01-07T16:31:43.504249Z",
-            "verified": true,
-            "role": "Mentee"
+    "data": [
+        {
+            "user_id": "b6475df1-57de-40cb-baad-05a940f22c5b",
+            "full_name": "mentor12 mentor",
+            "id": "1789f080-e661-4fe0-abb6-b6ca82d8d219"
         },
-        "time": "2024-01-08T09:57:46Z",
-        "created_at": "2024-01-08T09:57:47.511517Z",
-        "meeting_id": null
-    }
+        {
+            "user_id": "66d7ec2d-3d09-47ea-a0ec-afbf9cfbd995",
+            "full_name": "mentor1 mentor",
+            "id": "7e5271d2-4779-4b4c-b5db-d8fac9b6773d"
+        }
+    ]
 }
 ```
 - Error Response (400 Bad Request):
