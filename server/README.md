@@ -535,7 +535,7 @@ User's email address.
 }
 ```
 ### 4.5 Get Mentor Accepted Students
-**Endpoint**: `GET mentors/mentor-request/?status=accepted`
+**Endpoint**: `GET mentors/mentor-requests/?status=accepted`
 
 **Description**: Get all mentor request based on the status. ie `scheduled` can be `pending` or `accepted` or `rejected`.
 
