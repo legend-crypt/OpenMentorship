@@ -477,33 +477,20 @@ User's email address.
 - Success Response (200 OK):
 ```json
 {
-    "detail": "Request successfully sent",
-    "data": {
-        "mentor_session_id": "e92f3fab-ea97-4993-abb0-b583163fdd5b",
-        "status": "pending",
-        "user": {
-            "user_id": "87e58204-b56c-40df-8181-0669c567cf75",
-            "email": "example@gmail.com",
-            "profile": {
-                "profile_id": "c2e9aad0-d36d-4c06-9380-f9c261a0c763",
-                "first_name": "John",
-                "last_name": "Doe",
-                "phone_number": "0247255149",
-                "profile_picture": "/media/profile_pictures/download.jpeg",
-                "bio": "",
-                "created_at": "2023-12-26T22:08:38.339661Z",
-                "updated_at": "2023-12-26T22:08:38.339741Z"
-            },
-            "created_at": "2023-12-26T22:08:41.003661Z",
-            "verified": true,
-            "role": "Mentor"
+    "detail": "Request Accepted Successfully",
+    "data": [
+        {
+            "user_id": "b6475df1-57de-40cb-baad-05a940f22c5b",
+            "full_name": "mentor12 mentor",
+            "id": "1789f080-e661-4fe0-abb6-b6ca82d8d219"
         },
-        "time": null,
-        "created_at": "2024-01-08T10:17:34.939922Z",
-        "meeting_id": null
-    }
-}
-```
+        {
+            "user_id": "66d7ec2d-3d09-47ea-a0ec-afbf9cfbd995",
+            "full_name": "mentor1 mentor",
+            "id": "7e5271d2-4779-4b4c-b5db-d8fac9b6773d"
+        }
+    ]
+}```
 - Error Response (400 Bad Request):
 ```json
 {
@@ -559,38 +546,10 @@ User's email address.
   "error": "Request not accepted"
 }
 ```
-### 4.4 Reject Mentee Request
-**Endpoint**: `POST mentors/reject-request/`
-**Description**: Reject a mentee request.
-**Request Headers:**
-- `Authorization`: (string, required): JWT token for authentication.
-**Request Body**:
-```json
-{
-  "mentorSession_id": "1234567890",
-}
-```
-- `mentorSession_id` (string, required): Mentor session ID.
-**Response Body**:
-- Success Response (200 OK):
-```json
-{
-  "detail": "Request successfully rejected",
-  "data": {
-    // Mentor request information
-  }
-}
-```
-- Error Response (400 Bad Request):
-```json
-{
-  "error": "Request not rejected"
-}
-```
 ### 4.5 Get Mentor Accepted Students
-**Endpoint**: `GET mentors/mentor-students/`
+**Endpoint**: `GET mentors/mentor-request/?status=accepted`
 
-**Description**: Get all mentor accepted students.
+**Description**: Get all mentor request based on the status. ie `scheduled` can be `pending` or `accepted` or `rejected`.
 
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
@@ -601,138 +560,19 @@ User's email address.
     "detail": "Requests retrieved successfully",
     "data": [
         {
-            "mentor_session_id": "b3830618-61bb-488f-8d78-7496d49c2da8",
-            "status": "accepted",
-            "user": {
-                "user_id": "15fc439c-8854-4543-a69c-dbf3f7ba89b3",
-                "email": "man@man.com",
-                "profile": {
-                    "profile_id": "64967ee3-be02-4",
-                    "first_name": "man",
-                    "last_name": "ottu",
-                    "phone_number": "+233502276434474",
-                    "profile_picture": "/media/profile_pictures/msg1008385288-19257.jpg",
-                    "bio": "",
-                    "created_at": "2023-12-30T20:42:32.599556Z",
-                    "updated_at": "2023-12-30T20:42:32.599645Z"
-                },
-                "created_at": "2023-12-30T20:42:40.689865Z",
-                "verified": true,
-                "role": "Mentee"
-            },
-            "time": "2023-12-30T20:42:55Z",
-            "created_at": "2023-12-30T20:42:56.186343Z",
-            "meeting_id": "8530295570"
+            "user_id": "b6475df5a940f22c5b",
+            "full_name": "mentor12 mentor",
+            "id": "1789f080d219"
         },
-    ]
-}
-```
-### 4.6 Get Student Mentor Accept
-
-**Endpoint**: `GET mentors/student/accept/`
-
-**Description**: Get all students accepted mentors.
-
-**Request Headers:**
-- `Authorization`: (string, required): JWT token for authentication.
-**Response Body**:
-- Success Response (200 OK):
-```json
-{
-    "detail": "Requests retrieved successfully",
-    "data": [
         {
-            "mentor_session_id": "34e9827f-1086-44f5-a712-a0c652faeb6f",
-            "status": "accepted",
-            "user": {
-                "user_id": "cb45ef59-bdf0-44a5-a3a7-ef8e2e1b96e1",
-                "email": "example
-                @mail.com",
-                "profile": {
-                    "profile_id": "d6a2ce03-4c1a-4119-845b-2512d4d3a5a7",
-                    "first_name": "John",
-                    "last_name": "Doe",
-                    "phone_number": "+233555455555",
-                    "profile_picture": "/media/profile_pictures/leetcode_award.png",
-                    "bio": "",
-                    "created_at": "2023-12-26T20:41:39.297800Z",
-                    "updated_at": "2023-12-26T20:41:39.297946Z"
-                },
-                "created_at": "2023-12-26T20:56:49.807061Z",
-                "verified": true,
-                "role": "Mentor"
-            },
-            "time": "2024-01-08T09:57:46Z",
-            "created_at": "2024-01-08T09:57:47.511517Z",
-            "meeting_id": null
+            "user_id": "66d7ec2fbd995",
+            "full_name": "mentor1 mentor",
+            "id": "7e52ac9b6773d"
         }
     ]
 }
 ```
-### 4.7 Get Mentor Pending Requests
 
-**Endpoint**: `GET mentors/pending-requests/`
-**Description**: Get all pending requests for a mentor.
-**Request Headers:**
-- `Authorization`: (string, required): JWT token for authentication.
-**Response Body**:
-- Success Response (200 OK):
-```json
-{
-    "detail": "Requests retrieved successfully",
-    "data": [
-        {
-            "mentor_session_id": "b3830618-61bb-488f-8d78-7496d49c2da8",
-            "status": "pending",
-            "user": {
-                "user_id": "15fc439c-8854-4543-a69c-dbf3f7ba89b3",
-                "email": "man@man.com",
-                "profile": {
-                    "profile_id": "64967ee3-be02-4b68-b43f-7b1cd39bd579",
-                    "first_name": "man",
-                    "last_name": "ottu",
-                    "phone_number": "+233502276474",
-                    "profile_picture": "/media/profile_pictures/msg1008385288-19257.jpg",
-                    "bio": "",
-                    "created_at": "2023-12-30T20:42:32.599556Z",
-                    "updated_at": "2023-12-30T20:42:32.599645Z"
-                },
-                "created_at": "2023-12-30T20:42:40.689865Z",
-                "verified": true,
-                "role": "Mentee"
-            },
-            "time": "2023-12-30T20:42:55Z",
-            "created_at": "2023-12-30T20:42:56.186343Z",
-            "meeting_id": "8530295570"
-        },
-        {
-            "mentor_session_id": "34e9827f-1086-44f5-a712-a0c652faeb6f",
-            "status": "pending",
-            "user": {
-                "user_id": "1b046a6d-274f-4ff7-894d-0de42e9ae9f7",
-                "email": "example@mail.com",
-                "profile": {
-                    "profile_id": "0c49cfa5-7e52-4b1f-8b06-7abda3e57fe7",
-                    "first_name": "new User",
-                    "last_name": "Konadu",
-                    "phone_number": "0502276474",
-                    "profile_picture": "/media/profile_pictures/msg1008385288-19259.jpg",
-                    "bio": "",
-                    "created_at": "2024-01-08T09:57:12.087033Z",
-                    "updated_at": "2024-01-08T09:57:12.087163Z"
-                },
-                "created_at": "2024-01-07T16:31:43.504249Z",
-                "verified": true,
-                "role": "Mentee"
-            },
-            "time": "2024-01-08T09:57:46Z",
-            "created_at": "2024-01-08T09:57:47.511517Z",
-            "meeting_id": null
-        }
-    ]
-
-}
-```
 ### 4.8 Schedule Meeting
 **Endpoint**: `POST mentors/schedule-meeting/`
 **Description**: Schedule a meeting between a mentor and a mentee.
@@ -763,60 +603,29 @@ User's email address.
   "error": "Meeting not scheduled"
 }
 ```
-### 4.9 List Scheduled Meetings
-**Endpoint**: `GET mentors/meeting-schedule/`
-**Description**: List all scheduled meetings for a mentor.
+
+### 4.10 List Student's mentor Requests
+**Endpoint**: `GET http://127.0.0.1:8000/api/mentors/students-requests/?status=accepted`
+
+**Description**: List all students mentor requests based on the status. ie `scheduled` can be `pending` or `accepted` or `rejected`.
+
 **Request Headers:**
 - `Authorization`: (string, required): JWT token for authentication.
 **Response Body**:
 - Success Response (200 OK):
 ```json
 {
-  "detail": "Meetings retrieved successfully",
-  "data": [
-    {
-      // Meeting information
-    },
-    {
-      // Meeting information
-    }
-  ]
-}
-```
-### 4.10 List Student's Pending Requests
-**Endpoint**: `GET mentors/student-pending-requests/`
-**Description**: List all pending requests for a student.
-**Request Headers:**
-- `Authorization`: (string, required): JWT token for authentication.
-**Response Body**:
-- Success Response (200 OK):
-```json
-      {
     "detail": "Requests retrieved successfully",
     "data": [
         {
-            "mentor_session_id": "7e5271d2-4779-4b4c-b5db-d8fac9b6773d",
-            "status": "pending",
-            "user": {
-                "user_id": "b6475df1-57de-40cb-baad-05a940f22c5b",
-                "email": "example@gmai.com",
-                "profile": {
-                    "profile_id": "617b0bb4-5e30-48b0-9385-97b8b8e70102",
-                    "first_name": "mentor12",
-                    "last_name": "mentor",
-                    "phone_number": "",
-                    "profile_picture": "/media/profile_pictures/msg1008385288-19258.jpg",
-                    "bio": "",
-                    "created_at": "2024-01-09T05:09:55.888874Z",
-                    "updated_at": "2024-01-09T05:09:55.890128Z"
-                },
-                "created_at": "2024-01-09T05:08:47.613845Z",
-                "verified": true,
-                "role": "Mentor"
-            },
-            "time": "2024-01-09T05:10:19Z",
-            "created_at": "2024-01-09T05:10:20.426768Z",
-            "meeting_id": null
+            "user_id": "66d7ec2dcfbd995",
+            "full_name": "mentor1 mentor",
+            "id": "1789f08a82d8d219"
+        },
+        {
+            "user_id": "b6475df1-522c5b",
+            "full_name": "mentor12 mentor",
+            "id": "7eb6773d"
         }
     ]
 }
