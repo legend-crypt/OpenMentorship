@@ -46,19 +46,6 @@ def get_mentor_requests(mentor: YelloUser)-> MentorSession:
     except MentorSession.DoesNotExist:
         return None
 
-def get_student_accepted_request(student: YelloUser) -> MentorSession:
-    """Get student meeting
-
-    Args:
-        student (YelloUser): student
-
-    Returns:
-        MentorSession: mentor session
-    """
-    try:
-        return MentorSession.objects.filter(student=student, status="accepted")
-    except MentorSession.DoesNotExist:
-        return None
     
 def get_student_mentorSession_by_status(student: YelloUser, status) -> MentorSession:
     """Get student mentors session by status
@@ -89,19 +76,6 @@ def get_mentor_session_by_student_id(id: uuid) -> MentorSession:
     except MentorSession.DoesNotExist:
         return None
     
-def get_mentor_accepted_student(mentor: YelloUser) -> MentorSession:
-    """Get mentor accepted students
-
-    Args:
-        mentor (YelloUser):   mentor
-
-    Returns:
-        MentorSession: mentor session
-    """
-    try:
-        return MentorSession.objects.filter(mentor=mentor, status="accepted")
-    except MentorSession.DoesNotExist:
-        return None
 
 def get_mentor_schedule_meeting(user: YelloUser) -> MentorSession:
     """Get mentor schedule meeting
@@ -132,7 +106,45 @@ def get_student_schedule_meeting(user: YelloUser) -> MentorSession:
     except MentorSession.DoesNotExist:
         return None
 
+        
+def get_student_mentorSession_information(mentorSession_obj) -> list:
+    """Get student mentor session information
 
+    Args:
+        mentorSession_obj (MentorSession): list of mentor session object
+
+    Returns:
+        list: list of mentor session serializer
+    """
+    
+    data_list = []
+    for obj in mentorSession_obj:
+        data = {
+            "user_id": obj.mentor.user_id,
+            "full_name": obj.mentor.full_name,
+            "id": obj.mentor_session_id
+        }
+        data_list.append(data)
+    return data_list
+
+def get_mentor_mentorSession_information(mentorSession_obj) -> list:
+    """Get a mentor mentor session information
+
+    Args:
+        mentorSession_obj (MentorSession): list of mentor session object
+
+    Returns:
+        list: list of mentor session serializer
+    """
+    data_list = []
+    for obj in mentorSession_obj:
+        data = {
+            "user_id": obj.student.user_id,
+            "full_name": obj.student.full_name,
+            "id": obj.mentor_session_id
+        }
+        data_list.append(data)
+    return data_list
 
 def get_sdp_by_meetingId(meeting_id) -> MeetingDetails.sdp_offer:
     """Get sdp by meeting id
