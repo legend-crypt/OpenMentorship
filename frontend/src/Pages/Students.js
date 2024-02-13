@@ -50,7 +50,7 @@ function Students({isToggled, handleToggle, toggleOptions}) {
           </div> */}
         </div>
       </div>
-      <DataFetcher url="mentors/mentor-students/" cacheKey="mentorMeetings" render={
+      <DataFetcher url="mentors/mentor-requests/?status=accepted" cacheKey="mentorMeetings" render={
         (data) => 
           <MentorSessionList data={data} divClass="mentorButtonContainer row-btn">
             {(item) => 
