@@ -17,13 +17,12 @@ import User from "./User";
 import Cta from "./Cta";
 
 export default function ({ data, children }) {
-  console.log(data);
   const sessionList = data.map((item) => {
     return (
-      <div className="mentorsContainer" key={item.user.user_id}>
+      <div className="mentorsContainer" key={item.user_id}>
         <User
-          name={`${item.user.profile?.first_name} ${item.user.profile?.last_name}`}
-          bio={item.user.profile?.bio}
+          name={`${item.full_name}`}
+          bio={null}
         />
         <div className="mentorButtonContainer">
               <Cta btnClass="btn-collection col-btn ">Cancel Meeting</Cta>

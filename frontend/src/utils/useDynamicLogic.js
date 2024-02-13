@@ -20,7 +20,7 @@
 import { useEffect, useState } from 'react';
 import axios from '../utils/axios';
 
-export default function useDynamicLogic(url, atr) {
+export default function useDynamicLogic(url) {
   const [dataList, setDataList] = useState([]);
   const accessToken = JSON.parse(localStorage.getItem('access_token'));
 
@@ -39,7 +39,7 @@ export default function useDynamicLogic(url, atr) {
       .then(res => {
         if (res.data.data) {
           // meetings found
-          const newDataList = res.data.data.map(item => item[atr].user_id);
+          const newDataList = res.data.data.map(item => item.user_id);
           console.log(`newDataList ${newDataList}`);
           setDataList(newDataList);
         }

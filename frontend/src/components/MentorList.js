@@ -21,7 +21,7 @@ import useDynamicLogic from '../utils/useDynamicLogic'
 
 export default function MentorList({ data }) {
     const { dataList, clickHandler } = useDynamicLogic(
-        'mentors/meeting-schedule/', "mentor"
+        'mentors/students-requests/?status=accepted', "mentor"
     )
     const mentorList = data.map(item => {
         return (

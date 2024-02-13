@@ -31,6 +31,7 @@ const DataFetcher = ({render, url, cacheKey}) => {
         : axios.get(url, accessToken? config : null)
         .then((response) => {
           if (response.status === 200) {
+            console.log(`retrieved from server ${response.data.data}`);
             setData(response.data.data)
             localStorage.setItem(cacheKey, JSON.stringify(response.data.data));
           }

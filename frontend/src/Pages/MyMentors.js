@@ -16,11 +16,11 @@ function MyMentors({ isToggled, handleToggle, toggleOptions }) {
     <div className="container">
       <div className="header--toggle">
         <div className="toggleContainer">
-          <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions}  />
+          <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions} />
         </div>
         <h1>Hello</h1>
       </div>
-    <DataFetcher url="mentors/students/accept/" cacheKey="studentMentors" render={
+    <DataFetcher url="mentors/students-requests/?status=accepted" cacheKey="studentMentors" render={
       (data) =>
         <MentorSessionList data={data} />
       }
