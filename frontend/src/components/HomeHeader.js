@@ -51,7 +51,7 @@ export default function Home_Header() {
                         <div id="nav__left" className={clicked ? "#nav__left active" : "#nav__left"}>
                             {loginStatus ?
                                 <>
-                                    <Cta className="bg-red-400" clickHandler={()=>{dispatch(logOutUser())}}  >
+                                    <Cta className="bg-red-400 btn__cta" clickHandler={()=>{dispatch(logOutUser())}}  >
                                     Logout
                                     </Cta>
                                 </> :
