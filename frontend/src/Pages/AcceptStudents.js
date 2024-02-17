@@ -59,7 +59,6 @@ function AcceptStudents({isToggled, handleToggle, toggleOptions}) {
         <div className="mentorButtonContainer row-btn">
         <button className="btn-collection danger col-btn">Deny</button>
           <button className="btn-collection col-btn">Accept</button>
-
       </div>
     </div>
     <DataFetcher url="mentors/mentor-requests/?status=pending" cacheKey="pendingRequests" render={

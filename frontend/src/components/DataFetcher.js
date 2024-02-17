@@ -15,7 +15,7 @@
 
 
 import { useState, useEffect } from "react";
-import axios from '../utils/axios'
+import axios, {authInstance} from '../utils/axios'
 const accessToken = JSON.parse(localStorage.getItem('access_token'));
 const config =  {
     headers: {
@@ -45,4 +45,27 @@ const DataFetcher = ({render, url, cacheKey}) => {
     return render(data)
 }
 
+const DataFetcherWithoutCache = ({url})=>{
+  console.log("url",url);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    authInstance.get(url)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(`retrieved from server ${response.data.data}`);
+        setData(response.data.data)
+      }
+    })
+    .catch((error => {
+      // alert(`Failed to retrieve ${cacheKey}`, error.data)
+      console.log(`Failed to retrieve data`, error.data);
+    }
+    ))
+  },[]);
+  console.log("Data",data);
+  return <>
+  </>
+}
+
 export default DataFetcher;
+export {DataFetcherWithoutCache}
