@@ -13,7 +13,7 @@ export default function Footer() {
               <a id="socials" href="#"><img src={twitter} className='socials__svg'></img></a>
           </div>
           <div className="footer__text">
-              <p>© 2023 SkillUp</p>
+              <p>© 2024 SkillUp</p>
           </div>
         </div>
     </footer>
