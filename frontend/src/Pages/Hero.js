@@ -38,7 +38,7 @@ export default function Hero() {
                         <div className='hero_footer--col hero_footer--left'>
                             <h2 className='hero_footer--heading'>Why Choose Open Mentors</h2>
                             <p>Embark on your journey into the vibrant world of open source with us. Whether you're a seasoned developer or just starting out, our platform is your gateway to endless opportunities for learning, collaboration, and contribution.</p>
-                            <button class='hero_btn'>Get started Today<img src={arrow}/></button>
+                            <button className='hero_btn'>Get started Today<img src={arrow}/></button>
                         </div>
                         <div className='hero_footer--col hero_footer--right'>
                             <div className='hero_footer--dflex'>

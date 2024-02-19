@@ -5,12 +5,14 @@ import MentorList from "../components/MentorList";
 import Cta from "../components/Cta";
 import MentorSessionList from "../components/MentorSessionList";
 import MentorToggleButton from "../components/MentorToggleButton";
-
+import {useSelector, useDispatch} from "react-redux";
 
 // meant for the users who are actually mentee
 // listing - users mentors
 
 function MyMentors({ isToggled, handleToggle, toggleOptions }) {
+  
+  const {reqAcceptedMentors} = useSelector((state)=> state.mentors);
 
   return (
     <div className="container">
