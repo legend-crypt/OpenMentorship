@@ -1,0 +1,84 @@
+/* Add these styles to your existing style.css or create a new stylesheet */
+
+body{
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+}
+.form__contanier {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form {
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+  }
+  
+  .form__head--text {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .form__field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .error {
+    color: #ff0000;
+    margin-top: 5px;
+  }
+  
+  #btn__cta {
+    background-color: #4285f4;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  #btn__cta:hover {
+    background-color: #357ae8;
+  }
+  
+  .oauth-svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+  }
+  
+  .continue-with {
+    color: #fff;
+    margin: 5px 0;
+    
+  }
+  
+  .field {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    
+    
+  }
+  
+  p {
+    text-align: center;
+  }
+  .oauth-svg {
+    width: 70px; /* Adjust the width to your desired size */
+    height: 30px; /* Adjust the height to your desired size */
+    margin-right: 5px;
+  }
+  
+  
+  /* Customize further based on your design requirements */
+  

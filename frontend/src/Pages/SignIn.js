@@ -28,6 +28,7 @@ import axios from '../utils/axios'
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../store/slices/userAuth/userAuthSlice';
+import '../css/sigIn.css'
 
 export default function SignIn() {
   // -- react redux states ---
@@ -92,9 +93,11 @@ export default function SignIn() {
                 <ErrorMessage name='password' component="p" className='error' />
               </div>
               <button type='submit' id="btn__cta" className='form__field'>Log In</button>
-              <div><p>or continue with </p></div>
-              <div className='field'>
-                <a href="#"><button className='oauth-btn form__field' type='button '><img src={google} className='oauth-svg'></img></button></a>
+              <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'7px', padding: '1px' }}>
+                <p className="continue-with">
+                  Continue with&nbsp;
+                  <img src={google} className="oauth-svg" alt="Google" />
+                </p>
               </div>
               <p>Don't have an account? <Link to="/signUp">Sign Up</Link></p>
             </Form>

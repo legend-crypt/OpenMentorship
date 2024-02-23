@@ -1,0 +1,48 @@
+/* carousel.css */
+
+/* Style for the custom carousel container */
+.custom-carousel {
+    max-width: 500px; /* Adjust the maximum width as needed */
+    margin: auto;
+}
+
+/* Style for carousel arrows */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Adjust the arrow width */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    height: 100%;
+    width: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Style for carousel captions */
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background to captions */
+    padding: 20px; /* Adjust padding as needed */
+    border-radius: 5px; /* Add rounded corners to captions */
+    color: white; /* Set text color */
+}
+
+/* Style for the carousel indicators (dots) */
+.carousel-indicators {
+    bottom: 10px; /* Adjust the distance from the bottom */
+}
+
+.carousel-indicators li {
+    background-color: #bbb; /* Set the color of the inactive indicator */
+}
+
+.carousel-indicators .active {
+    background-color: #333; /* Set the color of the active indicator */
+}
+
+/* Adjust the vertical position of carousel items (images) */
+.carousel-item {
+    margin-top: 80px; /* Adjust the margin-top as needed */
+}
