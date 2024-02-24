@@ -1,0 +1,118 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Header Styles */
+.header {
+    background-color: #357ae8;
+    color: #ffffff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* Navigation Styles */
+.nav a {
+    display: block;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+.auth-links a {
+    display: inline-block;
+    margin-right: 15px; /* Add some margin between the links */
+}
+
+.auth-links span {
+    margin-right: 15px; /* Add some margin between the links */
+}
+
+.menu-btn {
+    display: none; /* Hide the menu button for now */
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        flex-direction: column;
+    }
+
+    .nav.open {
+        display: flex;
+    }
+
+    .auth-links {
+        flex-direction: column; /* Display links in a column on smaller screens */
+        align-items: flex-start; /* Align links to the start on smaller screens */
+    }
+
+    .auth-links a {
+        margin-right: 0; /* Remove margin between links on smaller screens */
+        margin-bottom: 10px; /* Add some margin below each link on smaller screens */
+    }
+
+    .menu-btn {
+        display: block; /* Display the menu button for smaller screens */
+        cursor: pointer;
+    }
+}
