@@ -11,6 +11,7 @@ import { fetchActiveUser } from './store/slices/userAuth/userAuthSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import ProtectedPages from './components/protected/ProtectedPages';
 import CallRoom from './Pages/CallRoom';
+import Carousel from './components/Carousel';
 
 function App() {
 
@@ -21,16 +22,17 @@ function App() {
 
   return (
     <div className="App">
-      <Routes>
+      {/* <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/signIn" element={<SignIn />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/profile" element={<ProtectedPages Component={<Profile />} />} />
           <Route path="/verification" element={<Verification />} />  
           <Route path="mentors/*" element={<ProtectedPages Component={<Mentors />} />} />
-      </Routes>
+      </Routes> */}
       {/* <Profile/> */}
       {/* <CallRoom/> */}
+      <Carousel />
     </div>
   );
 }

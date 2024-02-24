@@ -7,13 +7,13 @@ export default function Footer() {
   return (
     <footer className=""> 
         <div className="container footer">
-          <div className="footer__socials">
+          <div className="footer__socials" style={{color: "white"}}>
               <a id="socials" href="#"><img src={github} className='socials__svg'></img></a>
               <a id="socials" href="#"><img src={instagram} className='socials__svg'></img></a>
               <a id="socials" href="#"><img src={twitter} className='socials__svg'></img></a>
           </div>
           <div className="footer__text">
-              <p>© 2023 SkillUp</p>
+              <p>© 2024 SkillUp</p>
           </div>
         </div>
     </footer>
