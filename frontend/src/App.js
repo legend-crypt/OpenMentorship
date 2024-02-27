@@ -11,6 +11,7 @@ import { fetchActiveUser } from './store/slices/userAuth/userAuthSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import ProtectedPages from './components/protected/ProtectedPages';
 import CallRoom from './Pages/CallRoom';
+import Carousel from './components/Carousel';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
       </Routes>
       {/* <Profile/> */}
       {/* <CallRoom/> */}
+      {/* <Carousel /> */}
     </div>
   );
 }

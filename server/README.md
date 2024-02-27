@@ -1,9 +1,9 @@
-# API Documentation for Yello User Management
+# API Documentation for OpenMentors
 
 ## Overview
 
-This API provides functionalities for user management in the Yello platform. It includes features such as account creation, email verification, password reset, and user profile retrieval.
-# Get Started with Yello API
+This API provides functionalities for OpenMenotrs platform. It includes features such as account creation, email verification, password reset, and user profile retrieval.
+# Get Started with OpenMentors API
 
 ## Introduction
 

@@ -17,9 +17,11 @@
 
 
 import "../assets/styles/Mentors.css";
-import DataFetcher from "../components/DataFetcher";
+import DataFetcher, {DataFetcherWithoutCache} from "../components/DataFetcher";
 import MentorList from "../components/MentorList";
 import MentorToggleButton from "../components/MentorToggleButton";
+import DynamicDisplayOfMentors from "../components/DynamicDisplayOfMentors";
+
 function MentorsComponent({isToggled, handleToggle, toggleOptions}) {
 
 
@@ -41,11 +43,14 @@ function MentorsComponent({isToggled, handleToggle, toggleOptions}) {
             </div> */}
           </div>
         </div>
-        <DataFetcher url="mentors/" cacheKey="mentors" render={
+        <DynamicDisplayOfMentors />
+        {/* <h1>Hello</h1> */}
+        {/* <DataFetcherWithoutCache url={"mentors/"} /> */}
+        {/* <DataFetcher url="mentors/" cacheKey="mentors" render={
           (data) => 
             <MentorList  data={data} divClass="mentorButtonContainer"/>
         }
-        /> 
+        />  */}
   </div>
   
   );

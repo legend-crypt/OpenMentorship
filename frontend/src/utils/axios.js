@@ -19,3 +19,14 @@ const instance = axios.create({
 });
 
 export default instance;
+
+
+// instance for authorized API requests
+const authInstance = axios.create({
+  baseURL: 'http://localhost:8000/api/',
+  headers: {
+    Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
+  }
+})
+
+export { authInstance }

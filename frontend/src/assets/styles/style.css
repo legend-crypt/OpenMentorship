@@ -75,6 +75,12 @@ a {
 }
 
 
+.corousel-item--text {
+  font-size: 1.15rem;
+  white-space: normal;
+
+}
+
 .menu__button {
   border: none;
   background: transparent;
@@ -189,7 +195,7 @@ button[disabled], #btn__cta:disabled{
 #btn__cta {
   background: var(--accent);
   color: #ffffff;
-  margin-bottom: 1.2em;
+  /* margin-bottom: 1.2em; */
   border-radius: var(--button-border-radius);
   padding: 0.5em 1.2em;
 }
@@ -281,10 +287,10 @@ footer {
 
 .secondary-cta {
   border-radius: var(--form__border-radius);
-  border: 3px solid var(--accent);
+  /* border: 3px solid var(--accent); */
   background: #EDF2FF;
   color: var(--accent);
-  margin-bottom: 1.2em;
+  padding: 0.5em 2em
   }
 
 .secondary-cta:hover {
@@ -435,6 +441,41 @@ footer {
 }
 
 
+.corousel-img {
+  width: 15.5em;
+  padding: 0 1.2em;
+}
+
+.inner {
+  white-space: nowrap;
+  transition: transform 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.corousel-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10em 0;
+  background-color: #fff;
+}
+
+.corousel {
+  overflow: hidden;
+  /* width: 100%;  */
+  display: flex;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+}
+.carousel-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.indicators {
+  display: flex;
+}
+
 @media screen and ( min-width: 600px) {
 
   .row {
@@ -460,16 +501,10 @@ footer {
     display: flex;
     justify-content: flex-end;
     gap: 2em;
-    width: 80%;
     padding: 0;
-    /* position: relative; */
-    max-width: 1000px;
-    margin-right: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    /* background: transparent; */
     align-items: center;
-    border: 1px solid #934343;
+    margin-top: 0.4em;
+    margin-right: 0.4em;
 
   }
 

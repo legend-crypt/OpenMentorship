@@ -6,14 +6,17 @@ import '../css/footer.css';
 
 const Footer = () => {
   return (
-    <footer>
-      <div className="footer-icons">
-        <div className="icon-container">
-          <a href="https://github.com/example">
-            <img src={githubIcon} alt="GitHub Icon" width={30} />
-          </a>
-          <p>GitHub</p>
-        </div>
+    <footer className=""> 
+        {/* <div className="container footer">
+          <div className="footer__socials" style={{color: "white"}}>
+              <a id="socials" href="#"><img src={githubIcon} className='socials__svg'></img></a>
+              <a id="socials" href="#"><img src={instagramIcon} className='socials__svg'></img></a>
+              <a id="socials" href="#"><img src={twitterIcon} className='socials__svg'></img></a>
+          </div>
+          <div className="footer__text">
+              <p>© 2024 SkillUp</p>
+          </div>
+        </div> */}
         <div className="icon-container">
           <a href="https://instagram.com/example">
             <img src={instagramIcon} alt="Instagram Icon" width={30} />
@@ -26,7 +29,6 @@ const Footer = () => {
           </a>
           <p>Twitter</p>
         </div>
-      </div>
     </footer>
   );
 };

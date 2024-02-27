@@ -32,7 +32,8 @@ export default function useDynamicLogic(url) {
 
   useEffect(() => {
     fetchData();
-  }, [dataList]);
+  // }, [dataList]); // this is causing an infinite loop
+  }, []);
 
   const fetchData = () => {
     axios.get(url, config)
