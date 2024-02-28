@@ -17,7 +17,7 @@
 
 const Cta = ({btnClass, clickHandler, children, disabled}) => {
     return (    
-      <button className={btnClass} disabled={disabled} onClick={clickHandler? clickHandler: null}>{children}</button>
+      <button className={`m-1 ${btnClass}`} disabled={disabled} onClick={clickHandler? clickHandler: null}>{children}</button>
     )
   }
 

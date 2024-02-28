@@ -24,9 +24,12 @@ import Header from "../components/Header";
 import MentorsComponent from "./MentorsComponent";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import {useFetchAllTypesOfMentors} from "../utils/useDynamicLogic"
 
 function Mentors() {
   const [isToggled, setIsToggled] = React.useState();
+
+  const fetchMentors = useFetchAllTypesOfMentors(); // not necessary to store values
 
   const menteeToggleOptions = {
     userType : "mentee",
@@ -71,13 +74,17 @@ function Mentors() {
       <Header />
       <Routes>
         {/* -- When user is a Mentee (student) ---*/}
+        {/* path :: http://localhost:3000/mentors/ */}
         <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} toggleOptions={menteeToggleOptions} />} />
 
+        {/* path :: http://localhost:3000/mentors/my-mentors  */}
         <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} toggleOptions={menteeToggleOptions} />} />
 
         {/* -- When user is a Mentor ---*/}
+        {/* Path :: http://localhost:3000/mentors/students */}
         <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')} toggleOptions={mentorToggleOptions} />} />
 
+        {/* Path :: http://localhost:3000/mentors/accept-students */}
         <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')} toggleOptions={mentorToggleOptions} />} />
 
       </Routes>

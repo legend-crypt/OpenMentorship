@@ -18,7 +18,10 @@
 
 
 import { useEffect, useState } from 'react';
-import axios from '../utils/axios';
+import axios, { authInstance } from '../utils/axios';
+import { useDispatch } from 'react-redux';
+import { addAllMentors, addPendingRequestsToMentors, addReqAcceptedMentors, setLoading } from "../store/slices/mentors/mentorsSlice";
+import { useSelector } from "react-redux";
 
 export default function useDynamicLogic(url) {
   const [dataList, setDataList] = useState([]);
@@ -32,7 +35,7 @@ export default function useDynamicLogic(url) {
 
   useEffect(() => {
     fetchData();
-  // }, [dataList]); // this is causing an infinite loop
+    // }, [dataList]); // this is causing an infinite loop
   }, []);
 
   const fetchData = () => {
@@ -83,4 +86,74 @@ export default function useDynamicLogic(url) {
   };
 
   return { dataList, clickHandler };
+}
+
+
+/* 
+fetch all types of mentors (normal, accepted, pending) & update global states. This will minimize the number of api calls to fetch all types mentors. This states can be used widely in any of the components that comes under 'Mentors" component ("pages/Mentors.js")
+*/
+
+export function useFetchAllTypesOfMentors() {
+  const [isApiResolved, setIsApiResolved] = useState(false);
+  const [isError, setError] = useState(false);
+
+  const { allMentors } = useSelector((state) => state.mentors);
+
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    // only fetch if global states are null
+    if (allMentors === null) {
+      dispatch(setLoading(true))
+      authInstance.get('mentors/')
+        .then((response) => {
+          // This will load all the mentors
+          const { data } = response.data;
+          // set global state
+          dispatch(addAllMentors(data))
+
+          // make next API call to retrieve pending requests 
+          return authInstance.get("/mentors/students-requests?status=pending")
+        })
+        .then((response) => {
+          // This will load all the mentors involving pending requests
+          const { data } = response.data;
+
+          // this will return unique users (because user has already made same request to same mentor for multiple times & that created duplicate user request)
+          const uniqueUsers = data.reduce((acc, cur) => {
+            const existingUser = acc.find(user => user.user_id === cur.user_id);
+            if (!existingUser) {
+              acc.push(cur);
+            }
+            return acc;
+          }, []);
+
+          // set global state
+          dispatch(addPendingRequestsToMentors(uniqueUsers));
+
+          //  make next API call to retrieve all accepted requests
+          return authInstance.get("/mentors/students-requests?status=accepted")
+        })
+        .then((response) => {
+          // This will load all the mentors
+          const { data } = response.data;
+
+          // set global state
+          dispatch(addReqAcceptedMentors(data));
+        })
+        .catch((error) => {
+          console.log("Some error occurred", error);
+          // window.alert("Some error occurred");
+          dispatch(setError(true));
+        })
+        .finally(() => {
+          setIsApiResolved(true);
+          dispatch(setLoading(false));
+        })
+    }
+  }, [])
+
+  // after setting up global states it returns an object with error status & are all api resolved
+  return { isError, isApiResolved }
 }
