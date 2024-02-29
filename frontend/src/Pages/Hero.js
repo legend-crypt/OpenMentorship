@@ -36,7 +36,7 @@ export default function Hero() {
   return (
     <div>
       <style>{fadeInKeyframes}</style>
-      <HomeHeader />
+
 
       <div className='container'>
         {/* CSS Animation */}
@@ -86,7 +86,7 @@ export default function Hero() {
           </section>
         </animated.main>
       </div>
-      <Footer />
+
     </div>
   );
 }

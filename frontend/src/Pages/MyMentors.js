@@ -15,7 +15,7 @@ function MyMentors({ isToggled, handleToggle, toggleOptions }) {
   const {reqAcceptedMentors} = useSelector((state)=> state.mentors);
 
   return (
-    <div className="container">
+    <div className="container min-h-screen">
       <div className="header--toggle">
         <div className="toggleContainer">
           <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions} />

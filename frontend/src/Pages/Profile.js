@@ -119,7 +119,7 @@ const initialValues = {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <div className='container'>
         {/* Display existing profile information */}
         {userProfile && (

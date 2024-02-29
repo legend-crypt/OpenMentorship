@@ -71,7 +71,7 @@ function Mentors() {
       <nav>
         <Link to="mentors/accept-student" />
       </nav>
-      <Header />
+      {/* <Header />  */} {/* header is kept common for all pages content will change dynamically based on user status */}
       <Routes>
         {/* -- When user is a Mentee (student) ---*/}
         {/* path :: http://localhost:3000/mentors/ */}

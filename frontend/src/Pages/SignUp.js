@@ -170,7 +170,7 @@ export default function SignUp() {
   };
 
   return (
-    <div className="form__contanier">
+    <div className="min-h-screen pt-28">
       <div className="form">
         <h1 className="form__head--text">Create an Account</h1>
         <form onSubmit={handleSubmit}>

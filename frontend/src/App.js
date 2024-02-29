@@ -12,6 +12,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import ProtectedPages from './components/protected/ProtectedPages';
 import CallRoom from './Pages/CallRoom';
 import Carousel from './components/Carousel';
+import HomeHeader from './components/HomeHeader';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -22,6 +24,7 @@ function App() {
 
   return (
     <div className="App">
+      <HomeHeader />
       <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/signIn" element={<SignIn />} />
@@ -33,6 +36,7 @@ function App() {
       {/* <Profile/> */}
       {/* <CallRoom/> */}
       {/* <Carousel /> */}
+      <Footer />
     </div>
   );
 }

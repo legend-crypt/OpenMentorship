@@ -26,9 +26,10 @@ function MentorsComponent({isToggled, handleToggle, toggleOptions}) {
 
 
   return (
-      <div className="container">
+      <div className="container min-h-screen">
+
         <div className="header--toggle">
-          <div className="toggleContainer">
+          <div className="toggleContainer mb-4">
             <MentorToggleButton handleToggle={handleToggle} isToggled={isToggled} toggleOptions={toggleOptions} />
             {/* <div
               className={`toggleBackground ${isToggled ? "toggled" : ""}`}

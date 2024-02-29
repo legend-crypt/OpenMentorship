@@ -73,7 +73,7 @@ export default function SignIn() {
   };
 
   return (
-    <div className='form__contanier'>
+    <div className='min-h-screen pt-28'>
       <div className="form">
         <div>
 

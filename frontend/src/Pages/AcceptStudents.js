@@ -29,7 +29,7 @@ function AcceptStudents({isToggled, handleToggle, toggleOptions}) {
 
 
   return (
-    <div className="container">
+    <div className="container min-h-screen">
       <div className="header--toggle">
         <div className="toggleContainer">
           <MentorToggleButton handleToggle={handleToggle} toggleOptions={toggleOptions} />

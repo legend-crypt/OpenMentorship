@@ -14,7 +14,7 @@ const DynamicDisplayOfMentors = () => {
             {isLoading ? <h1>Loading...</h1> : allMentors !== null && pendingRequestsToMentors !== null && reqAcceptedMentors !== null &&
                 allMentors.map(item => {
                     return (
-                        <div className='mentorsContainer m-2 border p-2 shadow-md mt-1 mb-1' key={item.user_id}>
+                        <div className='mentorsContainer m-2 border p-2 shadow-md' key={item.user_id}>
                             <User name={`${item.profile?.first_name} ${item.profile?.last_name}`} bio={item.profile?.bio} />
 
                             <DynamicDisplayOfReqBtn currentMentorId={item.user_id} allAcceptedMentors={reqAcceptedMentors} allPendingMentorRequests={pendingRequestsToMentors} />
