@@ -17,10 +17,12 @@ import Footer from './components/Footer';
 
 function App() {
 
-  // const dispatch = useDispatch();
-  // useEffect(()=>{
-  //    dispatch(fetchActiveUser())
-  // })
+  const dispatch = useDispatch();
+  const {loginStatus} = useSelector((state)=> state.userAuth)
+  useEffect(()=>{
+     dispatch(fetchActiveUser())
+  },[dispatch, loginStatus])
+
 
   return (
     <div className="App">

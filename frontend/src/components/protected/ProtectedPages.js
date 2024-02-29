@@ -13,23 +13,17 @@ const ProtectedPages = ({Component }) => {
     
     const dispatch = useDispatch();
 
-    // checks user if authenticated or not
-    useEffect(() => {
-      // console.log(loginStatus);
-      if (loginStatus) {
-        // fetch user if login status true 
-        dispatch(fetchActiveUser());
-      }
-      if (loginStatus !== true) {
-        navigate("/signIn")
-      }
-    },[loginStatus]) // if a login status changed(When user clicked logout button) it will rerun this function
+    if (!loginStatus) {
+      navigate("/signIn");
+      return null; // Prevent rendering of protected component
+    }
+  
 
     
     
     return (
-        <div>
-          {Component}
+        <div className='min-h-screen' >
+          { loginStatus ? Component : <h1>Loading....</h1> }
         </div>
     )
 }

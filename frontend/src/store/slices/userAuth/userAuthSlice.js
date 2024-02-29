@@ -31,7 +31,9 @@ export const fetchActiveUser = createAsyncThunk("fetchActiveUser", async (_, { r
                 responseData.loginStatus = true;
                 if (res.data.success) {
                     // user has setup their profile before
-                    responseData.userDetails = res.data
+                    responseData.userDetails = res.data.data
+                    // update profile information
+                    localStorage.setItem("profile", JSON.stringify(res.data.data));
                 }
                 return responseData;
             } else {

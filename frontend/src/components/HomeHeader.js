@@ -13,6 +13,7 @@ const HomeHeader = () => {
   const dispatch = useDispatch();
   const { loginStatus, userDetails } = useSelector((state) => state.userAuth);
   const [menuOpen, setMenuOpen] = useState(false);
+  const userType = userDetails?.["use-role"];
   const { width } = useWindowSize(); // costume hook for window size 
 
   const toggleMenu = () => {
@@ -57,19 +58,22 @@ const HomeHeader = () => {
           {/* -- for larger screen ---  */}
           {loginStatus &&
             <ul className={`${width >= 768 ? "block" : "hidden"} flex`} >
-              {/* if user type is mentee */}
-              {linksData.userTypeMentee.map((link, index) => {
-                return <li key={index} className='m-2' >
-                  <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                </li>
-              })}
-
-              {/* if user type is mentor */}
-              {/* {linksData.userTypeMentor.map((link, index) => {
-                    return <li key={index} >
-                      <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                    </li>
-                  })} */}
+              {/* dynamic display of navbar options based on user type */}
+              {userType !== undefined &&
+                userType === "Mentee"
+                ?
+                linksData.userTypeMentee.map((link, index) => {
+                  return <li key={index} className='m-2' >
+                    <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                  </li>
+                })
+                :
+                linksData.userTypeMentor.map((link, index) => {
+                  return <li key={index} className='m-2' >
+                    <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                  </li>
+                })
+              }
             </ul>
           }
 
@@ -89,10 +93,10 @@ const HomeHeader = () => {
                 </div>
               ) : (
                 <div className="auth-links">
-                  <Link  className='text-decoration-none' to="/signIn" onClick={closeMenu}>
+                  <Link className='text-decoration-none' to="/signIn" onClick={closeMenu}>
                     <span>Login</span>
                   </Link>
-                  <Link  className='text-decoration-none' to="/signUp" onClick={closeMenu}>
+                  <Link className='text-decoration-none' to="/signUp" onClick={closeMenu}>
                     <span>Sign Up</span>
                   </Link>
                 </div>
@@ -101,19 +105,22 @@ const HomeHeader = () => {
               {/* --- for smaller screen ----  */}
               {loginStatus && <>
                 <ul className={`${width >= 768 ? "hidden" : "block"}`} >
-                  {/* if user type is mentee */}
-                  {linksData.userTypeMentee.map((link, index) => {
-                    return <li key={index} >
-                      <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                    </li>
-                  })}
-
-                  {/* if user type is mentor */}
-                  {/* {linksData.userTypeMentor.map((link, index) => {
-                    return <li key={index} >
-                      <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                    </li>
-                  })} */}
+                  {/* dynamic display of navbar options based on user type */}
+                  {userType !== undefined &&
+                    userType === "Mentee"
+                    ?
+                    linksData.userTypeMentee.map((link, index) => {
+                      return <li key={index} className='m-2' >
+                        <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                      </li>
+                    })
+                    :
+                    linksData.userTypeMentor.map((link, index) => {
+                      return <li key={index} className='m-2' >
+                        <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                      </li>
+                    })
+                  }
                 </ul>
               </>
               }
