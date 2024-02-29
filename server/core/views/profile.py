@@ -21,10 +21,12 @@ class ProfileViewset(viewsets.ViewSet):
         if user:
             try:
                 profile = get_profile_by_id(user.profile.profile_id)
+                data = get_profile_information(profile)
+                data['use-role'] = user.role
                 context = {
                     "success": True,
                     "message": "Profile found",
-                    "data": get_profile_information(profile),
+                    "data": data,
                 }  
                 return Response(context, status=status.HTTP_200_OK)
             except:
