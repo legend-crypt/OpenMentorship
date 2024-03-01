@@ -508,7 +508,7 @@ User's email address.
   "mentorSession_id": "1234567890",
 }
 ```
-- `mentSession_id` (string, required): Student's user ID.
+- `mentSession_id` (string, required): menter session id.
 **Response Body**:
 - Success Response (200 OK):
 ```json
