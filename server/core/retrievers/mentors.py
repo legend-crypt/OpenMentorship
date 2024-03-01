@@ -122,7 +122,9 @@ def get_student_mentorSession_information(mentorSession_obj) -> list:
         data = {
             "user_id": obj.mentor.user_id,
             "full_name": obj.mentor.full_name,
-            "id": obj.mentor_session_id
+            "id": obj.mentor_session_id,
+            "title": obj.student.profile.title 
+
         }
         data_list.append(data)
     return data_list
@@ -141,7 +143,8 @@ def get_mentor_mentorSession_information(mentorSession_obj) -> list:
         data = {
             "user_id": obj.student.user_id,
             "full_name": obj.student.full_name,
-            "id": obj.mentor_session_id
+            "id": obj.mentor_session_id,
+            "title": obj.student.profile.title
         }
         data_list.append(data)
     return data_list

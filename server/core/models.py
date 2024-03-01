@@ -23,6 +23,7 @@ class YelloUserProfile(models.Model):
     bio = models.TextField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(null=True, blank=True, max_length=50)
 
     def __str__(self):
         return self.first_name
