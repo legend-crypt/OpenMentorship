@@ -550,12 +550,14 @@ User's email address.
         {
             "user_id": "b6475df5a940f22c5b",
             "full_name": "mentor12 mentor",
-            "id": "1789f080d219"
+            "id": "1789f080d219",
+            "title": "CyberSecurity"
         },
         {
             "user_id": "66d7ec2fbd995",
             "full_name": "mentor1 mentor",
-            "id": "7e52ac9b6773d"
+            "id": "7e52ac9b6773d",
+            "title": "UX"
         }
     ]
 }
@@ -608,12 +610,14 @@ User's email address.
         {
             "user_id": "66d7ec2dcfbd995",
             "full_name": "mentor1 mentor",
-            "id": "1789f08a82d8d219"
+            "id": "1789f08a82d8d219",
+            "title": "Software Engineer"
         },
         {
             "user_id": "b6475df1-522c5b",
             "full_name": "mentor12 mentor",
-            "id": "7eb6773d"
+            "id": "7eb6773d",
+            "title": "Frontend Developer",
         }
     ]
 }
