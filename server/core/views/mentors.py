@@ -6,6 +6,7 @@ from core.retrievers.mentors import *
 from core.senders.mentors import *
 from core.serializers import MentorSessionSerializer
 import json
+from core.models import MentorSession
 
 
 
@@ -39,15 +40,22 @@ class MentorViewset(viewsets.ViewSet):
         mentor_email = request.data.get("mentor_email")
         mentor = get_mentor_by_email(mentor_email)
         if user and mentor:
-            student = user
-            mentor_request = create_mentor_request(student, mentor)
-            serializer = MentorSessionSerializer(mentor_request)
+            check_session = MentorSession.objects.filter(student=user, mentor=mentor)
+            if check_session:
+                context = {
+                    "detail": "Request already sent",
+                }
+                return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
+            else:
+                student = user
+                mentor_request = create_mentor_request(student, mentor)
+                serializer = MentorSessionSerializer(mentor_request)
 
-            context = {
-                "detail": "Request successfully sent",
-                "data": serializer.data
-            }
-            return Response(context, status=status.HTTP_201_CREATED)
+                context = {
+                    "detail": "Request successfully sent",
+                    "data": serializer.data
+                }
+                return Response(context, status=status.HTTP_201_CREATED)
         return Response({"error": "Request not sent"}, status=status.HTTP_400_BAD_REQUEST)
     
     
