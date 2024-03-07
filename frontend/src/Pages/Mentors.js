@@ -24,12 +24,13 @@ import Header from "../components/Header";
 import MentorsComponent from "./MentorsComponent";
 import { useNavigate } from "react-router-dom";
 import React from "react";
-import {useFetchAllTypesOfMentors} from "../utils/useDynamicLogic"
+import {useFetchDynamicData} from "../utils/useDynamicLogic"
+
 
 function Mentors() {
   const [isToggled, setIsToggled] = React.useState();
+  useFetchDynamicData(); 
 
-  const fetchMentors = useFetchAllTypesOfMentors(); // not necessary to store values
 
   const menteeToggleOptions = {
     userType : "mentee",

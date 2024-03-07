@@ -1,3 +1,4 @@
+/* This state are meant for user Type : mentee(student) */
 import { createSlice } from '@reduxjs/toolkit'
 
 
@@ -31,7 +32,6 @@ export const mentorsSlice = createSlice({
             state.isLoading = action.payload
             return state
         }
-        
     }
 })
 

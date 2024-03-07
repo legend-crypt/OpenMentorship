@@ -19,9 +19,9 @@
 
 import { useEffect, useState } from 'react';
 import axios, { authInstance } from '../utils/axios';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addAllMentors, addPendingRequestsToMentors, addReqAcceptedMentors, setLoading } from "../store/slices/mentors/mentorsSlice";
-import { useSelector } from "react-redux";
+import { setPendingStudentRequest, setAcceptedStudents } from '../store/slices/students/studentsSlice';
 
 export default function useDynamicLogic(url) {
   const [dataList, setDataList] = useState([]);
@@ -93,64 +93,116 @@ export default function useDynamicLogic(url) {
 fetch all types of mentors (normal, accepted, pending) & update global states. This will minimize the number of api calls to fetch all types mentors. This states can be used widely in any of the components that comes under 'Mentors" component ("pages/Mentors.js")
 */
 
-export function useFetchAllTypesOfMentors() {
+/* When user type is mentee(student) then this function loads all types of mentors for student */
+export function useFetchDynamicData() {
   const [isApiResolved, setIsApiResolved] = useState(false);
   const [isError, setError] = useState(false);
 
   const { allMentors } = useSelector((state) => state.mentors);
-
-
+  const { acceptedStudents } = useSelector((state) => state.students);
+  const { userDetails } = useSelector((state) => state.userAuth);
+  const userType = userDetails?.["use-role"];
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // only fetch if global states are null
-    if (allMentors === null) {
-      dispatch(setLoading(true))
-      authInstance.get('mentors/')
-        .then((response) => {
-          // This will load all the mentors
-          const { data } = response.data;
-          // set global state
-          dispatch(addAllMentors(data))
+    // user type is Mentee (student)
+    if (userType === "Mentee") {
+      if (allMentors === null) {
+        // console.log("I am a mentee & mentors will be loaded");
+         authInstance.get('mentors/')
+          .then((response) => {
+            // This will load all the mentors
+            const { data } = response.data;
+            // set global state
+            dispatch(addAllMentors(data))
+            // make next API call to retrieve pending requests 
+            return authInstance.get("/mentors/students-requests?status=pending")
+          })
+          .then((response) => {
+            // This will load all the mentors involving pending requests
+            const { data } = response.data;
 
-          // make next API call to retrieve pending requests 
-          return authInstance.get("/mentors/students-requests?status=pending")
-        })
-        .then((response) => {
-          // This will load all the mentors involving pending requests
-          const { data } = response.data;
+            // this will return unique users (because user has already made same request to same mentor for multiple times & that created duplicate user request)
+            const uniqueUsers = data.reduce((acc, cur) => {
+              const existingUser = acc.find(user => user.user_id === cur.user_id);
+              if (!existingUser) {
+                acc.push(cur);
+              }
+              return acc;
+            }, []);
 
-          // this will return unique users (because user has already made same request to same mentor for multiple times & that created duplicate user request)
-          const uniqueUsers = data.reduce((acc, cur) => {
-            const existingUser = acc.find(user => user.user_id === cur.user_id);
-            if (!existingUser) {
-              acc.push(cur);
-            }
-            return acc;
-          }, []);
+            // set global state
+            dispatch(addPendingRequestsToMentors(uniqueUsers));
 
-          // set global state
-          dispatch(addPendingRequestsToMentors(uniqueUsers));
+            //  make next API call to retrieve all accepted requests
+            return authInstance.get("/mentors/students-requests?status=accepted")
+          })
+          .then((response) => {
+            // This will load all the mentors
+            const { data } = response.data;
+            const uniqueUsers = data.reduce((acc, cur) => {
+              const existingUser = acc.find(user => user.user_id === cur.user_id);
+              if (!existingUser) {
+                acc.push(cur);
+              }
+              return acc;
+            }, []);
+            // set global state
+            dispatch(addReqAcceptedMentors(uniqueUsers));
+          })
+          .catch((error) => {
+            console.log("Some error occurred", error);
+            // window.alert("Some error occurred");
+            dispatch(setError(true));
+          })
+          .finally(() => {
+            setIsApiResolved(true);
+            dispatch(setLoading(false));
+            return
+          })
+      }
+    } else {
+      // user Type is Mentor
+      // if any value is null then fetch data otherwise do not fetch
+      if (acceptedStudents === null) {
+        // console.log("I am a mentor & mentee will be loaded");
+        // then fetch students
+        authInstance.get("mentors/mentor-requests/?status=pending")
+          .then((res) => {
+            // loads all pending requests of students to the mentor
+            const {data} = res.data;
+            // incoming data may be duplicated so we will only make unique
+            const uniqueUsers = data.reduce((acc, cur) => {
+              const existingUser = acc.find(user => user.user_id === cur.user_id);
+              if (!existingUser) {
+                acc.push(cur);
+              }
+              return acc;
+            }, []);
+            dispatch(setPendingStudentRequest(uniqueUsers));
 
-          //  make next API call to retrieve all accepted requests
-          return authInstance.get("/mentors/students-requests?status=accepted")
-        })
-        .then((response) => {
-          // This will load all the mentors
-          const { data } = response.data;
-
-          // set global state
-          dispatch(addReqAcceptedMentors(data));
-        })
-        .catch((error) => {
-          console.log("Some error occurred", error);
-          // window.alert("Some error occurred");
-          dispatch(setError(true));
-        })
-        .finally(() => {
-          setIsApiResolved(true);
-          dispatch(setLoading(false));
-        })
+            return authInstance.get("/mentors/mentor-requests/?status=accepted")
+          })
+          .then((res) => {
+            // loads all accepted requests of students to the mentor
+            const {data} = res.data;
+            const uniqueUsers = data.reduce((acc, cur) => {
+              const existingUser = acc.find(user => user.user_id === cur.user_id);
+              if (!existingUser) {
+                acc.push(cur);
+              }
+              return acc;
+            }, []);
+            dispatch(setAcceptedStudents(uniqueUsers))
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("Some error occurred");
+          })
+          .finally(() => {
+            setIsApiResolved(true);
+          })
+      }
     }
   }, [])
 

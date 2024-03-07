@@ -22,12 +22,14 @@ import Cta from "../components/Cta";
 import MentorSessionList from "../components/MentorSessionList";
 import Modal from "../components/Modal";
 import MentorToggleButton from "../components/MentorToggleButton";
+import { useSelector } from 'react-redux';
 
-function Students({isToggled, handleToggle, toggleOptions}) {
+
+function Students({ isToggled, handleToggle, toggleOptions }) {
 
   const [scheduleId, setScheduleId] = React.useState();
-  console.log(`scheduleId is ${scheduleId}`);
-
+  // console.log(`scheduleId is ${scheduleId}`);
+  const { acceptedStudents,  } = useSelector((state) => state.students);
   const clickHandler = (item) => {
     setScheduleId(item);
   }
@@ -50,7 +52,7 @@ function Students({isToggled, handleToggle, toggleOptions}) {
           </div> */}
         </div>
       </div>
-      <DataFetcher url="mentors/mentor-requests/?status=accepted" cacheKey="mentorMeetings" render={
+      {/* <DataFetcher url="mentors/mentor-requests/?status=accepted" cacheKey="mentorMeetings" render={
         (data) => 
           <MentorSessionList data={data} divClass="mentorButtonContainer row-btn">
             {(item) => 
@@ -62,12 +64,23 @@ function Students({isToggled, handleToggle, toggleOptions}) {
 
           </MentorSessionList>
       }
-      />
-      {scheduleId &&
+      /> */}
+      {acceptedStudents && 
+        <MentorSessionList data={acceptedStudents} divClass="mentorButtonContainer row-btn">
+        {(item) =>
+          <>
+            <Cta btnClass="btn-collection col-btn" clickHandler={() => clickHandler(item.mentor_session_id)}>Schedule Meeting</Cta>
+            <Cta btnClass="btn-collection danger col-btn">Remove Student</Cta>
+          </>
+        }
+
+      </MentorSessionList>
+      }
+      {/* {scheduleId &&
        (<Modal onClose={() => setScheduleId(null)} title="Schedule Meeting" content="Select a date and time" confirmText="Schedule" isDateTimeInput={true} 
-       meetingId={scheduleId}/>)}
+       meetingId={scheduleId}/>)} */}
     </div>
-  
+
   );
 }
 
