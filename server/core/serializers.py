@@ -35,7 +35,6 @@ class MentorRequestSerializer(serializers.ModelSerializer):
         fields = ['mentor_request_id', 'status', 'mentor', 'student', 'created_at']
 
 class MeetingDetailSerializer(serializers.ModelSerializer):
-    mentor_request = MentorRequestSerializer()
     class Meta:
         model = MeetingDetail
         fields = ['meeting_id', 'time']

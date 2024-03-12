@@ -558,38 +558,6 @@ User's email address.
     ]
 }
 ```
-
-### 4.8 Schedule Meeting
-**Endpoint**: `POST mentors/schedule-meeting/`
-**Description**: Schedule a meeting between a mentor and a mentee.
-**Request Headers:**
-- `Authorization`: (string, required): JWT token for authentication.
-**Request Body**:
-```json
-{
-  "mentorSession_id": "1234567890",
-  "time": "2024-01-08T12:34:56Z",
-}
-```
-- `mentorSession_id` (string, required): Mentor session ID.
-- `time` (string, required): Meeting time.
-**Response Body**:
-- Success Response (200 OK):
-```json
-{
-  "detail": "Meeting scheduled successfully",
-  "data": {
-    // Meeting information
-  }
-}
-```
-- Error Response (400 Bad Request):
-```json
-{
-  "error": "Meeting not scheduled"
-}
-```
-
 ### 4.10 List Student's mentor Requests
 **Endpoint**: `GET http://127.0.0.1:8000/api/mentors/students-requests/?status=accepted`
 
@@ -619,6 +587,81 @@ User's email address.
 }
 ```
 
+### 5.0 Create Meeting
+**Endpoint**: `POST meeting/create/`
+**Description**: Create a meeting.
+**Request Headers:**
+- `Authorization`: (string, required): JWT token for authentication.
+**Request Body**:
+```json
+id: "1789f080-e661-4fe0-abb6-b6ca82d8d219",
+time: "2024-01-08T12:34:56Z",
+```
+- `id` (string, required): mentor request id.
+- `time` (string, required): meeting time.
+**Response Body**:
+- Success Response (200 OK):
+```json
+{
+    "detail": "Meeting created successfully",
+}
+```
+
+### 5.1 List Mentor Scheduled Meetings
+**Endpoint**: `GET meeting/retrieve/mentor/`
+**Description**: List all mentor scheduled meetings.
+**Request Headers:**
+- `Authorization`: (string, required): JWT token for authentication.
+**Response Body**:
+```json
+{
+    "detail": "Mentor meeting retrieved successfully",
+    "data": [
+        {
+            "meeting_id": "78ace5ff-d536-410c-85da-b77895e76f6a",
+            "time": "2024-04-23T18:25:43.511000Z",
+            "mentee": "lkkonadu001@st.ug.edu.gh1"
+        }
+    ]
+}
+```
+
+### 5.2 List Student Scheduled Meetings
+**Endpoint**: `GET meeting/retrieve/student/`
+**Description**: List all student scheduled meetings.
+**Request Headers:**
+- `Authorization`: (string, required): JWT token for authentication.
+**Response Body**:
+```json
+{
+    "detail": "Student meeting retrieved successfully",
+    "data": [
+        {
+            "meeting_id": "78ace5ff-d536-410c-85da-b77895e76f6a",
+            "time": "2024-04-23T18:25:43.511000Z",
+            "mentor": "johndoe@gmail.com"
+        },
+        ....
+    ]
+}
+```
+
+### 5.3 Retrieve Meeting
+**Endpoint**: `GET meeting/retrieve/<meeting_id>/`
+**Description**: Retrieve a meeting.
+**Request Headers:**
+- `Authorization`: (string, required): JWT token for authentication.
+**Response Body**:
+```json
+{
+    "detail": "Meeting retrieved successfully",
+    "data": {
+        "meeting_id": "78ace5ff-d536-410c-85da-b77895e76f6a",
+        "time": "2024-04-23T18:25:43.511000Z",
+        "mentor": "johndoeatgmail.com",  //property may be meentee
+    }
+}
+```
 
 
 # Contributing to OpenMentors API

@@ -69,7 +69,7 @@ class MeetingViewset(viewsets.ViewSet):
     
     def retrieve(self, request, id):
         """Retrieve meeting"""
-        id = request.data.get("id")
+        # id = request.data.get("id")
         meeting = get_meeting_by_id(id)
         if meeting:
             context = {
