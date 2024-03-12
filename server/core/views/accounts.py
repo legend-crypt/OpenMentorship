@@ -8,6 +8,7 @@ from core.retrievers.accounts import *
 from core.utils import *
 from rest_framework_simplejwt.tokens import RefreshToken
 import json
+import os
 class AccountCreationViewSet(viewsets.ViewSet):
     def create(self, request):
         email = request.data.get('email')
@@ -18,7 +19,7 @@ class AccountCreationViewSet(viewsets.ViewSet):
                 "error": "Please provide both email and password"
             }
             return Response(context, status=status.HTTP_400_BAD_REQUEST)
-        if YelloUser.objects.filter(email=email).exists():
+        if AccountUser.objects.filter(email=email).exists():
             context = {
                 "error": "Email already exists"
             }
@@ -29,6 +30,10 @@ class AccountCreationViewSet(viewsets.ViewSet):
             "detail": "User created successfully",
             "user" : get_user_information(email)
         }
+        EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER') 
+        EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
+        print(EMAIL_HOST_PASSWORD, EMAIL_HOST_USER)
+
         thread = threading.Thread(target=email_verification, args=(email, 4))
         thread.start()
         return Response(context, status=status.HTTP_201_CREATED)

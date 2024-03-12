@@ -443,22 +443,18 @@ User's email address.
 - Success Response (200 OK):
 ```json
 {
-  "detail": "Mentors retrieved successfully",
-  "data": [
-    {
-      // Mentor information
-      "user": 111343e,
-      "profile": {
-        "first_name": "John",
-        "last_name": "Doe",
-        "bio": "I am a software engineer",
-        "profile_picture": "https://example.com/profile_picture.jpg",
-      },
-    },
-    {
-      // Mentor information
-    }
-  ]
+    "detail": "Mentors retrieved successfully",
+    "data": [
+        {
+            "user_id": "985",
+            "email": "yrnd@gmail.com",
+            "role": "Mentor",
+            "full_name": "Kweku Anana",
+            "title": "Nii",
+            "bio": ""
+        },
+        ...
+    ]
 }
 ```
 ### 4.2 Create Mentor Request

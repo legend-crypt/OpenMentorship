@@ -4,9 +4,9 @@ from rest_framework.permissions import IsAuthenticated
 from core.utils import *
 from core.retrievers.mentors import *
 from core.senders.mentors import *
-from core.serializers import MentorSessionSerializer
+from core.serializers import MentorRequestSerializer
 import json
-from core.models import MentorSession
+from core.models import MentorRequest
 
 
 
@@ -16,6 +16,7 @@ class MentorViewset(viewsets.ViewSet):
     def list(self, request):
         queryset = Mentor.objects.all()
         serializer = MentorSerializer(queryset, many=True)
+        print(serializer.data)
         return Response(serializer.data)
     
     def list_mentors(self, request) -> Response:
@@ -40,8 +41,8 @@ class MentorViewset(viewsets.ViewSet):
         mentor_email = request.data.get("mentor_email")
         mentor = get_mentor_by_email(mentor_email)
         if user and mentor:
-            check_session = MentorSession.objects.filter(student=user, mentor=mentor)
-            if check_session:
+            check_Request = MentorRequest.objects.filter(student=user, mentor=mentor)
+            if check_Request:
                 context = {
                     "detail": "Request already sent",
                 }
@@ -49,11 +50,9 @@ class MentorViewset(viewsets.ViewSet):
             else:
                 student = user
                 mentor_request = create_mentor_request(student, mentor)
-                serializer = MentorSessionSerializer(mentor_request)
 
                 context = {
                     "detail": "Request successfully sent",
-                    "data": serializer.data
                 }
                 return Response(context, status=status.HTTP_201_CREATED)
         return Response({"error": "Request not sent"}, status=status.HTTP_400_BAD_REQUEST)
@@ -70,18 +69,14 @@ class MentorViewset(viewsets.ViewSet):
         """
         user = get_user_from_jwttoken(request)
         
-        id = request.data.get("mentorSession_id")
-        mentor = get_mentor_session_by_id(id)
+        id = request.data.get("mentorRequest_id")
+        mentor = get_mentor_Request_by_id(id)
         
         if mentor and mentor.mentor == user:
             mentor.status = "accepted"
             mentor.save()
-            mentor_request = get_student_mentorSession_by_status(mentor.student, "accepted")
-            data = get_student_mentorSession_information(mentor_request)
-
             context = {
                 "detail": "Request Accepted Successfully",
-                "data": data
             }
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "Request not found"}, status=status.HTTP_404_NOT_FOUND)
@@ -100,8 +95,8 @@ class MentorViewset(viewsets.ViewSet):
         status_name = request.query_params.get("status")
         if mentor:
             if status_name:
-                obj = MentorSession.objects.filter(mentor=mentor, status=status_name)
-            data = get_mentor_mentorSession_information(obj)
+                obj = MentorRequest.objects.filter(mentor=mentor, status=status_name)
+            data = get_mentor_MentorRequest_information(obj)
                 
             context = {
                 "detail": "Requests retrieved successfully",
@@ -121,10 +116,10 @@ class MentorViewset(viewsets.ViewSet):
         """
         id = request.data.get("mentor_id")
         meeting_schedule = request.data.get("time")
-        mentor = get_mentor_session_by_id(id)
+        mentor = get_mentor_Request_by_id(id)
         if mentor:
             mentor = create_mentor_meeting(mentor, meeting_schedule)
-            serializer = MentorSessionSerializer(mentor, context={'request': request})
+            serialiRequest(mentor, context={'request': request})
             context = {
                 "detail": "Meeting scheduled successfully",
                 "data": serializer.data
@@ -133,7 +128,7 @@ class MentorViewset(viewsets.ViewSet):
         return Response({"error": "Request not found"}, status=status.HTTP_404_NOT_FOUND)
     
     def get_student_mentor_requests(self, request):
-        """ Get student mentor session requests
+        """ Get student mentor Request requests
         Args:
             request (http request): 
 
@@ -144,8 +139,8 @@ class MentorViewset(viewsets.ViewSet):
         status_name = request.query_params.get("status")
         if student:
             if status_name:
-                obj = MentorSession.objects.filter(student=student, status=status_name)
-            data = get_student_mentorSession_information(obj)
+                obj = MentorRequest.objects.filter(student=student, status=status_name)
+            data = get_student_MentorRequest_information(obj)
             context = {
                     "detail": "Requests retrieved successfully",
                     "data": data

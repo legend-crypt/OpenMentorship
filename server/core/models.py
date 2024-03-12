@@ -14,7 +14,7 @@ MENTOR_STATUS = [
 ]
 
 
-class YelloUserProfile(models.Model):
+class AccountUserProfile(models.Model):
     profile_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=255, blank=True)
     last_name = models.CharField(max_length=255, blank=True)
@@ -29,7 +29,7 @@ class YelloUserProfile(models.Model):
         return self.first_name
 
 
-class YelloBaseUser(BaseUserManager):
+class AccountBaseUser(BaseUserManager):
     """YelloBaseUser Base model for all users"""
 
     def create_user(self, email, password=None, **extra_fields):
@@ -52,11 +52,11 @@ class YelloBaseUser(BaseUserManager):
         return user
 
 
-class YelloUser(AbstractBaseUser):
+class AccountUser(AbstractBaseUser):
     user_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     email = models.EmailField(verbose_name="email address", max_length=255, unique=True)
     profile = models.OneToOneField(
-        YelloUserProfile, on_delete=models.CASCADE, null=True, blank=True
+        AccountUserProfile, on_delete=models.CASCADE, null=True, blank=True
     )
     is_superuser = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
@@ -67,7 +67,7 @@ class YelloUser(AbstractBaseUser):
     role = models.CharField(choices=ROLE, max_length=50)
 
     USERNAME_FIELD = "email"
-    objects = YelloBaseUser()
+    objects = AccountBaseUser()
 
     def has_perm(self, perm, obj=None):
         """has_perm Does the user have a specific permission?"""
@@ -106,17 +106,17 @@ class PasswordResetCode(models.Model):
         return f"{self.otp} || {self.email}"
 
 
-class MentorSession(models.Model):
-    mentor_session_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+class MentorRequest(models.Model):
+    mentor_request_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     student = models.ForeignKey(
-        YelloUser, on_delete=models.CASCADE, related_name="student"
+        AccountUser, on_delete=models.CASCADE, related_name="student"
     )
     mentor = models.ForeignKey(
-        YelloUser, on_delete=models.CASCADE, related_name="mentor"
+        AccountUser, on_delete=models.CASCADE, related_name="mentor"
     )
     status = models.CharField(choices=MENTOR_STATUS, max_length=255, default="pending")
-    time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
-    meeting_id = models.CharField(max_length=10, default=None, blank=True, null=True)
+    # time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
+    # meeting_id = models.CharField(max_length=10, default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
@@ -125,7 +125,7 @@ class MentorSession(models.Model):
     
 
 class MeetingDetails(models.Model):
-    meeting = models.ForeignKey(MentorSession, on_delete=models.CASCADE)
+    meeting = models.ForeignKey(MentorRequest, on_delete=models.CASCADE)
     sdp_offer = models.CharField(max_length=255)
 
     

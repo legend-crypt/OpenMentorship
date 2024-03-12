@@ -31,28 +31,40 @@ def get_user_information(email):
 def get_user_by_email(email):
     """Get user by email"""
     try:
-        return YelloUser.objects.get(email=email)
-    except YelloUser.DoesNotExist:
+        return AccountUser.objects.get(email=email)
+    except AccountUser.DoesNotExist:
         return None
 
 def get_user_by_id(user_id):
     """Get user by id"""
     try:
-        return YellowUser.objects.get(user_id=user_id)
-    except YelloUser.DoesNotExist:
+        return AccountwUser.objects.get(user_id=user_id)
+    except AccountUser.DoesNotExist:
         return None
     
 def get_mentors():
     """Get mentors"""
-    queryset = YelloUser.objects.filter(role="Mentor")
-    serializer = YelloUserSerializer(queryset, many=True)
-    return serializer.data
+    queryset = AccountUser.objects.filter(role="Mentor")
+    serializer = AccountUserSerializer(queryset, many=True)
+    data = []
+    for obj in serializer.data:
+        mentor_obj = {
+            "user_id": obj["user_id"],
+            "email": obj["email"],
+            "role": obj["role"],
+            "full_name": f"{obj['profile']['first_name']} {obj['profile']['last_name']}",
+            "title": obj["profile"]["title"],
+            "bio": obj["profile"]["bio"]
+        }
+        data.append(mentor_obj)
+    print(data)
+    return data
 
 
 def get_all_users():
     """Get all users"""
-    queryset = YelloUser.objects.all()
-    serializer = YelloUserSerializer(queryset, many=True)
+    queryset = AccountUser.objects.all()
+    serializer = AccountUserSerializer(queryset, many=True)
     return serializer.data
 
 
@@ -74,6 +86,6 @@ def get_password_token(email):
 
 def get_profile_by_id(id):
     try:
-        return YelloUserProfile.objects.get(profile_id=id)
-    except YelloUserProfile.DoesNotExist:
+        return AccountUserProfile.objects.get(profile_id=id)
+    except AccountUserProfile.DoesNotExist:
         return None

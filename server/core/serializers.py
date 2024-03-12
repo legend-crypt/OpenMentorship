@@ -2,15 +2,15 @@ from rest_framework import serializers
 from core.models import *
 
 
-class YelloUserProfileSerializer(serializers.ModelSerializer):
+class AccountUserProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = YelloUserProfile
+        model = AccountUserProfile
         fields = '__all__'
 
-class YelloUserSerializer(serializers.ModelSerializer):
-    profile = YelloUserProfileSerializer()
+class AccountUserSerializer(serializers.ModelSerializer):
+    profile = AccountUserProfileSerializer()
     class Meta:
-        model = YelloUser
+        model = AccountUser
         fields = ['user_id', 'email', 'profile', 'created_at', 'verified', 'role']
         
         
@@ -25,21 +25,21 @@ class VerificationSerializer(serializers.ModelSerializer):
         model = VerificationCode
         fields = '__all__'
         
-class MentorSessionSerializer(serializers.ModelSerializer):
+class MentorRequestSerializer(serializers.ModelSerializer):
     # user = serializers.SerializerMethodField()
-    mentor = YelloUserSerializer()
-    student = YelloUserSerializer()
+    mentor = AccountUserSerializer()
+    student = AccountUserSerializer()
 
     class Meta:
-        model = MentorSession
-        fields = ['mentor_session_id', 'status', 'mentor', 'time','student', 'created_at', 'meeting_id']
+        model = MentorRequest
+        fields = ['mentor_request_id', 'status', 'mentor', 'student', 'created_at']
 
     # def get_user(self, obj):
     #     user_role = self.context['request'].user.role  # Assuming you have a 'role' attribute in your user model
     #     if user_role == 'Mentor':
-    #         user_data = YelloUserSerializer(obj.student).data
+    #         user_data = AccountUserSerializer(obj.student).data
     #     elif user_role == 'Mentee':
-    #         user_data = YelloUserSerializer(obj.mentor).data
+    #         user_data = AccountUserSerializer(obj.mentor).data
     #     return {
     #         'user_id': user_data.get('user_id'),
     #         'email': user_data.get('email'),

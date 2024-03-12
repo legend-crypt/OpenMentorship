@@ -3,7 +3,7 @@ from core.serializers import *
 
 def create_profile(data):
     """Create profile"""
-    serializer = YelloUserProfileSerializer(data=data, many=False)
+    serializer = AccountUserProfileSerializer(data=data, many=False)
     if serializer.is_valid():
         serializer.save()
         return serializer.data
@@ -13,7 +13,7 @@ def create_profile(data):
 
 def update_profile(data, profile):
     "updates a user's profile takes a profile instance and the data to be updated"
-    serializer = YelloUserProfileSerializer(data=data, instance=profile, partial=True, many=False)
+    serializer = AccountUserProfileSerializer(data=data, instance=profile, partial=True, many=False)
     if serializer.is_valid():
         serializer.save()
         return serializer.data
@@ -21,7 +21,7 @@ def update_profile(data, profile):
         return None
     
 def get_profile_information(profile):
-    serializer = YelloUserProfileSerializer(profile)
+    serializer = AccountUserProfileSerializer(profile)
     if serializer.is_valid:
         return serializer.data
     else:

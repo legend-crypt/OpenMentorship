@@ -1,19 +1,19 @@
 from core.models import *
 from core.retrievers.accounts import *
 from core.senders.accounts import *
-from core.serializers import MentorSessionSerializer
+from core.serializers import MentorRequestSerializer
 
 
-def get_mentorSession_information(mentorSession: MentorSession) -> MentorSessionSerializer:
+def get_MentorRequest_information(MentorRequest: MentorRequest) -> MentorRequestSerializer:
     """Get mentor session information
 
     Args:
-        mentorSession (MentorSession): mentor session
+        MentorRequest (MentorRequest): mentor session
 
     Returns:
-        MentorSessionSerializer: mentor session serializer
+        MentorRequestSerializer: mentor session serializer
     """
-    serializer = MentorSessionSerializer(mentorSession, many=True)
+    serializer = MentorRequestSerializer(MentorRequest, many=True)
     return serializer.data
     
     
@@ -24,127 +24,129 @@ def get_mentor_by_email(email):
     else:
         return None
     
-def get_mentor_session_by_id(id):
+def get_mentor_Request_by_id(id):
     try:
-        return MentorSession.objects.get(pk=id)
+        return MentorRequest.objects.get(pk=id)
         
-    except MentorSession.DoesNotExist:
+    except MentorRequest.DoesNotExist:
         return None
     
 
-def get_mentor_requests(mentor: YelloUser)-> MentorSession:
+def get_mentor_requests(mentor: AccountUser)-> MentorRequest:
     """ Get mentor pending requests
 
     Args:
-        mentor (YelloUser): mentor
+        mentor (AccountUser): mentor
 
     Returns:
-        MentorSession: mentor session
+        MentorRequest: mentor session
     """
     try:
-        return MentorSession.objects.filter(mentor=mentor, status="pending")
-    except MentorSession.DoesNotExist:
+        return MentorRequest.objects.filter(mentor=mentor, status="pending")
+    except MentorRequest.DoesNotExist:
         return None
 
     
-def get_student_mentorSession_by_status(student: YelloUser, status) -> MentorSession:
+def get_student_MentorRequest_by_status(student: AccountUser, status) -> MentorRequest:
     """Get student mentors session by status
 
     Args:
-        student (YelloUser): student
+        student (AccountUser): student
 
     Returns:
-        MentorSession: mentor session
+        MentorRequest: mentor session
     """
     try:
-        return MentorSession.objects.filter(student=student, status=status)
-    except MentorSession.DoesNotExist:
+        return MentorRequest.objects.filter(student=student, status=status)
+    except MentorRequest.DoesNotExist:
         return None
 
     
-def get_mentor_session_by_student_id(id: uuid) -> MentorSession:
+def get_mentor_session_by_student_id(id: uuid) -> MentorRequest:
     """Get mentor session by student id
 
     Args:
         id (uuid): student id
 
     Returns:
-        MentorSession: mentor session object
+        MentorRequest: mentor session object
     """
     try:
-        return MentorSession.objects.get(student=id)
-    except MentorSession.DoesNotExist:
+        return MentorRequest.objects.get(student=id)
+    except MentorRequest.DoesNotExist:
         return None
     
 
-def get_mentor_schedule_meeting(user: YelloUser) -> MentorSession:
+def get_mentor_schedule_meeting(user: AccountUser) -> MentorRequest:
     """Get mentor schedule meeting
 
     Args:
-        student (YelloUser): student
+        student (AccountUser): student
 
     Returns:
-        MentorSession: mentor session
+        MentorRequest: mentor session
     """
     try:
-        return MentorSession.objects.filter(mentor=user, status="scheduled")
-    except MentorSession.DoesNotExist:
+        return MentorRequest.objects.filter(mentor=user, status="scheduled")
+    except MentorRequest.DoesNotExist:
         return None
 
 
-def get_student_schedule_meeting(user: YelloUser) -> MentorSession:
+def get_student_schedule_meeting(user: AccountUser) -> MentorRequest:
     """Get mentee schedule meeting
 
     Args:
-        student (YelloUser): user
+        student (AccountUser): user
 
     Returns:
-        MentorSession: mentor session
+        MentorRequest: mentor session
     """
     try:
-        return MentorSession.objects.filter(student=user, status="scheduled")
-    except MentorSession.DoesNotExist:
+        return MentorRequest.objects.filter(student=user, status="scheduled")
+    except MentorRequest.DoesNotExist:
         return None
 
         
-def get_student_mentorSession_information(mentorSession_obj) -> list:
+def get_student_MentorRequest_information(MentorRequest_obj) -> list:
     """Get student mentor session information
 
     Args:
-        mentorSession_obj (MentorSession): list of mentor session object
+        MentorRequest_obj (MentorRequest): list of mentor session object
 
     Returns:
         list: list of mentor session serializer
     """
     
     data_list = []
-    for obj in mentorSession_obj:
+    for obj in MentorRequest_obj:
         data = {
             "user_id": obj.mentor.user_id,
             "full_name": obj.mentor.full_name,
-            "id": obj.mentor_session_id,
-            "title": obj.student.profile.title 
+            "id": obj.mentor_request_id,
+            "title": obj.student.profile.title,
+            "bio": obj.student.profile.bio
 
         }
         data_list.append(data)
     return data_list
 
-def get_mentor_mentorSession_information(mentorSession_obj) -> list:
+def get_mentor_MentorRequest_information(MentorRequest_obj) -> list:
     """Get a mentor mentor session information
 
     Args:
-        mentorSession_obj (MentorSession): list of mentor session object
+        MentorRequest_obj (MentorRequest): list of mentor session object
 
     Returns:
         list: list of mentor session serializer
     """
     data_list = []
-    for obj in mentorSession_obj:
+    for obj in MentorRequest_obj:
         data = {
             "user_id": obj.student.user_id,
             "full_name": obj.student.full_name,
-            "id": obj.mentor_session_id,
-            "title": obj.student.profile.title
+            "id": obj.mentor_request_id, 
+            "title": obj.student.profile.title,
+            "bio": obj.student.profile.bio
         }
         data_list.append(data)
     return data_list

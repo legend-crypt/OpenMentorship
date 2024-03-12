@@ -1,29 +1,29 @@
 from core.models import *
-from core.serializers import MentorSessionSerializer
+from core.serializers import MentorRequestSerializer
 from core.utils import *
 
-def create_mentor_request(student:YelloUser, mentor:YelloUser) -> MentorSession:
+def create_mentor_request(student:AccountUser, mentor:AccountUser) -> MentorRequest:
     """Creates a mentor request
 
     Args:
-        student (YelloUser): student
-        mentor (YelloUser): mentor
+        student (AccountUser): student
+        mentor (AccountUser): mentor
 
     Returns:
-        MentorSession: mentor session
+        MentorRequest: mentor session
     """
-    query_set = MentorSession.objects.create(student=student, mentor=mentor)
+    query_set = MentorRequest.objects.create(student=student, mentor=mentor)
     return query_set
 
 
-def create_mentor_meeting(mentor_session:uuid, meeting_schedule:str) -> MentorSession:
+def create_mentor_meeting(mentor_session:uuid, meeting_schedule:str) -> MentorRequest:
     """Creates a mentor meeting
     Args:
         mentor_session (uuid): session id
         meeting_schedule (str): meeting schedule
 
     Returns:
-        MentorSession: mentor session
+        MentorRequest: mentor session
     """
     mentor_session.meeting_schedule = meeting_schedule
     meeting_id = generate_meeting_id()

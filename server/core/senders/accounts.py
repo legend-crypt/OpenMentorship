@@ -17,7 +17,7 @@ def generate_token(otp_length)-> str:
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(otp_length))
 
 
-def create_user(email:str, password:str, role:str)-> YelloUser:
+def create_user(email:str, password:str, role:str)-> AccountUser:
     """Creates a user
 
     Args:
@@ -25,10 +25,10 @@ def create_user(email:str, password:str, role:str)-> YelloUser:
         password (str): password for the user
 
     Returns:
-        YelloUser: user json object
+        AccountUser: user json object
     """
-    user = YelloUser.objects.create_user(email=email, password=password, role=role)
-    queryset = YelloUserSerializer(user)
+    user = AccountUser.objects.create_user(email=email, password=password, role=role)
+    queryset = AccountUserSerializer(user)
     return queryset
 
 
