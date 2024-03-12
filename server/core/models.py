@@ -124,11 +124,13 @@ class MentorRequest(models.Model):
     
     
 
-class MeetingDetails(models.Model):
-    meeting = models.ForeignKey(MentorRequest, on_delete=models.CASCADE)
-    sdp_offer = models.CharField(max_length=255)
+class MeetingDetail(models.Model):
+    meeting_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    session = models.ForeignKey(MentorRequest, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now=False, auto_now_add=False)
+    
 
     
     def __str__(self):
-        return self.meeting.meeting_id
+        return f"{self.session.mentor.full_name} || {self.session.student.full_name} || {self.time}"
     

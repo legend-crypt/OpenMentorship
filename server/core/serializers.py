@@ -34,17 +34,8 @@ class MentorRequestSerializer(serializers.ModelSerializer):
         model = MentorRequest
         fields = ['mentor_request_id', 'status', 'mentor', 'student', 'created_at']
 
-    # def get_user(self, obj):
-    #     user_role = self.context['request'].user.role  # Assuming you have a 'role' attribute in your user model
-    #     if user_role == 'Mentor':
-    #         user_data = AccountUserSerializer(obj.student).data
-    #     elif user_role == 'Mentee':
-    #         user_data = AccountUserSerializer(obj.mentor).data
-    #     return {
-    #         'user_id': user_data.get('user_id'),
-    #         'email': user_data.get('email'),
-    #         'profile': user_data.get('profile'),
-    #         'created_at': user_data.get('created_at'),
-    #         'verified': user_data.get('verified'),
-    #         'role': user_data.get('role'),
-    #     }
+class MeetingDetailSerializer(serializers.ModelSerializer):
+    mentor_request = MentorRequestSerializer()
+    class Meta:
+        model = MeetingDetail
+        fields = ['meeting_id', 'time']
