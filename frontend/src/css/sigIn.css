@@ -58,8 +58,9 @@ body{
   }
   
   .continue-with {
-    color: #fff;
+    color: black;
     margin: 5px 0;
+    font-size: 20px;
     
   }
   
@@ -67,8 +68,7 @@ body{
     margin-bottom: 10px;
     border-radius: 5px;
     
-    
-  }
+      }
   
   p {
     text-align: center;
@@ -80,5 +80,4 @@ body{
   }
   
   
-  /* Customize further based on your design requirements */
   

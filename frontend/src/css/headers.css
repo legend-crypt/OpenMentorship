@@ -66,6 +66,7 @@ body {
 }.auth-links {
     display: flex;
     align-items: center;
+    color: black;
 }
 
 .auth-links a {

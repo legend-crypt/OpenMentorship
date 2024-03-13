@@ -207,7 +207,7 @@ export default function SignUp() {
           Sign Up
         </button>
         </form>
-        <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'3px' }}>
+        <div className="field" style={{ textAlign: 'center', margin:'3px' }}>
           <p className="continue-with">
             Continue with&nbsp;
             <img src={google} className="oauth-svg" alt="Google" />

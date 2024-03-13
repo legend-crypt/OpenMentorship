@@ -1,8 +1,7 @@
 import React from 'react';
-import mentor from '../assets/images/video_session.png';
-import '../assets/styles/style.css';
+// import '../assets/styles/style.css';
+
 import { Link } from 'react-router-dom';
-import HomeHeader from '../components/HomeHeader';
 import Footer from '../components/Footer';
 import community_icon from '../assets/images/fluent_people-community-32-filled.svg';
 import small from '../assets/images/eva_pie-chart-fill.svg';
@@ -11,7 +10,7 @@ import potential from '../assets/images/simple-icons_boosty.svg';
 import arrow from '../assets/images/ph_arrow-up-right.svg';
 import '../css/hero.css';
 import { useSpring, animated } from 'react-spring';
-import CarouselFadeExample from './CarouselFadeExample';
+
 
 export default function Hero() {
   // CSS Animation
@@ -36,11 +35,17 @@ export default function Hero() {
   return (
     <div>
       <style>{fadeInKeyframes}</style>
-
-
       <div className='container'>
-        {/* CSS Animation */}
-        <CarouselFadeExample />
+        {/* Add buttons here */}
+        <div className="top-buttons">
+          <Link to="/signIn" className="top-button">Login</Link>
+          <Link to="/signup" className="top-button">Sign Up</Link>
+        </div>
+
+        {/* Add logo here */}
+        <Link to="/" className="logo">
+          SkillUp
+        </Link>
 
         {/* react-spring Animation */}
         <animated.main className="hero" style={fadeIn}>
@@ -65,7 +70,7 @@ export default function Hero() {
                     <div className='hero_footer--col-row'>
                       <img src={small} alt="community" />
                       <h3>Start Small, Dream Big</h3>
-                      <p>Every contribution, no matter how small, makes a difference in the world of open source. Begin your journey with us and witness the transformative power of collaboration..</p>
+                      <p>Every contribution, no matter how small, makes a difference in the world of open source. Begin your journey with us and witness the transformative power of collaboration.</p>
                     </div>
                   </div>
                   <div className='hero_footer--dflex'>

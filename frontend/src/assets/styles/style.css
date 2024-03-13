@@ -236,9 +236,13 @@ button[disabled], #btn__cta:disabled{
 }
 
 footer {
-  margin-top: 0em;
-  background: #1877F2;
+  margin-top: 1px;
+  background: linear-gradient(to bottom, #e68fac, white); /* Adjust gradient colors */
+  padding: 20px;
+  position: relative;
 }
+
+
 .socials__svg {
   width: 1.5rem;
   height: 1.5rem;

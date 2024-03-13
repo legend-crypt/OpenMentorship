@@ -93,7 +93,7 @@ export default function SignIn() {
                 <ErrorMessage name='password' component="p" className='error' />
               </div>
               <button type='submit' id="btn__cta" className='form__field'>Log In</button>
-              <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'7px', padding: '1px' }}>
+              <div className="field" style={{ textAlign: 'center', margin:'7px', padding: '1px' }}>
                 <p className="continue-with">
                   Continue with&nbsp;
                   <img src={google} className="oauth-svg" alt="Google" />

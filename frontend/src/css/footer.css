@@ -1,27 +1,28 @@
+
 .footer {
-    background-color: #333;
-    color: white;
-    padding: 20px 0;
-  }
-  
-  .footer-icons {
-    display: flex;
-    justify-content: space-around;
-  }
-  
-  .icon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .icon-container img {
-    width: 30px;
-    height: 30px;
-  }
-  
-  .icon-container p {
-    margin-top: 5px;
-    font-size: 14px;
-  }
-  
+  background: radial-gradient(circle, blue 0%, rgba(255,255,255,0.8) 100%);
+  padding: 20px;
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center; /* Center the icons horizontally */
+  align-items: center; /* Center the icons vertically */
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px; /* Add some margin to create distance between icons */
+}
+
+.icon-container img {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-container p {
+  margin-top: 1px;
+  font-size: 14px;
+}
