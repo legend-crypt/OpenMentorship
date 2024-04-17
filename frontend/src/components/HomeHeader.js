@@ -31,18 +31,30 @@ const HomeHeader = () => {
       link: "/mentors",
       linktext: "Mentors",
     }, {
-      link: "/mentors/my-mentors",
-      linktext: "My Mentors",
+      link: "/meeting",
+      linktext: "Meetings",
+    }, {
+      link: "/blogs",
+      linktext: "Blogs",
+    }, {
+      link: "/open-source",
+      linktext: "Open Source",
     }],
     userTypeMentor: [{
       link: "/profile",
       linktext: "Profile",
     }, {
-      link: "/mentors/students",
+      link: "/student-request",
       linktext: "Students",
     }, {
-      link: "mentors/accept-students",
-      linktext: "Student Requests",
+      link: "/meeting",
+      linktext: "Meetings",
+    },{
+      link: "/blogs",
+      linktext: "Blogs",
+    }, {
+      link: "/open-source",
+      linktext: "OpenSource",
     }]
   }
 
@@ -58,18 +70,18 @@ const HomeHeader = () => {
           {loginStatus &&
             <ul className={`${width >= 768 ? "block" : "hidden"} flex`} >
               {/* if user type is mentee */}
-              {linksData.userTypeMentee.map((link, index) => {
+              {/* {linksData.userTypeMentee.map((link, index) => {
                 return <li key={index} className='m-2' >
                   <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
                 </li>
-              })}
+              })} */}
 
               {/* if user type is mentor */}
-              {/* {linksData.userTypeMentor.map((link, index) => {
-                    return <li key={index} >
+              {linksData.userTypeMentor.map((link, index) => {
+                    return <li key={index} className='m-2'>
                       <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
                     </li>
-                  })} */}
+                  })}
             </ul>
           }
 
@@ -107,13 +119,7 @@ const HomeHeader = () => {
                       <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
                     </li>
                   })}
-
                   {/* if user type is mentor */}
-                  {/* {linksData.userTypeMentor.map((link, index) => {
-                    return <li key={index} >
-                      <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                    </li>
-                  })} */}
                 </ul>
               </>
               }

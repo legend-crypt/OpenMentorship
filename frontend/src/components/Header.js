@@ -1,3 +1,5 @@
+
+// not used
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import hamburger from '../assets/images/hamburger.svg';
@@ -15,20 +17,20 @@ function Header() {
         }
     }
   return (
-            <header className="header">
-                <nav className='nav container'>
-                    <ul className="mentor__links">
-                            <Link to="/" className='logo'>SkillUp</Link>
-                            <div id="nav__left" className={clicked? "#nav__left active": "#nav__left"}>
-                                <li className='nav__right'><Link>Mentors</Link></li>                        <li className='nav__right'><Link>Meetings</Link></li>
-                            </div>
-                            <div className='menu'>
-                                <button className="menu__button"><img src={!clicked ? hamburger: close} alt='menu' onClick={handleClick}/></button>
-                            </div>
+        <header className="header">
+            <nav className='nav container'>
+                <ul className="mentor__links">
+                    <Link to="/" className='logo'>SkillUp</Link>
+                        <div id="nav__left" className={clicked? "#nav__left active": "#nav__left"}>
+                            <li className='nav__right'><Link>Mentors</Link></li>                        <li className='nav__right'><Link>Meetings</Link></li>
+                        </div>
+                        <div className='menu'>
+                            <button className="menu__button"><img src={!clicked ? hamburger: close} alt='menu' onClick={handleClick}/></button>
+                        </div>
 
-                    </ul>
-                </nav>
-            </header>
+                </ul>
+            </nav>
+        </header>
 
   )
 }

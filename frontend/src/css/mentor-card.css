@@ -1,0 +1,159 @@
+.mentor-card {
+    width: 100%;
+    /* max-width: 11rem; */
+    height: 12rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 6rem rgba(0, 0, 0, 0.1);
+    background: var(--athens-gray-100);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    white-space: pre-wrap;
+  }
+  
+  .mentor-card:hover {
+    box-shadow: 0 1px 6rem rgba(0, 0, 0, 0);
+  }
+  
+  .mentor-card img {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    top: -2rem;
+    border-radius: 1.6rem;
+  }
+  
+  .mentor-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.8rem;
+  }
+  
+  .mentor-details a {
+    color: var(--azure-radiance-600);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+  }
+  
+  .mentor-details a:hover {
+    color: var(--azure-radiance-400);
+  }
+  
+  .mentor-details span {
+    color: var(--stark-400);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .mentor-details-rate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .mentor-details-rate div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* gap: 6px; */
+  }
+  
+  .mentor-details-rate p {
+    color: var(--stark-600);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+  }
+  
+  .mentor-details-rate span {
+    color: var(--stark-400);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .request-btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 1rem;
+  }
+  
+  .request-btns button {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #1877f2;
+    background-color: #eef8ff;
+    border-radius: 8px;
+    border: 1px solid var(--azure-radiance-300);
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+  }
+  .request-btns button:hover {
+    color: var(--color-white);
+    border-color: var(--azure-radiance-600);
+    background-color: var(--azure-radiance-600);
+  }
+  .request-btns button:focus,
+  .request-btns button:focus-visible {
+    color: var(--color-white);
+    outline: 8px auto -webkit-focus-ring-color;
+    background-color: var(--azure-radiance-700);
+  }
+  
+  .request-btns button.email {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    color: var(--stark-600);
+    background-color: var(--stark-50);
+    border-radius: 8px;
+    border: 1px solid var(--stark-300);
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  .request-btns button.email:hover {
+    color: var(--color-white);
+    border-color: var(--stark-300);
+    background-color: var(--stark-600);
+  }
+  .request-btns button.email:focus,
+  .request-btns button.email:focus-visible {
+    color: var(--color-white);
+    outline: 8px auto -webkit-focus-ring-color;
+    background-color: var(--azure-radiance-700);
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    background-color: rgb(192, 243, 234);
+  }
+  
+  /* Mobile screens (max-width: 767px) */
+  @media only screen and (max-width: 767px) {
+    /* Styles for mobile screens */
+    .mentor-card {
+      box-shadow: 0 1px 4rem rgba(0, 0, 0, 0.1);
+    }
+  }
+  

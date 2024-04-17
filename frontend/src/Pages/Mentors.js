@@ -23,72 +23,42 @@ import MeetingPrompt from "./MeetingPrompt";
 import Header from "../components/Header";
 import MentorsComponent from "./MentorsComponent";
 import { useNavigate } from "react-router-dom";
-import React from "react";
-import {useFetchAllTypesOfMentors} from "../utils/useDynamicLogic"
+import React, { useEffect } from "react";
+import MentorCard from "../components/MentorCard";
+import axios from '../utils/axios'
 
 function Mentors() {
   const [isToggled, setIsToggled] = React.useState();
+  const [mentors , setMentors] = React.useState([]);
 
-  const fetchMentors = useFetchAllTypesOfMentors(); // not necessary to store values
-
-  const menteeToggleOptions = {
-    userType : "mentee",
-    options : {
-      toggle1 : {
-        name : "Find Mentors",
-        path : "/mentors"
-      },
-      toggle2:{
-        name : "Mentors",
-        path : "/mentors/my-mentors"
+  useEffect(() => {
+    axios.get('mentors/',
+    {
+      headers: {
+        Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
       }
-    }
-  }
+    }).then((res) => {
+      setMentors(res.data.data)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  }, []);
 
-  const mentorToggleOptions = {
-    userType : "mentor",
-    options : {
-      toggle1:{
-        name : "Mentees",
-        path : "/mentors/students"
-      },
-      toggle2 : {
-        name : "Mentee Requests",
-        path : "/mentors/students"
-      },
-    }
-  }
 
-  const navigate = useNavigate()
-
-  const handleToggle = (path) => {
-    setIsToggled((prev) => !prev);
-    navigate(path)
-  };
 
   return (
-    <div>
-      <nav>
-        <Link to="mentors/accept-student" />
-      </nav>
-      {/* <Header />  */} {/* header is kept common for all pages content will change dynamically based on user status */}
-      <Routes>
-        {/* -- When user is a Mentee (student) ---*/}
-        {/* path :: http://localhost:3000/mentors/ */}
-        <Route index element={<MentorsComponent isToggled={isToggled} handleToggle={() => handleToggle('my-mentors')} toggleOptions={menteeToggleOptions} />} />
-
-        {/* path :: http://localhost:3000/mentors/my-mentors  */}
-        <Route path="my-mentors" element={<MyMentors isToggled={isToggled} handleToggle={() => handleToggle('/mentors')} toggleOptions={menteeToggleOptions} />} />
-
-        {/* -- When user is a Mentor ---*/}
-        {/* Path :: http://localhost:3000/mentors/students */}
-        <Route path="students" element={<Students isToggled={isToggled} handleToggle={() => handleToggle('accept-students')} toggleOptions={mentorToggleOptions} />} />
-
-        {/* Path :: http://localhost:3000/mentors/accept-students */}
-        <Route path="accept-students" element={<AcceptStudents isToggled={isToggled} handleToggle={() => handleToggle('students')} toggleOptions={mentorToggleOptions} />} />
-
-      </Routes>
-      <Outlet />
+    <div className="container">
+      <div className="container--grid">
+        {/* <MentorCard/>
+        <MentorCard/>
+        <MentorCard/>
+        <MentorCard/>
+        <MentorCard/> */}
+        {mentors.map((data) => (
+          <MentorCard key={data.user_id} name={data?.profile.first_name + " " + data?.profile.last_name} image={data?.profile.profile_picture} mentorEmail={data.email} userId={data.user_id}/>
+        ))}
+      </div>
     </div>
   );
 }

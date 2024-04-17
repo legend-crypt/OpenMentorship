@@ -28,7 +28,7 @@ import axios from '../utils/axios'
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../store/slices/userAuth/userAuthSlice';
-import '../css/sigIn.css'
+import '../css/signIn.css'
 
 export default function SignIn() {
   // -- react redux states ---

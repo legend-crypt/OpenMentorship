@@ -110,13 +110,19 @@ img {
     object-fit: cover;
   }
 
-
+/* not used */
   .mentorsContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
+  .container--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1em;
+    margin-top: 7em;
+  }
 
   .mentorInfo {
     width: 40%;
@@ -176,8 +182,15 @@ img {
   color: var(--gray-900, #3D3D3E);
 }
 
+#profile-container {
+  margin-top: 3em;
+}
 
 @media screen and (max-width: 580px) {
+  .container {
+    width: 100%;
+  }
+
   .mentorsContainer {
     display: block;
   }

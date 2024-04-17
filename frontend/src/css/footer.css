@@ -3,6 +3,12 @@
     color: white;
     padding: 20px 0;
   }
+
+  /* .footer-container {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+  } */
   
   .footer-icons {
     display: flex;

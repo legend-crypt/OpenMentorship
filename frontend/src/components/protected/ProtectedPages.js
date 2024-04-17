@@ -28,9 +28,9 @@ const ProtectedPages = ({Component }) => {
     
     
     return (
-        <div>
+        <>
           {Component}
-        </div>
+        </>
     )
 }
 

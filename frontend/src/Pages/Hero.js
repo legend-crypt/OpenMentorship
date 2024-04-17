@@ -34,19 +34,17 @@ export default function Hero() {
   });
 
   return (
-    <div>
+    <>
       <style>{fadeInKeyframes}</style>
-
-
       <div className='container'>
         {/* CSS Animation */}
+          <h3 className='hero--head-heading'>Welcome to your one-stop for all things mentoring</h3>
         <CarouselFadeExample />
 
         {/* react-spring Animation */}
         <animated.main className="hero" style={fadeIn}>
           <section className='hero_footer'>
-            <div className="container">
-              <div className='hero_footer--dflex'>
+              <div className='hero_footer--grid'>
                 <div className='hero_footer--col hero_footer--left'>
                   <h2 className='hero_footer--heading'>Why Choose Open Mentors</h2>
                   <p>Embark on your journey into the vibrant world of open source with us. Whether you're a seasoned developer or just starting out, our platform is your gateway to endless opportunities for learning, collaboration, and contribution.</p>
@@ -81,12 +79,11 @@ export default function Hero() {
                     </div>
                   </div>
                 </div>
-              </div>
             </div>
           </section>
         </animated.main>
       </div>
 
-    </div>
+    </>
   );
 }
