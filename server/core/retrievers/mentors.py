@@ -141,7 +141,8 @@ def get_mentor_mentorSession_information(mentorSession_obj) -> list:
         data = {
             "user_id": obj.student.user_id,
             "full_name": obj.student.full_name,
-            "id": obj.mentor_session_id
+            "id": obj.mentor_session_id,
+            "profile_picture": obj.student.profile.profile_picture.url
         }
         data_list.append(data)
     return data_list

@@ -35,7 +35,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -93,7 +92,6 @@ SIMPLE_JWT = {
 
 
 WSGI_APPLICATION = 'server.wsgi.application'
-ASGI_APPLICATION = 'server.asgi.application'
 
 
 # Database
@@ -179,8 +177,8 @@ CORS_ALLOWED_ORIGINS = [
  
 # settings.py
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Use appropriate backend
-    },
-}
+# CHANNEL_LAYERS = {
+#     'default': {
+#         'BACKEND': 'channels.layers.InMemoryChannelLayer',  # Use appropriate backend
+#     },
+# }

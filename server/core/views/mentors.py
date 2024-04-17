@@ -50,6 +50,26 @@ class MentorViewset(viewsets.ViewSet):
             return Response(context, status=status.HTTP_201_CREATED)
         return Response({"error": "Request not sent"}, status=status.HTTP_400_BAD_REQUEST)
     
+    def delete_mentor_request(self, request, id):
+        """ Delete mentor request
+
+        Args:
+            request (http request): 
+            id (int): mentor request id
+
+        Returns:
+            http response: http response
+        """
+        user = get_user_from_jwttoken(request)
+        mentor = get_mentor_session_by_id(id)
+        if mentor and mentor.mentor == user:
+            mentor.delete()
+            context = {
+                "detail": "Request deleted successfully",
+            }
+            return Response(context, status=status.HTTP_200_OK)
+        return Response({"error": "Request not found"}, status=status.HTTP_404_NOT_FOUND)
+        
     
     def accept_mentee_request(self, request):
         """ Accept mentee request
@@ -137,6 +157,8 @@ class MentorViewset(viewsets.ViewSet):
         if student:
             if status_name:
                 obj = MentorSession.objects.filter(student=student, status=status_name)
+            else:
+                obj = MentorSession.objects.filter(student=student)
             data = get_student_mentorSession_information(obj)
             context = {
                     "detail": "Requests retrieved successfully",
