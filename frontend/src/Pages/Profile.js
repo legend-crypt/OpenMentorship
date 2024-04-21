@@ -22,7 +22,6 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
 
 export default function Profile() {
   const navigate = useNavigate();

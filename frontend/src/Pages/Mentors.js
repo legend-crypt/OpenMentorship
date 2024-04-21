@@ -16,13 +16,14 @@
 
 
 import { Link, Outlet, Routes, Route } from "react-router-dom";
-import MyMentors from "./MyMentors";
-import AcceptStudents from "./AcceptStudents";
-import Students from "./Students";
-import MeetingPrompt from "./MeetingPrompt";
-import Header from "../components/Header";
-import MentorsComponent from "./MentorsComponent";
-import { useNavigate } from "react-router-dom";
+// import MyMentors from "./MyMentors";
+// import AcceptStudents from "./AcceptStudents";
+// import Students from "./Students";
+// import MeetingPrompt from "./MeetingPrompt";
+// import Header from "../components/Header";
+// import MentorsComponent from "./MentorsComponent";
+// import { useNavigate } from "react-router-dom";
+import '../assets/styles/Mentors.css';
 import React, { useEffect } from "react";
 import MentorCard from "../components/MentorCard";
 import axios from '../utils/axios'
@@ -48,7 +49,7 @@ function Mentors() {
 
 
   return (
-    <div className="container">
+    <div className="container page-margin">
       <div className="container--grid">
         {/* <MentorCard/>
         <MentorCard/>

@@ -10,7 +10,6 @@ import { fetchActiveUser } from './store/slices/userAuth/userAuthSlice';
 import { useSelector, useDispatch } from 'react-redux'
 import ProtectedPages from './components/protected/ProtectedPages';
 import CallRoom from './Pages/CallRoom';
-import Carousel from './components/Carousel';
 import HomeHeader from './components/HomeHeader';
 import Footer from './components/Footer';
 import Meeting from './Pages/Meeting';
@@ -40,6 +39,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog" element={<Blog/>}/>
           <Route path='/student-request' element={<StudentsRequest/>} />
+          <Route path='/call-room' element={<CallRoom/>} />
       </Routes>
 
       {/* <CallRoom/> */}

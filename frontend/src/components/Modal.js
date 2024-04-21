@@ -19,7 +19,7 @@
 import React, { useState } from 'react';
 import axios from '../utils/axios';
 
-export default function Modal({ isOpen, onClose, title, content, confirmText, isDateTimeInput, meetingId }) {
+export default function Modal({ isOpen, onClose, title, content, confirmText, isDateTimeInput, menteeId }) {
     const [dateTime, setDateTime] = useState("");
     const config = {
         headers : {
@@ -43,8 +43,8 @@ export default function Modal({ isOpen, onClose, title, content, confirmText, is
 
     const handleConfirmClick = () => {
         axios
-            .put("/mentors/schedule-meeting/", {
-                mentor_id: meetingId,
+            .post("/meeting/create/", {
+                mentee_id: menteeId,
                 time: dateTime,
             }, config)
             .then((res) => {
