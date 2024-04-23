@@ -14,19 +14,21 @@
   Note: This component follows a modular and reusable design, allowing it to be easily adapted for different modal scenarios across the application.
 */
 
-
-
 import React, { useState } from 'react';
 import axios from '../utils/axios';
+import { randomID } from '../Pages/CallRoom';
 
 export default function Modal({ isOpen, onClose, title, content, confirmText, isDateTimeInput, menteeId }) {
     const [dateTime, setDateTime] = useState("");
+    const roomID = randomID(5);
+    const url = window.location.protocol + '//' + 
+    window.location.host + '/call-room' +
+     '?roomID=' + roomID;
     const config = {
         headers : {
             Authorization: `Bearer ${JSON.parse(localStorage.getItem("access_token"))}`,
         }
     }
-    console.log(`config is ${config.headers.Authorization}`);
 
     const handleChange = (e) => {
         setDateTime(e.target.value);
@@ -46,6 +48,7 @@ export default function Modal({ isOpen, onClose, title, content, confirmText, is
             .post("/meeting/create/", {
                 mentee_id: menteeId,
                 time: dateTime,
+                meeting_link: url,
             }, config)
             .then((res) => {
                 console.log(res);

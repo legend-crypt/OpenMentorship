@@ -12,7 +12,7 @@
   }
   
 
-.osp-card-img {
+.osp-card-img img{
     width: 100%;
     height: 8rem;
     margin-bottom: 1.5em;
@@ -61,4 +61,11 @@
 .osp-card-btn:hover {
     background: #0056b3;
     transform: scale(1.02);
+}
+
+
+@media screen and (max-width: 768px) {
+    .osp-card {
+        width: 100%;
+    }
 }

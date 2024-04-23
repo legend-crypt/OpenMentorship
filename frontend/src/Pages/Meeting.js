@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export default function Meeting() {
   const [meetings, setMeetings] = useState([]);
+  const today = new Date();
 useEffect(() => {
   axios.get('/meeting/retrieve/',
   {
@@ -34,16 +35,16 @@ const formatDate = (datetimeString) => {
         <h1>Hello, John you have a meeting with </h1>
         <div className="container--grid">
           {meetings.map((data) => (
-            
-            <span>
-              <MeetingCard key={data.id} name={data.mentee}/>
-              <div key={data.id} className='calendar'>
+            <span key={data.id}>
+              <MeetingCard name={data.mentee}/>
+              <div className='calendar'>
                 <img src={calender} alt='calender'/>
                 <span className="details">
                     <p>{formatDate(data.time).date}</p>
                     <p>{formatDate(data.time).time}</p>
                 </span>
-                <button className='btn-meeting'><Link to="/call-room">Join Meeting</Link></button>
+                {today >= new Date(data.time) && 
+                <button className='btn-meeting'><Link to={data.meeting_link}>Join Meeting</Link></button>}
               </div>
 
             </span>
@@ -51,7 +52,6 @@ const formatDate = (datetimeString) => {
           ))}
           
         </div>
-
           <p>Please ensure that you have a stable internet connection and are in a quiet environment during the meeting. This will help to minimize disruptions and ensure a smooth communication experience.</p>
         {/* <div className='container--grid'>
           {meetings.map((data) => (

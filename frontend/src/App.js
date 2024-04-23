@@ -19,10 +19,6 @@ import Blog from './Pages/Blog';
 import StudentsRequest from './Pages/StudentsRequest';
 function App() {
 
-  // const dispatch = useDispatch();
-  // useEffect(()=>{
-  //    dispatch(fetchActiveUser())
-  // })
 
   return (
     <div className="App">

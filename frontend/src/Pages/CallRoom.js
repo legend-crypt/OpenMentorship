@@ -3,7 +3,7 @@ import * as React from 'react';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
 
 
-function randomID(len) {
+export function randomID(len) {
   let result = '';
   if (result) return result;
   var chars = '12345qwertyuiopasdfgh67890jklmnbvcxzMNBVCZXASDQWERTYHGFUIOLKJP',
@@ -37,18 +37,20 @@ export default function CallRoom() {
       // start the call
       zp.joinRoom({
         container: element,
-        sharedLinks: [
-          {
-            name: 'Personal link',
-            url:
-             window.location.protocol + '//' + 
-             window.location.host + window.location.pathname +
-              '?roomID=' +
-              roomID,
-          },
-        ],
+        // sharedLinks: [
+        //   {
+        //     name: 'Personal link',
+        //     url:
+        //      window.location.protocol + '//' + 
+        //      window.location.host + window.location.pathname +
+        //       '?roomID=' +
+        //       roomID,
+        //   },
+        // ],
         scenario: {
-          mode: ZegoUIKitPrebuilt.GroupCall, // To implement 1-on-1 calls, modify the parameter here to [ZegoUIKitPrebuilt.OneONoneCall].
+          mode: ZegoUIKitPrebuilt.GroupCall,
+           // To implement 1-on-1 calls, modify the parameter here to 
+           [ZegoUIKitPrebuilt.OneONoneCall]: true,
         },
       });
 
