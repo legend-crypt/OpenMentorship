@@ -4,6 +4,7 @@ from core.views.accounts import *
 from core.views.reset_password import *
 from core.views.mentors import *
 from core.views.meeting import *
+from core.views.os_project import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -32,8 +33,10 @@ urlpatterns = [
     path('mentors/meeting-schedule/', MentorViewset.as_view({'get': 'list_schedule_meetings'})),
     path('mentors/reject/<uuid:id>/', MentorViewset.as_view({'delete':'delete_mentor_request'})),
     #meeting
-    path('meeting/create/', Meeting.as_view({'post':'create'})),
-    path('meeting/retrieve/', Meeting.as_view({'get':'get_user_meetings'})),
+    path('meeting/create/', MeetingViewset.as_view({'post':'create'})),
+    path('meeting/retrieve/', MeetingViewset.as_view({'get':'get_user_meetings'})),
+    #projects
+    path('projects/', ProjectViewset.as_view({'get':'list'})),
     
     path('login/', SignIn.as_view({'post':'post'})),
     ####websocket

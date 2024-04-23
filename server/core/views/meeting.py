@@ -7,7 +7,7 @@ from core.retrievers.meeting import *
 from core.senders.meeting import *
 from core.models import Meeting
 
-class Meeting(viewsets.ViewSet):
+class MeetingViewset(viewsets.ViewSet):
     """ viewset for Meeting
     """
     def get_user_meetings(self, request):
@@ -48,7 +48,7 @@ class Meeting(viewsets.ViewSet):
         if not mentee:
             return Response({"error": "Mentee not found"}, status=status.HTTP_400_BAD_REQUEST)
         if mentor:
-            meeting_exist = Meeting.objects.filter(mentor=mentor, mentee=mentee).exists()
+            meeting_exist = Meeting.objects.filter(mentor=mentor, mentee=mentee)
             if meeting_exist:
                 return Response({"detail": "Meeting already exists"}, status=status.HTTP_208_ALREADY_REPORTED)
             meeting = create_meeting(time=time, mentor=mentor, mentee=mentee, meeting_link=meeting_link)
