@@ -10,7 +10,6 @@ MENTOR_STATUS = [
     ("pending", "pending"),
     ("accepted", "accepted"),
     ("rejected", "rejected"),
-    ("scheduled", "scheduled")
 ]
 
 
@@ -114,20 +113,19 @@ class MentorSession(models.Model):
         YelloUser, on_delete=models.CASCADE, related_name="mentor"
     )
     status = models.CharField(choices=MENTOR_STATUS, max_length=255, default="pending")
-    time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
-    meeting_id = models.CharField(max_length=10, default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f"{self.student} || {self.mentor}"
     
-    
 
-class MeetingDetails(models.Model):
-    meeting = models.ForeignKey(MentorSession, on_delete=models.CASCADE)
-    sdp_offer = models.CharField(max_length=255)
-
+class Meeting(models.Model):
+    meeting_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    mentor = models.ForeignKey(YelloUser, on_delete=models.CASCADE, related_name='meeting_mentor')
+    mentee = models.ForeignKey(YelloUser, on_delete=models.CASCADE, related_name='mentee')
+    meeting_time = models.DateTimeField(default=None, null=True)
+    meeting_link = models.CharField(max_length=255, default=None, null=True)
     
     def __str__(self):
-        return self.meeting.meeting_id
+        return self.mentor.email + " || " + self.mentee.email
     

@@ -122,27 +122,6 @@ class MentorViewset(viewsets.ViewSet):
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
     
-    def schedule_meeting(self, request):
-        """ Schedule meeting
-
-        Args:
-            request (http request): 
-
-        Returns:
-            http response: http response
-        """
-        id = request.data.get("mentor_id")
-        meeting_schedule = request.data.get("time")
-        mentor = get_mentor_session_by_id(id)
-        if mentor:
-            mentor = create_mentor_meeting(mentor, meeting_schedule)
-            serializer = MentorSessionSerializer(mentor, context={'request': request})
-            context = {
-                "detail": "Meeting scheduled successfully",
-                "data": serializer.data
-            }
-            return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Request not found"}, status=status.HTTP_404_NOT_FOUND)
     
     def get_student_mentor_requests(self, request):
         """ Get student mentor session requests

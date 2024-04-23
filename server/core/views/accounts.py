@@ -32,8 +32,6 @@ class AccountCreationViewSet(viewsets.ViewSet):
         thread.start()
         return Response(context, status=status.HTTP_201_CREATED)
     
-            
-        
     def send_verification_email(self, request):
         """Send verification email
 
@@ -153,4 +151,4 @@ class SignIn(viewsets.ViewSet):
             response = Response(context, status=status.HTTP_200_OK)
             return response
         else:
-            raise AuthenticationFailed("Incorrect login credentials provided")
+            return  Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)

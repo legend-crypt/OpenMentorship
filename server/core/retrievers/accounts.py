@@ -26,6 +26,7 @@ def get_user_information(email):
         "user_id": user.user_id,
         "email": user.email,
         "verified": user.verified,
+        "role": user.role,
     }
 
 def get_user_by_email(email):
@@ -38,7 +39,7 @@ def get_user_by_email(email):
 def get_user_by_id(user_id):
     """Get user by id"""
     try:
-        return YellowUser.objects.get(user_id=user_id)
+        return YelloUser.objects.get(user_id=user_id)
     except YelloUser.DoesNotExist:
         return None
     

@@ -146,17 +146,3 @@ def get_mentor_mentorSession_information(mentorSession_obj) -> list:
         }
         data_list.append(data)
     return data_list
-
-def get_sdp_by_meetingId(meeting_id) -> MeetingDetails.sdp_offer:
-    """Get sdp by meeting id
-
-    Args:
-        meeting_id (str): meeting id
-
-    Returns:
-        MeetingDetails.sdp_offer: sdp offer
-    """
-    try:
-        return MeetingDetails.objects.get(meeting__meeting_id=meeting_id)
-    except MeetingDetails.DoesNotExist:
-        return None
