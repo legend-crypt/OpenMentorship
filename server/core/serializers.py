@@ -32,9 +32,9 @@ class MentorRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MentorRequest
-        fields = ['mentor_request_id', 'status', 'mentor', 'student', 'created_at']
+        fields = ['mentor_session_id', 'status', 'mentor', 'time','student', 'created_at']
 
-class MeetingDetailSerializer(serializers.ModelSerializer):
+class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MeetingDetail
-        fields = ['meeting_id', 'time']
+        model = Project
+        fields = '__all__'

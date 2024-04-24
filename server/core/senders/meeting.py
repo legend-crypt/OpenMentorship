@@ -1,14 +1,11 @@
-from core.models import MeetingDetail
+from core.models import Meeting
 
+def create_meeting(time, mentor, mentee, meeting_link=None):
+    """Create meeting
 
-def create_meeting(session, time):
-    """Create a meeting"""
-    meeting = MeetingDetail.objects.create(session=session, time=time)
-    return meeting
-
-def up_meeting(session, time):
-    """Update a meeting"""
-    meeting = MeetingDetail.objects.get(session=session)
-    meeting.time = time
-    meeting.save()
+    Args:
+        user (User obj): user object
+        time (DateTime): time
+    """
+    meeting = Meeting.objects.create(mentor=mentor, meeting_time=time, mentee=mentee, meeting_link=meeting_link)
     return meeting

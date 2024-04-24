@@ -10,7 +10,6 @@ MENTOR_STATUS = [
     ("pending", "pending"),
     ("accepted", "accepted"),
     ("rejected", "rejected"),
-    ("scheduled", "scheduled")
 ]
 
 
@@ -115,22 +114,29 @@ class MentorRequest(models.Model):
         AccountUser, on_delete=models.CASCADE, related_name="mentor"
     )
     status = models.CharField(choices=MENTOR_STATUS, max_length=255, default="pending")
-    # time = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
-    # meeting_id = models.CharField(max_length=10, default=None, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
         return f"{self.student} || {self.mentor}"
     
-    
 
-class MeetingDetail(models.Model):
+class Meeting(models.Model):
     meeting_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    session = models.ForeignKey(MentorRequest, on_delete=models.CASCADE)
-    time = models.DateTimeField(auto_now=False, auto_now_add=False)
-    
-
+    mentor = models.ForeignKey(AccountUser, on_delete=models.CASCADE, related_name='meeting_mentor')
+    mentee = models.ForeignKey(AccountUser, on_delete=models.CASCADE, related_name='mentee')
+    meeting_time = models.DateTimeField(default=None, null=True)
+    meeting_link = models.CharField(max_length=255, default=None, null=True)
     
     def __str__(self):
-        return f"{self.session.mentor.full_name} || {self.session.student.full_name} || {self.time}"
+        return self.mentor.email + " || " + self.mentee.email
+
+
+class Project(models.Model):
+    project_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    link = models.CharField(max_length=255)
+    thumnail = models.ImageField(upload_to="project_thumbnails", null=True, blank=True)
     
+    def __str__(self):
+        return self.name

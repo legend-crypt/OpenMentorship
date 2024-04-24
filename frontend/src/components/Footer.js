@@ -6,7 +6,7 @@ import '../css/footer.css';
 
 const Footer = () => {
   return (
-    <footer className=""> 
+    <footer className="footer-container"> 
         {/* <div className="container footer">
           <div className="footer__socials" style={{color: "white"}}>
               <a id="socials" href="#"><img src={githubIcon} className='socials__svg'></img></a>

@@ -1,80 +1,60 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from core.utils import *
+from core.retrievers.accounts import get_user_by_id
 from core.retrievers.meeting import *
 from core.senders.meeting import *
-from core.models import MeetingDetail
-from core.retrievers.mentors import get_mentor_Request_by_id
-from core.utils import get_user_from_jwttoken
-from core.serializers import MeetingDetailSerializer
+from core.models import Meeting
 
 class MeetingViewset(viewsets.ViewSet):
-    
-    def create(self, request):
-        """ create a meeting object"""
-        id = request.data.get("id") ## mentor request id
-        time = request.data.get("time") ## meeting time
-        session = get_mentor_Request_by_id(id)
-        if not session:
-            context = {
-                "detail": "Mentor request not found",
-            }
-            return Response(context, status=status.HTTP_404_NOT_FOUND)
-        check_meeting = MeetingDetail.objects.filter(session=session)
-        if check_meeting:
-            context = {
-                "detail": "Meeting already created",
-            }
-            return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
-        meeting = create_meeting(session, time)
-        context = {
-            "detail": "Meeting created successfully",
-        }
-        return Response(context, status=status.HTTP_201_CREATED)
-    
-    def get_student_meeting(self, request):
-        """Get student meeting"""
+    """ viewset for Meeting
+    """
+    def get_user_meetings(self, request):
+        """Get user meetings
+        """
         user = get_user_from_jwttoken(request)
         if user:
-            meetings = get_all_student_meeting(user)
+            meetings = get_user_meetings(user)
+            data = get_meeting_information(meetings)
             context = {
-                "detail": "Student meeting retrieved successfully",
-                "data": meetings
+                "detail": "Meetings retrieved successfully",
+                "data": data
             }
             return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Meeting not found"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"error": "Meetings not retrieved"}, status=status.HTTP_400_BAD_REQUEST)
     
-    def get_mentor_meeting(self, request):
-        """Get mentor meeting"""
+    def get_meeting(self, request, id):
+        """Get meeting
+        """
         user = get_user_from_jwttoken(request)
         if user:
-            meetings = get_all_mentor_meeting(user)
-            context = {
-                "detail": "Mentor meeting retrieved successfully",
-                "data": meetings
-            }
-            return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Meeting not found"}, status=status.HTTP_400_BAD_REQUEST)
-    
-    def delete_meeting(self, request):
-        """Delete meeting"""
-        id = request.data.get("id")
-        meeting = get_meeting_by_id(id)
-        if meeting:
-            meeting.delete()
-            context = {
-                "detail": "Meeting deleted successfully",
-            }
-            return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Meeting not found"}, status=status.HTTP_404_NOT_FOUND)
-    
-    def retrieve(self, request, id):
-        """Retrieve meeting"""
-        # id = request.data.get("id")
-        meeting = get_meeting_by_id(id)
-        if meeting:
+            meeting = get_meeting(id)
             context = {
                 "detail": "Meeting retrieved successfully",
-                "data": MeetingDetailSerializer(meeting).data
+                "data": meeting
             }
             return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Meeting not found"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Meeting not retrieved"}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def create(self, request):
+        """Create meeting
+        """
+        mentor = get_user_from_jwttoken(request)
+        time = request.data.get("time")
+        mentee_id = request.data.get("mentee_id")
+        meeting_link = request.data.get("meeting_link")
+        mentee = get_user_by_id(mentee_id)
+        if not mentee:
+            return Response({"error": "Mentee not found"}, status=status.HTTP_400_BAD_REQUEST)
+        if mentor:
+            meeting_exist = Meeting.objects.filter(mentor=mentor, mentee=mentee)
+            if meeting_exist:
+                return Response({"detail": "Meeting already exists"}, status=status.HTTP_208_ALREADY_REPORTED)
+            meeting = create_meeting(time=time, mentor=mentor, mentee=mentee, meeting_link=meeting_link)
+            if meeting:
+                context = {
+                "detail": "Meeting created successfully",
+                }
+                return Response(context, status=status.HTTP_201_CREATED)
+        return Response({"error": "Meeting not created"}, status=status.HTTP_400_BAD_REQUEST)

@@ -4,6 +4,7 @@ import hamburger from '../assets/images/hamburger.svg';
 import close from '../assets/images/close.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOutUser } from '../store/slices/userAuth/userAuthSlice';
+import { userRoleSlice } from '../store/slices/userRole/UserRoleSlice';
 import Cta from './Cta';
 
 import '../css/headers.css';
@@ -13,7 +14,7 @@ const HomeHeader = () => {
   const dispatch = useDispatch();
   const { loginStatus, userDetails } = useSelector((state) => state.userAuth);
   const [menuOpen, setMenuOpen] = useState(false);
-  const userType = userDetails?.["use-role"];
+  const userType = useSelector((state) => state.userRole.role);
   const { width } = useWindowSize(); // costume hook for window size 
 
   const toggleMenu = () => {
@@ -32,18 +33,30 @@ const HomeHeader = () => {
       link: "/mentors",
       linktext: "Mentors",
     }, {
-      link: "/mentors/my-mentors",
-      linktext: "My Mentors",
+      link: "/meeting",
+      linktext: "Meetings",
+    }, {
+      link: "/blogs",
+      linktext: "Blogs",
+    }, {
+      link: "/open-source",
+      linktext: "Open Source",
     }],
     userTypeMentor: [{
       link: "/profile",
       linktext: "Profile",
     }, {
-      link: "/mentors/students",
+      link: "/student-request",
       linktext: "Students",
     }, {
-      link: "mentors/accept-students",
-      linktext: "Student Requests",
+      link: "/meeting",
+      linktext: "Meetings",
+    },{
+      link: "/blogs",
+      linktext: "Blogs",
+    }, {
+      link: "/open-source",
+      linktext: "OpenSource",
     }]
   }
 
@@ -58,22 +71,19 @@ const HomeHeader = () => {
           {/* -- for larger screen ---  */}
           {loginStatus &&
             <ul className={`${width >= 768 ? "block" : "hidden"} flex`} >
-              {/* dynamic display of navbar options based on user type */}
-              {userType !== undefined &&
-                userType === "Mentee"
-                ?
-                linksData.userTypeMentee.map((link, index) => {
-                  return <li key={index} className='m-2' >
-                    <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                  </li>
-                })
-                :
-                linksData.userTypeMentor.map((link, index) => {
-                  return <li key={index} className='m-2' >
-                    <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                  </li>
-                })
-              }
+              {/* if user type is mentee */}
+              {userType === "Mentee" ?
+              (linksData.userTypeMentee.map((link, index) => {
+                return <li key={index} className='m-2' >
+                  <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                </li>
+              }))
+              :
+              (linksData.userTypeMentor.map((link, index) => {
+                    return <li key={index} className='m-2'>
+                      <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                    </li>
+                  }))                }
             </ul>
           }
 
@@ -105,22 +115,13 @@ const HomeHeader = () => {
               {/* --- for smaller screen ----  */}
               {loginStatus && <>
                 <ul className={`${width >= 768 ? "hidden" : "block"}`} >
-                  {/* dynamic display of navbar options based on user type */}
-                  {userType !== undefined &&
-                    userType === "Mentee"
-                    ?
-                    linksData.userTypeMentee.map((link, index) => {
-                      return <li key={index} className='m-2' >
-                        <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                      </li>
-                    })
-                    :
-                    linksData.userTypeMentor.map((link, index) => {
-                      return <li key={index} className='m-2' >
-                        <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
-                      </li>
-                    })
-                  }
+                  {/* if user type is mentee */}
+                  {linksData.userTypeMentee.map((link, index) => {
+                    return <li key={index} >
+                      <Link to={link.link} onClick={closeMenu} >{link.linktext}</Link>
+                    </li>
+                  })}
+                  {/* if user type is mentor */}
                 </ul>
               </>
               }

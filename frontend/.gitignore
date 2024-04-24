@@ -10,7 +10,7 @@
 
 # production
 /build
-
+/src/to_deleted
 # misc
 .DS_Store
 .env.local

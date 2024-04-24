@@ -22,9 +22,9 @@ const ProtectedPages = ({Component }) => {
     
     
     return (
-        <div className='min-h-screen' >
-          { loginStatus ? Component : <h1>Loading....</h1> }
-        </div>
+        <>
+          {Component}
+        </>
     )
 }
 

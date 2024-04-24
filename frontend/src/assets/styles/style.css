@@ -42,13 +42,13 @@ body {
 a:hover {
   cursor: pointer;
   opacity: 0.9;
-  text-decoration: underline;
-  border-bottom: 4px solid black;
+  /* text-decoration: underline;
+  border-bottom: 4px solid black; */
 
 }
 
 a:active {
-  border-bottom: 4px solid black;
+  /* border-bottom: 4px solid black; */
 }
 
 a {
@@ -254,18 +254,9 @@ footer {
 
 }
 
-.hero_sub--section {
-  margin-bottom: 3em;
-  margin-top: 1em;
-}
 
 .hero {
   padding: 7em 0 3em 0;
-}
-
-.hero_sub--section-image {
-  width: 18rem;
-  margin: 2em auto;
 }
 
 
@@ -322,12 +313,6 @@ footer {
   margin: 0 auto;
 }
 
-.hero__text > button {
-  margin-top: 1.5rem;
-  padding: 0.5rem 1.5rem;
-  border: var(--form__border);
-  border-radius: var(--form__border-radius);
-}
 
 .profile__info {
   display: flex;
@@ -396,48 +381,6 @@ footer {
   background-color: #bdc3c7;
   cursor: not-allowed;
 
-}
-
-.hero_footer {
-  background: #fefefe;
-  padding: 2em 0;
-  margin-bottom: 0;
-}
-
-.hero_footer--col {
-  margin-bottom: 1em;
-}
-
-.hero_footer--col img {
-  width: 2em;
-}
-
-.hero_footer--col-row {
-  background: #F1F1F1;
-  padding: 1em;
-  border-radius: 4px;
-}
-
-.hero_footer--col-row {
-  margin-bottom: 1em;
-}
-
-.hero_btn {
-  display: inline-block;
-  background-color: #007bff; /* Example background color */
-  color: white; /* Example text color */
-  padding: 0.4em 0.8em;
-  font-size: 0.9rem;
-  border-radius: 30px;
-  cursor: pointer;
-  margin-top: 1em;
-}
-
-
-.hero_btn img {
-  width: 1.5em;
-  display: inline;
-  margin-left: 0.5em;
 }
 
 
@@ -552,15 +495,6 @@ footer {
     justify-content: space-between;
   }
 
-  .hero_footer--right {
-    width: 60%;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .hero_footer--left {
-    width: 30%;
-  }
   
   /* #hero--heading_text {
     font-size: 6vh;

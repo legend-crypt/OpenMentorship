@@ -15,10 +15,8 @@ export default function Verification() {
     const email = JSON.parse(localStorage.getItem("email"));
     setUserEmail(email)
     }, [userEmail]);
-    console.log(userEmail)
 
     const handleSubmit = async (values) => {
-    console.log(values.otp)
     await axios.post('accounts/verify-email/', {otp: values.otp, email: userEmail})
     .then((response) => {
         if (response.status === 200) {

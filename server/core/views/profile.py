@@ -57,8 +57,6 @@ class ProfileViewset(viewsets.ViewSet):
             }
             return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
         profile = create_profile(request.data)
-        # print(request.data)
-        # print(profile)
         user.profile = get_profile_by_id(profile['profile_id'])
         user.save()
         context = {

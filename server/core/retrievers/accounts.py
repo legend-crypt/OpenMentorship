@@ -26,6 +26,7 @@ def get_user_information(email):
         "user_id": user.user_id,
         "email": user.email,
         "verified": user.verified,
+        "role": user.role,
     }
 
 def get_user_by_email(email):
@@ -38,8 +39,8 @@ def get_user_by_email(email):
 def get_user_by_id(user_id):
     """Get user by id"""
     try:
-        return AccountwUser.objects.get(user_id=user_id)
-    except AccountUser.DoesNotExist:
+        return YelloUser.objects.get(user_id=user_id)
+    except YelloUser.DoesNotExist:
         return None
     
 def get_mentors():
@@ -54,10 +55,10 @@ def get_mentors():
             "role": obj["role"],
             "full_name": f"{obj['profile']['first_name']} {obj['profile']['last_name']}",
             "title": obj["profile"]["title"],
-            "bio": obj["profile"]["bio"]
+            "bio": obj["profile"]["bio"],
+            "profile_picture": obj["profile"]["profile_picture"],
         }
         data.append(mentor_obj)
-    print(data)
     return data
 
 

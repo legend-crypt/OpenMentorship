@@ -110,13 +110,29 @@ img {
     object-fit: cover;
   }
 
-
+/* not used */
   .mentorsContainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
+  .container--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3em;
+  }
+
+  .requests h1{
+    margin-bottom: 2em;
+    font-size: 1.5rem;
+  }
+
+  .requests {
+    border: 1px solid var(--gray-300, #e5e5e5);
+    border-radius: 5px;
+    padding: 1em;
+  }
 
   .mentorInfo {
     width: 40%;
@@ -127,6 +143,15 @@ img {
     display: flex;
   }
 
+  .page-margin {
+    margin-top: 7em;
+  }
+
+.container--grid-uneven {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 3em;
+}
 .row-btn {
   display: flex;
 }
@@ -176,8 +201,15 @@ img {
   color: var(--gray-900, #3D3D3E);
 }
 
+#profile-container {
+  margin-top: 7em;
+}
 
 @media screen and (max-width: 580px) {
+  .container {
+    width: 100%;
+  }
+
   .mentorsContainer {
     display: block;
   }

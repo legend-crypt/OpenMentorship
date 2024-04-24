@@ -1,56 +1,58 @@
-from core.models import MeetingDetail
+from core.models import Meeting
 
-def get_meeting_by_id(meeting_id) -> MeetingDetail:
-    """Get meeting details by id
+def get_user_meetings(user):
+    """Get user meetings
 
     Args:
-        meeting_id (str): meeting id
+        user (User obj): user object
 
     Returns:
-        MeetingDetails: meeting details
+        Meeting: meeting
     """
     try:
-        return MeetingDetail.objects.get(meeting_id=meeting_id)
-    except MeetingDetail.DoesNotExist:
+        if user.role == "Mentor":
+            meeting = Meeting.objects.filter(mentor=user)
+        else:
+            meeting = Meeting.objects.filter(mentee=user)
+        return meeting
+
+    except Meeting.DoesNotExist:
         return None
     
-
-def get_all_student_meeting(student)->list:
-    """Get all student meeting
-
-    Args:
-        student (AccountUser): user object
-
-    Returns:
-        list: student meeting list
-    """
-    meetings = MeetingDetail.objects.filter(session__student=student)
-    data = []
-    for obj in meetings:
-        data.append({
-            "meeting_id": obj.meeting_id,
-            "time": obj.time,
-            "mentor": obj.session.mentor.email
-        })
-    return data
-
-
-def get_all_mentor_meeting(mentor)->list:
-    """Get all mentor meeting
-
-    Args:
-        mentor (AccountUser): user object
-
-    Returns:
-        list: mentor meeting list
-    """
-    meetings = MeetingDetail.objects.filter(session__mentor=mentor)
-    data = []
-    for obj in meetings:
-        data.append({
-            "meeting_id": obj.meeting_id,
-            "time": obj.time,
-            "mentee": obj.session.student.email
-        })
-    return data
     
+def get_meeting_by_id(id):
+    """Get meeting by id
+
+    Args:
+        id (uuid): meeting id
+
+    Returns:
+        Meeting: meeting
+    """
+    try:
+        return Meeting.objects.get(id=id)
+    except Meeting.DoesNotExist:
+        return None
+    
+    
+def get_meeting_information(meeting_obj):
+    """Get meeting information
+
+    Args:
+        meeting (Meeting obj): meeting object
+
+    Returns:
+        dict: meeting information
+    """
+    meetings = []
+    for meeting in meeting_obj:
+        meetings.append({
+            "id": meeting.meeting_id,
+            "mentor": meeting.mentor.full_name,
+            "mentee": meeting.mentee.full_name,
+            "mentee_id": meeting.mentee.user_id,
+            "time": meeting.meeting_time,
+            "meeting_link": meeting.meeting_link,
+            
+        })
+    return meetings

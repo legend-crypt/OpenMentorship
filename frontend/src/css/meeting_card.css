@@ -1,0 +1,99 @@
+.meeting-card {
+    width: 100%;
+    /* max-width: 11rem; */
+    height: 12rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 6rem rgba(0, 0, 0, 0.1);
+    background: var(--athens-gray-100);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    white-space: pre-wrap;
+  }
+  
+  .meeting-card:hover {
+    box-shadow: 0 1px 6rem rgba(0, 0, 0, 0);
+  }
+  
+  .meeting-card img {
+    width: 6rem;
+    height: 6rem;
+    position: absolute;
+    top: -2rem;
+    border-radius: 1.6rem;
+  }
+  
+  .meeting-details {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3.8rem;
+  }
+  
+  .meeting-details p {
+    color: var(--azure-radiance-600);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin: 0;
+  }
+  
+  .meeting-details a:hover {
+    color: var(--azure-radiance-400);
+  }
+  
+  .meeting-details span {
+    color: var(--stark-400);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  .meeting-details-rate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .meeting-details-rate div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* gap: 6px; */
+  }
+  
+  .meeting-details-rate p {
+    color: var(--stark-600);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0;
+  }
+  
+  .meeting-details-rate span {
+    color: var(--stark-400);
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  
+  /* Mobile screens (max-width: 767px) */
+  @media only screen and (max-width: 767px) {
+    /* Styles for mobile screens */
+    .meeting-card {
+      box-shadow: 0 1px 4rem rgba(0, 0, 0, 0.1);
+    }
+  }
+  

@@ -144,9 +144,8 @@ def get_mentor_MentorRequest_information(MentorRequest_obj) -> list:
         data = {
             "user_id": obj.student.user_id,
             "full_name": obj.student.full_name,
-            "id": obj.mentor_request_id, 
-            "title": obj.student.profile.title,
-            "bio": obj.student.profile.bio
+            "id": obj.mentor_request_id,
+            "profile_picture": obj.student.profile.profile_picture.url
         }
         data_list.append(data)
     return data_list

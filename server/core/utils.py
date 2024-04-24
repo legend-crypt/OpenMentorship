@@ -27,7 +27,6 @@ def email_verification(email: str, otp_length: int):
 
     subject = "Yello Email Verification Code"
     pin = generate_token(otp_length)
-    print(f"{pin}")
 
     sender = ""
     receiver = [email]
@@ -44,9 +43,7 @@ def email_verification(email: str, otp_length: int):
         if token:
             update_verification_token(token, pin)
         else:
-            print(f"receiver: {receiver}")
             pin_created = create_verification_token(receiver[0], pin)
-            print(f"pin created: {pin_created}")
         return True
     return False
 
@@ -90,14 +87,12 @@ def password_reset_email(email, otp_length):
         if token:
             update_password_reset_code(token, pin)
         else:
-            print(f"receiver: {receiver}")
             pin_created = create_password_reset_token(receiver[0], pin)
-            print(f"pin created: {pin_created}")
         return True
     return False
 
 
-def get_user_from_jwttoken(request: HttpRequest):
+def get_user_from_jwttoken(request):
     "Return a user object when a valid jwt token is set in the request header"
     jwt = JWTAuthentication()
     user = jwt.get_user(

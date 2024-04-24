@@ -14,21 +14,18 @@
   Note: The component enhances the user experience by incorporating form validation and clear feedback messages for successful and unsuccessful login attempts.
 */
 
-
-
 import React from 'react'
-import ValidationSchema from '../schema';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import google from '../assets/images/google.svg';
 import '../assets/styles/style.css'
 import { Link, useNavigate } from "react-router-dom";
 import initialValues from '../schema/initialValues';
-// import handleSubmit from '../utils/handleSubmit'; // this util function is not being used here
 import axios from '../utils/axios'
 import * as Yup from 'yup';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../store/slices/userAuth/userAuthSlice';
-import '../css/sigIn.css'
+import { setUserRole } from '../store/slices/userRole/UserRoleSlice';
+import '../css/signIn.css'
 
 export default function SignIn() {
   // -- react redux states ---
@@ -48,6 +45,7 @@ export default function SignIn() {
         if (response.status === 200) {
           localStorage.setItem("access_token", JSON.stringify(response.data.token.access));
           alert("logged in successfully");
+          dispatch(setUserRole(response.data.user.role))
           // change user login status
           if (!response.data.user.profile) {
             // if user does not have a profile then redirect to 

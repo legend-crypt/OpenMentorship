@@ -38,8 +38,6 @@ class AccountCreationViewSet(viewsets.ViewSet):
         thread.start()
         return Response(context, status=status.HTTP_201_CREATED)
     
-            
-        
     def send_verification_email(self, request):
         """Send verification email
 
@@ -146,7 +144,7 @@ class SignIn(viewsets.ViewSet):
 
         if not user:
             context = {"error": "User not found"}
-            return Response(context, status=status.HTTP_404_NOT_FOUND)
+            return Response(context, status=status.HTTP_200_OK)
 
         if user.check_password(password) and user.is_active:
             token = RefreshToken.for_user(user)
@@ -159,4 +157,4 @@ class SignIn(viewsets.ViewSet):
             response = Response(context, status=status.HTTP_200_OK)
             return response
         else:
-            raise AuthenticationFailed("Incorrect login credentials provided")
+            return  Response({"error": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)

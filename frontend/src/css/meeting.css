@@ -1,0 +1,53 @@
+.meeting {
+    margin-top: 7em;
+}
+
+.meeting h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #050217;
+    margin-bottom: 1em;
+}
+
+.meeting > p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #050217;
+    margin-bottom: 1em;
+
+}
+
+.calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-top: 1em;
+    background: #fff;
+    padding: 1em;
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 20rem;
+    margin-bottom: 3em;
+}
+
+.calendar img {
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.btn-meeting  {
+    font-size: 12px;
+    font-weight: 500;
+    font-family: inherit;
+    color: #1877f2;
+    background-color: #eef8ff;
+    border-radius: 8px;
+    border: 1px solid var(--azure-radiance-300);
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+  }
+
+.btn-meeting:hover {
+    background-color: #e2f0ff;
+  }
