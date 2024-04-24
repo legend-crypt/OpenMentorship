@@ -41,16 +41,11 @@ function StudentsRequest() {
         {/* min-h-screen */}
       <div class="container--grid-uneven min-h-screen">
         <div className="requests container--grid">
-          <StudentCard/>
-          <StudentCard/>
-          {
-            students.map((data) => (
+          {students.length > 0 ? 
+            (students.map((data) => (
               <StudentCard key={data.user_id} name={data.full_name} image={data.profile_picture} studentEmail={data.email} id={data.id}/>
-            ))
+            ))) : <h1>No pending requests</h1>
           }
-          {/* <StudentCard/>
-          <StudentCard/>
-          <StudentCard/> */}
         </div>
         <div className="requests-accepted">
           {acceptedStudents.length > 0 ? acceptedStudents.map((data) => (
