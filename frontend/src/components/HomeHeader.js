@@ -65,7 +65,7 @@ const HomeHeader = () => {
       <div className="container">
         <div className="header__content">
           <Link to="/" className="logo text-decoration-none">
-            SkillUp
+            OpenMentors
           </Link>
 
           {/* -- for larger screen ---  */}

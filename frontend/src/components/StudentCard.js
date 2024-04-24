@@ -8,12 +8,13 @@ import person from "../assets/images/mentor.jpg";
 
 function StudentCard({name , image, id}) {
 
+  console.log(name, image, id)
   const acceptOnclickHandler = (id) => {
     axios
       .post(
         'mentors/accept/',
         {
-          mentorSession_id: id,
+          mentorRequest_id: id,
         },
         {
           headers: {

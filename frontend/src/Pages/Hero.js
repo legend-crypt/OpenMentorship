@@ -37,7 +37,7 @@ export default function Hero() {
       <div className='container'>
         {/* CSS Animation */}
           <div className="hero_head">
-            <h3 className='hero_head--text'>Welcome to your one-stop for all things mentoring</h3>
+            <h3 className='hero_head--text'>Welcome to your one-stop for all things OpenSource mentoring</h3>
             <p className='hero_normal--text'>Get one-on-one mentorship from  world class engineers and developers</p>
             <Link to="/mentors" className="hero_btn">
               <button>Find Mentor</button>
