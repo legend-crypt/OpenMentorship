@@ -91,7 +91,7 @@ class MentorViewset(viewsets.ViewSet):
         id = request.data.get("mentorRequest_id")
         mentor = get_mentor_Request_by_id(id)
         
-        if mentor and mentor.mentor == user:
+        if mentor:
             mentor.status = "accepted"
             mentor.save()
             context = {

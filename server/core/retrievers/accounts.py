@@ -39,8 +39,8 @@ def get_user_by_email(email):
 def get_user_by_id(user_id):
     """Get user by id"""
     try:
-        return YelloUser.objects.get(user_id=user_id)
-    except YelloUser.DoesNotExist:
+        return AccountUser.objects.get(user_id=user_id)
+    except AccountUser.DoesNotExist:
         return None
     
 def get_mentors():

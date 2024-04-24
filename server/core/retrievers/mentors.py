@@ -26,7 +26,7 @@ def get_mentor_by_email(email):
     
 def get_mentor_Request_by_id(id):
     try:
-        return MentorRequest.objects.get(pk=id)
+        return MentorRequest.objects.get(mentor_request_id=id)
         
     except MentorRequest.DoesNotExist:
         return None
