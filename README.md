@@ -23,11 +23,12 @@ The repository is organized into two main folders:
 ## Project Contributors
 
 This project was made possible by the collaborative efforts of passionate individuals dedicated to supporting and growing the open-source community. Special thanks to the following contributors:
-@legend-crypt
-@satyadalei
-@muskxn25
 
-- ...
+## Authors
+- [Lord Konadu](https://github.com/legend-crypt)
+- [Satyanarayan Dalei](https://github.com/satyadalei)
+- [Muskan](https://github.com/muskxn25)
+
 
 ## How to Contribute
 We welcome contributions from the community to improve and enhance the Open Mentors platform. If you'd like to contribute, please follow these steps:
@@ -35,19 +36,21 @@ We welcome contributions from the community to improve and enhance the Open Ment
 - Fork the repository on GitHub.
 - Clone your forked repository to your local machine.
 - Create a new branch for your feature or bug fix
- ```bash
+
+```bash
  git checkout -b feature/your-feature-name
- ```
- ```bash
+```
+
+```bash
 git add .
 git commit -m "Add feature/bug fix"
- ```
-- Push your changes to your forked repository:\
- ```bash
+```
+
+- Push your changes to your forked repository
+
+```bash
  git push origin feature/your-feature-name
-    ```
+```
+# License
 
-
-## License
-
-This project is licensed under the `MIT License`
+This project is licensed under the  `MIT License`
