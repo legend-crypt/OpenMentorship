@@ -15,6 +15,7 @@ import OSProject from './Pages/OSProject';
 import Blogs from './Pages/Blogs';
 import Blog from './Pages/Blog';
 import StudentsRequest from './Pages/StudentsRequest';
+import CreateBlog from './Pages/CreateBlog';
 function App() {
 
 
@@ -30,10 +31,11 @@ function App() {
           <Route path="mentors/" element={<ProtectedPages Component={<Mentors />} />} />
           <Route path="/meeting" element={<ProtectedPages Component={<Meeting />} />} />
           <Route path="/student-request" element={<ProtectedPages Component={<StudentsRequest />} />} />
-          <Route path="/call-room" element={<ProtectedPages Component={<CallRoom />} />} />
+          {/* <Route path="/call-room" element={<ProtectedPages Component={<CallRoom />} />} /> */}
           <Route path="/open-source" element={<OSProject />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog" element={<Blog/>}/>
+          <Route path='/create-blog' element={<ProtectedPages Component={<CreateBlog />} />} />
       </Routes>
       <Footer />
     </div>
