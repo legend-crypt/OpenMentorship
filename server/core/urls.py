@@ -5,6 +5,7 @@ from core.views.reset_password import *
 from core.views.mentors import *
 from core.views.meeting import *
 from core.views.os_project import *
+from core.views.blog import *
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -16,13 +17,19 @@ urlpatterns = [
     path('accounts/create/', AccountCreationViewSet.as_view({'post':'create'})),
     path('accounts/verify-email/', AccountCreationViewSet.as_view({'post':'verify_email'})),
     path('accounts/send-verification-email/', AccountCreationViewSet.as_view({'post':'send_verification_email'})),
+    
+    
     #password reset
     path('accounts/password-reset-request/', PasswordResetViewset.as_view({'post':'password_reset_request'})),
     path('accounts/password-reset-confirm/', PasswordResetViewset.as_view({'post':'password_reset_confirm'})),
+    
+    
     #profile
     path('profile/retrieve/', ProfileViewset.as_view({'get':'retrieve'})),
     path('profile/create/', ProfileViewset.as_view({'post':'create'})),
     path('profile/update/', ProfileViewset.as_view({'put':'update'})),
+    
+    
     #mentors
     path('mentors/', MentorViewset.as_view({'get':'list_mentors'})),
     path('mentors/create/', MentorViewset.as_view({'post':'create_mentor_request'})),
@@ -32,11 +39,23 @@ urlpatterns = [
     path('mentors/students-requests/', MentorViewset.as_view({'get': 'get_student_mentor_requests'})),
     path('mentors/meeting-schedule/', MentorViewset.as_view({'get': 'list_schedule_meetings'})),
     path('mentors/reject/<uuid:id>/', MentorViewset.as_view({'delete':'delete_mentor_request'})),
+    
+    
     #meeting
     path('meeting/create/', MeetingViewset.as_view({'post':'create'})),
     path('meeting/retrieve/', MeetingViewset.as_view({'get':'get_user_meetings'})),
+    
+    
     #projects
     path('projects/', ProjectViewset.as_view({'get':'list'})),
+    
+    
+    #blogs
+    path('blogs/', BlogViewSet.as_view({'get': 'list'})),
+    path('blogs/<uuid:id>/', BlogViewSet.as_view({'get': 'retrieve'})),
+    path('blogs/create/', BlogViewSet.as_view({'post': 'create'})),
+    path('blogs/update/<uuid:id>/', BlogViewSet.as_view({'put': 'update'})),
+    
     
     path('login/', SignIn.as_view({'post':'post'})),
     ####websocket
