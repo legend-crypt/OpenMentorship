@@ -34,7 +34,7 @@ function App() {
           {/* <Route path="/call-room" element={<ProtectedPages Component={<CallRoom />} />} /> */}
           <Route path="/open-source" element={<OSProject />} />
           <Route path="/blogs" element={<Blogs />} />
-          <Route path="/blog" element={<Blog/>}/>
+          <Route path="/blog/:blogId" element={<Blog/>}/>
           <Route path='/create-blog' element={<ProtectedPages Component={<CreateBlog />} />} />
       </Routes>
       <Footer />
