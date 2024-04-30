@@ -18,7 +18,8 @@ def get_blog_information(blog):
         'title': blog.title,
         'content': blog.content,
         'author': blog.author.full_name,
-        'thumnail': blog.thumbnail.url
+        'thumbnail': blog.thumbnail.url,
+        'author_image': blog.author.profile.profile_picture.url
     }
     
     

@@ -41,7 +41,7 @@ class BlogViewSet(viewsets.ViewSet):
         """Create a blog"""
         title = request.data.get('title')
         content = request.data.get('content')
-        thumnail = request.FILES['thumbnail']
+        thumnail = request.FILES.get('thumbnail')
         user = get_user_from_jwttoken(request)
         if user.role == "Mentor":
             data = {
