@@ -2,7 +2,7 @@ import React from 'react';
 import StudentCard from '../components/StudentCard';
 import { useState, useEffect } from 'react';
 import axios  from '../utils/axios';
-import '../assets/styles/Mentors.css';
+import '../css/Mentors.css';
 import AcceptStudentCard from '../components/AcceptedStudents';
 
 function StudentsRequest() {

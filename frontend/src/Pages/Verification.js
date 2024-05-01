@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import '../assets/styles/style.css';
+import '../css/style.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from '../utils/axios'
 import * as Yup from 'yup';

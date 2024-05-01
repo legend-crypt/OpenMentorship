@@ -1,6 +1,5 @@
 import React from 'react';
-import mentor from '../assets/images/video_session.png';
-import '../assets/styles/style.css';
+import '../css/style.css';
 import { Link } from 'react-router-dom';
 import communityIcon from '../assets/images/fluent_people-community-32-filled.svg';
 import small from '../assets/images/eva_pie-chart-fill.svg';

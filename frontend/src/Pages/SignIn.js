@@ -17,7 +17,7 @@
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import google from '../assets/images/google.svg';
-import '../assets/styles/style.css'
+import '../css/style.css'
 import { Link, useNavigate } from "react-router-dom";
 import initialValues from '../schema/initialValues';
 import axios from '../utils/axios'

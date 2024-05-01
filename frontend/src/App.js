@@ -31,7 +31,7 @@ function App() {
           <Route path="mentors/" element={<ProtectedPages Component={<Mentors />} />} />
           <Route path="/meeting" element={<ProtectedPages Component={<Meeting />} />} />
           <Route path="/student-request" element={<ProtectedPages Component={<StudentsRequest />} />} />
-          {/* <Route path="/call-room" element={<ProtectedPages Component={<CallRoom />} />} /> */}
+          <Route path="/call-room" element={<ProtectedPages Component={<CallRoom />} />} />
           <Route path="/open-source" element={<OSProject />} />
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:blogId" element={<Blog/>}/>

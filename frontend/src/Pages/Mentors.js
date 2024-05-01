@@ -23,7 +23,7 @@ import { Link, Outlet, Routes, Route } from "react-router-dom";
 // import Header from "../components/Header";
 // import MentorsComponent from "./MentorsComponent";
 // import { useNavigate } from "react-router-dom";
-import '../assets/styles/Mentors.css';
+import '../css//Mentors.css';
 import React, { useEffect } from "react";
 import MentorCard from "../components/MentorCard";
 import axios from '../utils/axios'
