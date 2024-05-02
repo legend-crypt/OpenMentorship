@@ -8,6 +8,7 @@ export default function CreateBlog() {
     const titleRef = useRef(null);
     const thumbnailRef = useRef(null);
     const accessToken = localStorage.getItem('access_token');
+    const tinymceKey = process.env.REACT_APP_TINYMCE_API_KEY;
     const submitHandler = () => {
         const title = titleRef.current.value;
         const thumbnail = thumbnailRef.current.files[0];
@@ -32,7 +33,7 @@ export default function CreateBlog() {
         <label className='mr-2'> Choose Thumnail</label>
         <input type='file' ref={thumbnailRef} placeholder='thumnail' className='tags-field'/>
         <Editor
-            apiKey='vrwgc7rl7n6rimyvv3ovlq6i0yvl64jzb1jhp58pqpv5ofpf'
+            apiKey={tinymceKey}
             init={{
                 // plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss markdown',
                 toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image| spellcheckdialog typography | align lineheight | checklist numlist bullist indent outdent |',
