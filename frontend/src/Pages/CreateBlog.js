@@ -27,7 +27,7 @@ export default function CreateBlog() {
         });
     }
   return (
-    <div className='container create-blog'>
+    <div className='container create-blog min-h-screen'>
         <input type='text' placeholder='Title' ref={titleRef} className='title-field mr-3'/>
         <label className='mr-2'> Choose Thumnail</label>
         <input type='file' ref={thumbnailRef} placeholder='thumnail' className='tags-field'/>

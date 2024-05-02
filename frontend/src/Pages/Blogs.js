@@ -31,7 +31,7 @@ export default function Blogs() {
               <button className='p-2 bg-blue-400 rounded mt-4 ml-auto mr-auto text-white'>Create Blog</button>
           </Link>
         }
-        <div className='blogs-container container'>
+        <div className='blogs-container container min-h-screen'>
           {blogData.map((data) => (
             <Link to={`/blog/${data.id}`}>
               <BlogCard

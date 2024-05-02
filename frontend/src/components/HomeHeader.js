@@ -4,7 +4,6 @@ import hamburger from '../assets/images/hamburger.svg';
 import close from '../assets/images/close.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { logOutUser } from '../store/slices/userAuth/userAuthSlice';
-import { userRoleSlice } from '../store/slices/userRole/UserRoleSlice';
 import Cta from './Cta';
 
 import '../css/headers.css';

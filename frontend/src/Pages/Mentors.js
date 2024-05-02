@@ -49,7 +49,7 @@ function Mentors() {
 
 
   return (
-    <div className="container page-margin">
+    <div className="container page-margin min-h-screen">
       <div className="container--grid">
         {mentors.map((data) => (
           <MentorCard key={data.user_id} name={data?.full_name} image={data?.profile_picture} mentorEmail={data.email} userId={data.user_id}/>

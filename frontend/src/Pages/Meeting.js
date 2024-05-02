@@ -31,7 +31,7 @@ const formatDate = (datetimeString) => {
 };
 
   return (
-    <div className='container meeting'>
+    <div className='container meeting min-h-screen'>
         <h1>Hello, you have a meeting with </h1>
         <div className="container--grid">
           {meetings.map((data) => (

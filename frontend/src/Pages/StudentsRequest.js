@@ -15,7 +15,6 @@ function StudentsRequest() {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
       }
     }).then((res) => {
-      console.log(res.data.data)
       setStudents(res.data.data)
     })
     .catch((err) => {
@@ -29,7 +28,6 @@ function StudentsRequest() {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
       }
     }).then((res) => {
-      console.log(res.data.data)
       setAcceptedStudents(res.data.data)
     })
     .catch((err) => {

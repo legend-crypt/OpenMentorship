@@ -17,7 +17,7 @@ function Blog() {
         })
     }, [])
   return (
-    <>
+    <div className='min-h-screen'>
     <div className='blog-post'>
         <div className="container">
             <span className='blog-post--tagline'>
@@ -36,7 +36,7 @@ function Blog() {
     </div>
     <div className='blog-post-content container' dangerouslySetInnerHTML={{__html: blogData?.content}}>
     </div>
-    </>
+    </div>
   )
 }
 
