@@ -3,19 +3,9 @@ from core.serializers import *
 from datetime import datetime, timedelta
 import pytz
 import random, string
+
+
 UTC = pytz.UTC
-
-
-
-
-def generate_token(otp_length)-> str:
-    """Generates a random token
-
-    Returns:
-        str: token
-    """
-    return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(otp_length))
-
 
 def create_user(email:str, password:str, role:str)-> AccountUser:
     """Creates a user

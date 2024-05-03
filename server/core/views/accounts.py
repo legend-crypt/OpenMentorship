@@ -30,9 +30,6 @@ class AccountCreationViewSet(viewsets.ViewSet):
             "detail": "User created successfully",
             "user" : get_user_information(email)
         }
-        EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER') 
-        EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD') 
-        print(EMAIL_HOST_PASSWORD, EMAIL_HOST_USER)
 
         thread = threading.Thread(target=email_verification, args=(email, 4))
         thread.start()

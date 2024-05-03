@@ -16,16 +16,13 @@ def generate_token(otp_length):
     """Generate token"""
     return "".join([random.choice(string.digits) for i in range(otp_length)])
 
-def generate_meeting_id():
-    return "".join([random.choice(string.digits) for i in range(10)])
-
 
 def email_verification(email: str, otp_length: int):
     """
     Send email verification code to new user
     """
 
-    subject = "Yello Email Verification Code"
+    subject = "Open Mentors Email Verification Code"
     pin = generate_token(otp_length)
 
     sender = ""
@@ -52,7 +49,7 @@ def verification_confirmation_email(email):
     """
     Confirm email address verification
     """
-    subject = "Yello Email Address Verification Confirmation"
+    subject = "Open Mentors Email Address Verification Confirmation"
 
     sender = ""
     receiver = [email]
@@ -70,7 +67,7 @@ def password_reset_email(email, otp_length):
     """
     Confirm password reset
     """
-    subject = "Yello Password Reset Confirmation"
+    subject = "Open Mentors Password Reset Email"
     pin = generate_token(otp_length)
     sender = ""
     receiver = [email]
