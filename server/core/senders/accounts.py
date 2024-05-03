@@ -37,7 +37,7 @@ def create_verification_token(email:str, token:str)-> VerificationCode:
     return verification_code
 
 
-def update_verification_code(verification_code:VerificationCode, otp:str)-> VerificationCode:
+def update_verification_token(verification_code:VerificationCode, otp:str)-> VerificationCode:
     """Updates a verification token
 
     Args:
