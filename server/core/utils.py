@@ -25,7 +25,7 @@ def email_verification(email: str, otp_length: int):
     subject = "Open Mentors Email Verification Code"
     pin = generate_token(otp_length)
 
-    sender = ""
+    sender = "Open Mentors <konadulordkweku@gmail.com>"
     receiver = [email]
     html_content = render_to_string(
         "core/verification_email.html",
@@ -51,7 +51,7 @@ def verification_confirmation_email(email):
     """
     subject = "Open Mentors Email Address Verification Confirmation"
 
-    sender = ""
+    sender = "Open Mentors <konadulordkweku@gmail.com>"
     receiver = [email]
 
     html_content = render_to_string(
@@ -61,7 +61,6 @@ def verification_confirmation_email(email):
     text_content = strip_tags(html_content)
     email = EmailMultiAlternatives(subject, text_content, sender, receiver)
     email.attach_alternative(html_content, "text/html")
-
 
 def password_reset_email(email, otp_length):
     """
