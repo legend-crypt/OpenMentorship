@@ -4,6 +4,9 @@ import '../css/style.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from '../utils/axios'
 import * as Yup from 'yup';
+import { toast } from 'react-toastify';
+import { Axios } from 'axios';
+
 
 
 export default function Verification() {
@@ -20,15 +23,15 @@ export default function Verification() {
     await axios.post('accounts/verify-email/', {otp: values.otp, email: userEmail})
     .then((response) => {
         if (response.status === 200) {
-            alert("You have successfully registered");
+            toast.success('Email verified successfully');
             navigate('/signIn')
             }
         else {
-            alert(response.data.error);
+            toast.error(response.data.error);
         }
         })
     .catch((error) => {
-    alert('Failed to register user:', error.response.data);
+        toast.error(error.message);
     }) 
     };
 

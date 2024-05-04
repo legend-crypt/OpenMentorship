@@ -25,7 +25,8 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux'
 import { loginUser } from '../store/slices/userAuth/userAuthSlice';
 import { setUserRole } from '../store/slices/userRole/UserRoleSlice';
-import '../css/signIn.css'
+import '../css/signIn.css';
+import toastPromise from '../utils/toastPromise';
 
 export default function SignIn() {
   // -- react redux states ---
@@ -40,11 +41,10 @@ export default function SignIn() {
 
   const handleSubmit = (values) => {
 
-     axios.post('login/', values)
+     const loginRequestPromise = axios.post('login/', values)
       .then((response) => {
         if (response.status === 200) {
           localStorage.setItem("access_token", JSON.stringify(response.data.token.access));
-          alert("logged in successfully");
           dispatch(setUserRole(response.data.user.role))
           // change user login status
           if (!response.data.user.profile) {
@@ -66,8 +66,14 @@ export default function SignIn() {
         }
       })
       .catch((error) => {
-        alert('Failed to register user:', error.response.data);
+        {}
       })
+
+    toastPromise(loginRequestPromise, {
+      pending: 'Logging in...',
+      success: 'Logged in successfully',
+      error: 'Failed to log in'
+    });
   };
 
   return (

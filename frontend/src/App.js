@@ -16,12 +16,15 @@ import Blogs from './Pages/Blogs';
 import Blog from './Pages/Blog';
 import StudentsRequest from './Pages/StudentsRequest';
 import CreateBlog from './Pages/CreateBlog';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function App() {
-
-
   return (
     <div className="App">
       <HomeHeader />
+      <ToastContainer />
       <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/signIn" element={<SignIn />} />

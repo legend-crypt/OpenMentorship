@@ -4,6 +4,8 @@ import '../css/meeting.css';
 import React, {useState, useEffect} from 'react';
 import axios from '../utils/axios';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 
 export default function Meeting() {
   const [meetings, setMeetings] = useState([]);
@@ -19,7 +21,7 @@ useEffect(() => {
       setMeetings(res.data.data)
   })
   .catch(err => {
-    console.log(err);
+    toast.error('Failed to retrieve meetings');
   })
 },[])
 const formatDate = (datetimeString) => {

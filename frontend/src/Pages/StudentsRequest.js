@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import axios  from '../utils/axios';
 import '../css/Mentors.css';
 import AcceptStudentCard from '../components/AcceptedStudents';
+import { toast } from 'react-toastify';
+
 
 function StudentsRequest() {
   const [students, setStudents] = useState([])
@@ -18,7 +20,7 @@ function StudentsRequest() {
       setStudents(res.data.data)
     })
     .catch((err) => {
-      console.log(err);
+      toast.error('Failed to retrieve pending requests');
     });
   }, []);
   useEffect(() => {
@@ -31,7 +33,7 @@ function StudentsRequest() {
       setAcceptedStudents(res.data.data)
     })
     .catch((err) => {
-      console.log(err);
+      toast.error('Failed to retrieve accepted students');
     });
   }, []);
   return (
@@ -41,13 +43,24 @@ function StudentsRequest() {
         <div className="requests container--grid">
           {students.length > 0 ? 
             (students.map((data) => (
-              <StudentCard key={data.user_id} name={data.full_name} image={data.profile_picture} studentEmail={data.email} id={data.id}/>
+              <StudentCard
+              key={data.user_id}
+              name={data.full_name}
+              image={data.profile_picture}
+              studentEmail={data.email}
+              id={data.id}
+              />
             ))) : <h1>No pending requests</h1>
           }
         </div>
         <div className="requests-accepted">
           {acceptedStudents.length > 0 ? acceptedStudents.map((data) => (
-            <AcceptStudentCard name={data.full_name} image={data.profile_picture} id={data.user_id} key={data.id}/>
+            <AcceptStudentCard
+            name={data.full_name}
+            image={data.profile_picture}
+            id={data.user_id}
+            key={data.id}
+            />
           )): <h1>No accepted students</h1>}
         </div>
     </div>

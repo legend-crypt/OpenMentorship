@@ -22,7 +22,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import google from '../assets/images/google.svg';
 import basicValidationSchema from '../schema/basicValidationSchema';
 import '../css/style.css';
-import '../css/signup.css'
+import '../css/signup.css';
+import { toast } from 'react-toastify';
 
 export default function SignUp() {
   const [email, setEmail] = useState('');
@@ -53,15 +54,14 @@ export default function SignUp() {
       });
 
       if (response.ok) {
-        alert('You have successfully registered');
+        toast.success('You have successfully registered');
         navigate('/verification');
       } else {
         const data = await response.json();
-        alert(data.error || 'Failed to register user');
+        toast.error(data.error);
       }
     } catch (error) {
-      console.error('Failed to register user:', error);
-      alert('An error occurred. Please try again.');
+      toast.error("An error occurred. Please try again.");
     }
   };
 

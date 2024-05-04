@@ -33,9 +33,8 @@ export default function Blogs() {
         }
         <div className='blogs-container container min-h-screen'>
           {blogData.map((data) => (
-            <Link to={`/blog/${data.id}`}>
+            <Link to={`/blog/${data.id}`} key={data.id}>
               <BlogCard
-              key={data.id}
               title={data.title}
               author={data.author}
               content={data.content}

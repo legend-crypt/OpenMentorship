@@ -2,6 +2,8 @@ import React, {useRef, useState} from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import '../css/CreateBlog.css';
 import axios from '../utils/axios';
+import { toast } from 'react-toastify';
+
 
 export default function CreateBlog() {
     const [content, setContent] = useState('');
@@ -22,9 +24,10 @@ export default function CreateBlog() {
                 Authorization: `Bearer ${JSON.parse(accessToken)}`
             }
         }).then(response => {
-            console.log(response);
+            toast.success('Blog created successfully');
+            
         }).catch(error => {
-            console.log(error);
+            toast.error('Failed to create blog');
         });
     }
   return (

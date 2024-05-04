@@ -27,6 +27,10 @@ import '../css//Mentors.css';
 import React, { useEffect } from "react";
 import MentorCard from "../components/MentorCard";
 import axios from '../utils/axios'
+import { toast } from 'react-toastify';
+import { to } from "react-spring";
+
+
 
 function Mentors() {
   const [isToggled, setIsToggled] = React.useState();
@@ -42,7 +46,7 @@ function Mentors() {
       setMentors(res.data.data)
     })
     .catch((err) => {
-      console.log(err);
+      toast.error('Failed to retrieve mentors');
     });
   }, []);
 

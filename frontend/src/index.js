@@ -9,14 +9,12 @@ import store from './store/store'; // holds/stores all the states of application
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
     <BrowserRouter>
     {/* Here we are providing all the states to our react App:: Each component inside App can access states */}
       <Provider store={store}> 
         <App />
       </Provider>
     </BrowserRouter>
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
