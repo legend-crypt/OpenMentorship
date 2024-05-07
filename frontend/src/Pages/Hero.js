@@ -9,21 +9,11 @@ import arrow from '../assets/images/ph_arrow-up-right.svg';
 import '../css/hero.css';
 import { useSpring, animated } from 'react-spring';
 import CarouselFadeExample from './CarouselFadeExample';
+import img from "../assets/images/hero.svg";
+
 
 export default function Hero() {
   // CSS Animation
-  const fadeInKeyframes = `
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  `;
-
-  // react-spring Animation
   const fadeIn = useSpring({
     opacity: 1,
     from: { opacity: 0 },
@@ -32,19 +22,25 @@ export default function Hero() {
 
   return (
     <>
-      <style>{fadeInKeyframes}</style>
       <div className='container'>
-        {/* CSS Animation */}
-          <div className="hero_head">
-            <h3 className='hero_head--text'>Welcome to your one-stop for all things OpenSource mentoring</h3>
-            <p className='hero_normal--text'>Get one-on-one mentorship from  world class engineers and developers</p>
+        <div className="min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center md:mx-32 mt-16">
+          <div className=" md:w-2/4 text-center">
+            <h2 className="text-5xl font-semibold leading-tight">
+              Knowledge with
+              <br/>
+              <span className="text-blue-500"> Open Mentors</span>
+            </h2>
+            <p className=" text-lightText mt-5 text-start">
+              Unlock Your Potential with Open Mentors: Dive into a world of personalized mentorship and skill-building opportunities. Our innovative eLearning platform connects you with top-tier engineers and developers for tailored one-on-one guidance.
+            </p>
             <Link to="/mentors" className="hero_btn">
-              <button>Find Mentor</button>
+                <button>Find Mentor</button>
             </Link>
           </div>
-        <CarouselFadeExample />
-
-        {/* react-spring Animation */}
+        <div className=" w-full md:w-2/4">
+          <img src={img} alt="img" />
+        </div>
+      </div>
         <animated.main className="hero" style={fadeIn}>
           <section className='hero_footer'>
               <div className='hero_footer--grid'>
