@@ -23,7 +23,7 @@ export default function Hero() {
   return (
     <>
       <div className='container'>
-        <div className="min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center md:mx-32 mt-16">
+        <div className="min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center mt-16">
           <div className=" md:w-2/4 text-center">
             <h2 className="text-5xl font-semibold leading-tight">
               Knowledge with
