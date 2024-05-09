@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2gm$*pt@dgy^vu%!4u8x&an817l8e1%ongk58yx2a%4nfmp0!s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['openmentorship.onrender.com']
 
