@@ -141,7 +141,7 @@ class SignIn(viewsets.ViewSet):
 
         if not user:
             context = {"error": "User not found"}
-            return Response(context, status=status.HTTP_200_OK)
+            return Response(context, status=status.HTTP_404_NOT_FOUND)
 
         if user.check_password(password) and user.is_active:
             token = RefreshToken.for_user(user)
