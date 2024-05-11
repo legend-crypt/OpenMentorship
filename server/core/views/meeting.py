@@ -24,19 +24,7 @@ class MeetingViewset(viewsets.ViewSet):
             return Response(context, status=status.HTTP_200_OK)
         return Response({"error": "Meetings not retrieved"}, status=status.HTTP_400_BAD_REQUEST)
     
-    def get_meeting(self, request, id):
-        """Get meeting
-        """
-        user = get_user_from_jwttoken(request)
-        if user:
-            meeting = get_meeting(id)
-            context = {
-                "detail": "Meeting retrieved successfully",
-                "data": meeting
-            }
-            return Response(context, status=status.HTTP_200_OK)
-        return Response({"error": "Meeting not retrieved"}, status=status.HTTP_400_BAD_REQUEST)
-    
+        
     def create(self, request):
         """Create meeting
         """

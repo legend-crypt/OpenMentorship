@@ -53,6 +53,10 @@ def get_meeting_information(meeting_obj):
             "mentee_id": meeting.mentee.user_id,
             "time": meeting.meeting_time,
             "meeting_link": meeting.meeting_link,
+            "mentor_image": meeting.mentor.profile.profile_picture.url,
+            "mentee_image": meeting.mentee.profile.profile_picture.url
+
+            
             
         })
     return meetings

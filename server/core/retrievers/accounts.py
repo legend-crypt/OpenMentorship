@@ -53,10 +53,10 @@ def get_mentors():
             "user_id": obj["user_id"],
             "email": obj["email"],
             "role": obj["role"],
-            "full_name": f"{obj['profile']['first_name']} {obj['profile']['last_name']}",
-            "title": obj["profile"]["title"],
-            "bio": obj["profile"]["bio"],
-            "profile_picture": obj["profile"]["profile_picture"],
+            "full_name": f"{obj['profile']['first_name']} {obj['profile']['last_name']}" if obj['profile'] else "",
+            "title": obj["profile"]["title"] if obj["profile"] else "",
+            "bio": obj["profile"]["bio"] if obj["profile"] else "",
+            "profile_picture": obj["profile"]["profile_picture"] if obj["profile"] else "",
         }
         data.append(mentor_obj)
     return data
