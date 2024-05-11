@@ -1,11 +1,13 @@
 import React from 'react'
 import '../css/OSProjectCard.css';
+import { mediaRootUrl } from '../utils/axios';
+
 
 function OSProjectCard({name, description, image, link}) {
   return (
     <div className='osp-card'>
         <div className='osp-card-img'>
-            <img src={`http://127.0.0.1:8000${image}`} alt='osp'/>
+            <img src={`${mediaRootUrl}${image}`} alt='osp'/>
         </div>
         <div className='osp-card-details'>
             <h3>{name} </h3>

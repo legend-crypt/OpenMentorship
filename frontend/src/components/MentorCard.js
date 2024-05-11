@@ -3,6 +3,8 @@ import "../css/mentor-card.css";
 import axios from "../utils/axios";
 import person from "../assets/images/mentor.jpg";
 import { useEffect, useState } from "react";
+import { mediaRootUrl } from "../utils/axios";
+
 
 const MentorCard = ({ name, image, mentorEmail, userId}) => {
   const [userMentors, setUserMentors] = useState([]);
@@ -49,7 +51,7 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
 
   return (
     <div className="mentor-card">
-      <img src={`http://127.0.0.1:8000${image}`} 
+      <img src={`${mediaRootUrl}${image}`} 
       alt="Profile image" />
       <div className="mentor-details">
         <Link>{name}</Link>

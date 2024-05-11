@@ -16,7 +16,6 @@
 
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import google from '../assets/images/google.svg';
 import '../css/style.css'
 import { Link, useNavigate } from "react-router-dom";
 import initialValues from '../schema/initialValues';
@@ -26,24 +25,24 @@ import { useDispatch } from 'react-redux'
 import { loginUser } from '../store/slices/userAuth/userAuthSlice';
 import { setUserRole } from '../store/slices/userRole/UserRoleSlice';
 import '../css/signIn.css';
-import toastPromise from '../utils/toastPromise';
+import { toast } from 'react-toastify';
+
 
 export default function SignIn() {
-  // -- react redux states ---
-
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
   const basicValidationSchema = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
     password: Yup.string().min(4, 'Must be 6 characters or more').required('Required'),
   });
 
   const handleSubmit = (values) => {
-
-     const loginRequestPromise = axios.post('login/', values)
+    let isPending = true;
+    axios.post('login/', values)
       .then((response) => {
+        isPending = false;
         if (response.status === 200) {
+          toast.success("Login Successful")
           localStorage.setItem("access_token", JSON.stringify(response.data.token.access));
           dispatch(setUserRole(response.data.user.role))
           // change user login status
@@ -54,26 +53,27 @@ export default function SignIn() {
               userDetails : response.data.user
             }))
             navigate('/profile') 
-          }else{
+          } else{
             dispatch(loginUser({
               isProfileFound : true,
               userDetails :  response.data.user
             }))
             navigate("/")
           }
-        }else {
-          alert(response.data.error);
+        } else {
+          toast.error("Something went wrong try again")
         }
       })
       .catch((error) => {
-        {}
+        isPending = false;
+        toast.error(error.response ? error.response.data.error : "Network Error")
       })
+    setTimeout(() => {
+      if (isPending) {
+        toast.warning('The server is taking longer to respond. Please check your internet connection.')
+      }
 
-    toastPromise(loginRequestPromise, {
-      pending: 'Logging in...',
-      success: 'Logged in successfully',
-      error: 'Failed to log in'
-    });
+    }, 10000)
   };
 
   return (
@@ -97,12 +97,12 @@ export default function SignIn() {
                 <ErrorMessage name='password' component="p" className='error' />
               </div>
               <button type='submit' id="btn__cta" className='form__field'>Log In</button>
-              <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'7px', padding: '1px' }}>
+              {/* <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'7px', padding: '1px' }}>
                 <p className="continue-with">
                   Continue with&nbsp;
                   <img src={google} className="oauth-svg" alt="Google" />
                 </p>
-              </div>
+              </div> */}
               <p>Don't have an account? <Link to="/signUp">Sign Up</Link></p>
             </Form>
           </Formik>

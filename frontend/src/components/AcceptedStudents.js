@@ -4,6 +4,7 @@ import "../css/mentor-card.css";
 import axios from "../utils/axios";
 import person from "../assets/images/mentor.jpg";
 import Modal from './Modal';
+import { mediaRootUrl } from '../utils/axios';
 
 
 
@@ -36,7 +37,7 @@ function AcceptStudentCard({name , image, id}) {
 
   return (
     <div className="mentor-card">
-      <img src={image? `http://127.0.0.1:8000${image}` : person} alt="Profile image" />
+      <img src={image? `${mediaRootUrl}${image}` : person} alt="Profile image" />
       <div className="mentor-details">
         <Link>{name}</Link>
         <span>Fullstack Developer</span>

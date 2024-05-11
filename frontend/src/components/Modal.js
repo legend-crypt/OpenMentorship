@@ -17,6 +17,9 @@
 import React, { useState } from 'react';
 import axios from '../utils/axios';
 import { randomID } from '../Pages/CallRoom';
+import { toast } from 'react-toastify';
+
+
 
 export default function Modal({ isOpen, onClose, title, content, confirmText, isDateTimeInput, menteeId }) {
     const [dateTime, setDateTime] = useState("");
@@ -51,12 +54,11 @@ export default function Modal({ isOpen, onClose, title, content, confirmText, is
                 meeting_link: url,
             }, config)
             .then((res) => {
-                console.log(res);
-                alert(res.data.detail);
+                toast.success('Meeting scheduled successfully');
                 onClose();
             })
             .catch((err) => {
-                console.log(err);
+                toast.error('Failed to schedule meeting');
             });
     };
 

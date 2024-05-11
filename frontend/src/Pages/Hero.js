@@ -10,9 +10,12 @@ import '../css/hero.css';
 import { useSpring, animated } from 'react-spring';
 import CarouselFadeExample from './CarouselFadeExample';
 import img from "../assets/images/hero.svg";
+import { useSelector } from 'react-redux';
 
 
 export default function Hero() {
+  const userLogin = useSelector((state) => state.userAuth.loginStatus)
+
   // CSS Animation
   const fadeIn = useSpring({
     opacity: 1,
@@ -26,9 +29,9 @@ export default function Hero() {
         <div className="min-h-[70vh] flex flex-col md:flex-row md:justify-between items-center mt-16">
           <div className=" md:w-2/4 text-center">
             <h2 className="text-5xl font-semibold leading-tight">
-              Knowledge with
+              OpenSource with
               <br/>
-              <span className="text-blue-500"> Open Mentors</span>
+              <span className="text-blue-500"> OpenMentors</span>
             </h2>
             <p className=" text-lightText mt-5 text-start">
               Unlock Your Potential with Open Mentors: Dive into a world of personalized mentorship and skill-building opportunities. Our innovative eLearning platform connects you with top-tier engineers and developers for tailored one-on-one guidance.
@@ -47,7 +50,7 @@ export default function Hero() {
                 <div className='hero_footer--col hero_footer--left'>
                   <h2 className='hero_footer--heading'>Why Choose Open Mentors</h2>
                   <p>Embark on your journey into the vibrant world of open source with us. Whether you're a seasoned developer or just starting out, our platform is your gateway to endless opportunities for learning, collaboration, and contribution.</p>
-                  <Link to="/signIn" className="hero_btn">
+                  <Link to={userLogin ? '/blogs': '/signIn'} className="hero_btn">
                     Get started Today
                     <img src={arrow} alt="Arrow" />
                   </Link>

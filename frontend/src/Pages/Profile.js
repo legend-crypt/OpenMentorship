@@ -23,6 +23,7 @@ import * as Yup from 'yup';
 import axios from '../utils/axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { mediaRootUrl } from '../utils/axios';
 
 
 export default function Profile() {
@@ -127,7 +128,7 @@ export default function Profile() {
         {userProfile && (
           <div className='profile__info'>
             <div className='profile_info--image'>
-              <img src={`http://127.0.0.1:8000${userProfile.profile_picture}`} alt='profile' className='profile' />
+              <img src={`${mediaRootUrl}${userProfile.profile_picture}`} alt='profile' className='profile' />
             </div>
             <div className='profile_info--text'>
               <p>

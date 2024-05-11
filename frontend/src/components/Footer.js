@@ -18,13 +18,13 @@ const Footer = () => {
           </div>
         </div> */}
         <div className="icon-container">
-          <a href="https://instagram.com/example">
+          <a href="https://www.instagram.com/konadulord/">
             <img src={instagramIcon} alt="Instagram Icon" width={30} />
           </a>
           <p>Instagram</p>
         </div>
         <div className="icon-container">
-          <a href="https://twitter.com/example">
+          <a href="https://twitter.com/konadulord">
             <img src={twitterIcon} alt="Twitter Icon" width={30} />
           </a>
           <p>Twitter</p>

@@ -45,7 +45,7 @@ export default function SignUp() {
     };
 
     try {
-      const response = await fetch('http://localhost:8000/api/accounts/create/', {
+      const response = await fetch('https://openmentorship.onrender.com/api/accounts/create/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,12 +103,12 @@ export default function SignUp() {
           Sign Up
         </button>
         </form>
-        <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'3px' }}>
+        {/* <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'3px' }}>
           <p className="continue-with">
             Continue with&nbsp;
             <img src={google} className="oauth-svg" alt="Google" />
           </p>
-        </div>
+        </div> */}
         
         <p>
           Already have an account? <Link to="/signIn">Login In</Link>

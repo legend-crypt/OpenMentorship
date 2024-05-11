@@ -5,11 +5,14 @@ import React, {useState, useEffect} from 'react';
 import axios from '../utils/axios';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
 
 export default function Meeting() {
   const [meetings, setMeetings] = useState([]);
   const today = new Date();
+  const userRole = useSelector((state) => state.userRole.role)
+
 useEffect(() => {
   axios.get('/meeting/retrieve/',
   {
@@ -38,7 +41,7 @@ const formatDate = (datetimeString) => {
         <div className="container--grid">
           {meetings.map((data) => (
             <span key={data.id}>
-              <MeetingCard name={data.mentee}/>
+              <MeetingCard name={userRole === 'Mentor' ? data.mentee : data.mentor} image={userRole === 'Mentor' ? data.mentee_image : data.mentor_image}/>
               <div className='calendar'>
                 <img src={calender} alt='calender'/>
                 <span className="details">
@@ -55,18 +58,6 @@ const formatDate = (datetimeString) => {
           
         </div>
           <p>Please ensure that you have a stable internet connection and are in a quiet environment during the meeting. This will help to minimize disruptions and ensure a smooth communication experience.</p>
-        {/* <div className='container--grid'>
-          {meetings.map((data) => (
-          <div className='calendar'>
-            <img src={calender} alt='calender'/>
-            <span className="details">
-                <p>10TH April 2024</p>
-                <p>10:00 AM</p>
-            </span>
-            <button className='btn-meeting'>Join Meeting</button>
-          </div>
-          ))}
-        </div> */}
     </div>
   )
 }
