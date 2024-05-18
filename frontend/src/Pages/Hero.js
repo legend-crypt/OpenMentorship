@@ -40,10 +40,10 @@ export default function Hero() {
                 <button>Find Mentor</button>
             </Link>
           </div>
-        <div className=" w-full md:w-2/4">
-          <img src={img} alt="img" />
+          <div className=" w-full md:w-2/4">
+            <img src={img} alt="img" />
+          </div>
         </div>
-      </div>
         <animated.main className="hero" style={fadeIn}>
           <section className='hero_footer'>
               <div className='hero_footer--grid'>

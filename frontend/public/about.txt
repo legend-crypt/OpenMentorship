@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Jaini Purva
+- Font Author: Copyright 2023 The Jaini Project Authors (https://github.com/EkType/Jaini)
+- Font Source: https://fonts.gstatic.com/s/jainipurva/v1/CHynV-vdHVXwbWcUswbUGHoOHH4sj3lR.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

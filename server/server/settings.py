@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-2gm$*pt@dgy^vu%!4u8x&an817l8e1%ongk58yx2a%4nfmp0!s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['openmentorship.onrender.com']
+ALLOWED_HOSTS = ['openmentorship.onrender.com', '127.0.0.1']
 
 
 # Application definition
@@ -112,7 +112,7 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
+# DATABASES["default"] = dj_database_url.parse(os.getenv("DATABASE_URL"))
 
 AUTH_USER_MODEL = 'core.AccountUser'
 # Password validation
@@ -162,14 +162,6 @@ STORAGES = {
     },
 }
 
-# STORAGES = {
-#     "default": {
-#         "BACKEND": "django.core.files.storage.FileSystemStorage",
-#     },
-#     "staticfiles": {
-#         "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-#     },
-# }
 
 
 # Default primary key field type
@@ -190,6 +182,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://openmentors.vercel.app/"
+    "https://openmentors.vercel.app"
 ]
  

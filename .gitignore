@@ -33,7 +33,7 @@ frontend/build/
 *.pyc
 __pycache__/
 db.sqlite3
-/server/media
+server/media
 
 # production
 /build
@@ -53,4 +53,3 @@ server/.dockerignore
 server/.env
 venv/
 server/db*
-server/media/
