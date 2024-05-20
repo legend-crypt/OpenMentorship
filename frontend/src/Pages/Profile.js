@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from '../utils/axios';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { mediaRootUrl } from '../utils/axios';
 
 
 export default function Profile() {
-  const navigate = useNavigate();
   const [userProfile, setUserProfile] = useState(null);
   const [accessToken, setAccessToken] = useState(null);
 
