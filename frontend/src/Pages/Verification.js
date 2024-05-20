@@ -1,12 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import '../css/style.css';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from '../utils/axios'
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-import { Axios } from 'axios';
-
 
 
 export default function Verification() {

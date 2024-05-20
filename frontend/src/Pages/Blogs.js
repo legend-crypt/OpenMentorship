@@ -4,19 +4,23 @@ import BlogCard from '../components/BlogCard';
 import axios from '../utils/axios'
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { TailSpin } from 'react-loader-spinner';
 
 export default function Blogs() {
   const [blogData, setBlogData] = useState([]);
   const userRole = useSelector(state => state.userRole.role);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     axios.get('/blogs/')
     .then((res) => {
+      setLoading(false);
       setBlogData(res.data.data);
     })
     .catch((err) => {
-      console.log(err);
+      setLoading(false);
     })
+    setLoading(true);
   }, [])
 
   return (
@@ -32,6 +36,15 @@ export default function Blogs() {
           </Link>
         }
         <div className='blogs-container container min-h-screen'>
+          {loading ? ( 
+          <TailSpin
+            color="#00BFFF"
+            height={200}
+            width={200}
+            wrapperClass='flex items-center justify-center'
+          />
+          ) : (
+          <>
           {blogData.map((data) => (
             <Link to={`/blog/${data.id}`} key={data.id}>
               <BlogCard
@@ -43,6 +56,8 @@ export default function Blogs() {
               />
              </Link>
           ))}
+          </>
+          )}
         </div>
     </>
   )

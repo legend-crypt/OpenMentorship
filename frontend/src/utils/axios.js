@@ -24,16 +24,8 @@ export default instance;
 
 
 // instance for authorized API requests
-const authInstance = axios.create({
-  // baseURL: 'https://openmentorship.onrender.com/api/',
-  baseURL: 'localhost:8000/api',
-
-  headers: {
-    Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
-  }
-})
 
 const mediaRootUrl = 'https://openmentorship.onrender.com'
 // const mediaRootUrl = 'http://127.0.0.1:8000'
 
-export { authInstance, mediaRootUrl }
+export { mediaRootUrl }

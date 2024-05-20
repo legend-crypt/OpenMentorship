@@ -3,7 +3,6 @@
 
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import axios from "../../../utils/axios"
-import { useSelector, useDispatch } from 'react-redux'
 
 // import useDynamicLogic from '../../../utils/useDynamicLogic'
 

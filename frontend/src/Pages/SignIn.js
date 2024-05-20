@@ -1,19 +1,3 @@
-/*
-  The `SignIn` React component represents the user sign-in page. It utilizes Formik for form handling, Yup for form validation, and Axios for making API requests. Users can log in with their email and password, and the component provides feedback messages on success or failure.
-
-  Component:
-  - SignIn: Manages user sign-in functionality.
-
-  Key Functionalities:
-  - Utilizes Formik for form handling and Yup for form validation.
-  - Handles user sign-in using Axios to make a POST request to the server's login endpoint.
-  - Alerts the user with success or failure messages based on API responses.
-  - Provides a link to the sign-up page for users without an account.
-  - Supports social login through Google (or other OAuth providers).
-
-  Note: The component enhances the user experience by incorporating form validation and clear feedback messages for successful and unsuccessful login attempts.
-*/
-
 import React from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import '../css/style.css'

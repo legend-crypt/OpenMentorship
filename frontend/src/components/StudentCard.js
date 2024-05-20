@@ -53,7 +53,7 @@ function StudentCard({name , image, id}) {
   }
   return (
     <div className="mentor-card">
-      <img src={image? `${mediaRootUrl}${image}` : person} alt="Profile image" />
+      <img src={image? `${mediaRootUrl}${image}` : person} alt="Profile" />
       <div className="mentor-details">
         <Link>{name}</Link>
         <span>Fullstack Developer</span>

@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "../css/mentor-card.css";
 import axios from "../utils/axios";
-import person from "../assets/images/mentor.jpg";
 import { useEffect, useState } from "react";
 import { mediaRootUrl } from "../utils/axios";
 
@@ -16,9 +15,9 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
         Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
       }
     }).then((res) => {
-      res.data.data.map((data) => {
+      res.data.data.map((data) => (
         setUserMentors(data.user_id)
-      })
+      ))
     })
     .catch((err) => {
       console.log(err);
@@ -52,7 +51,7 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
   return (
     <div className="mentor-card">
       <img src={`${mediaRootUrl}${image}`} 
-      alt="Profile image" />
+      alt="Profile" />
       <div className="mentor-details">
         <Link>{name}</Link>
         <span>Fullstack Developer</span>
