@@ -28,7 +28,7 @@ export default function Blogs() {
         <div className='blogs'>
             {/* https://stackoverflow.blog/2020/08/03/getting-started-with-contributing-to-open-source/ */}
             <h1 className='blogs-heading'>openMentors.blogs()</h1>
-            <p>For Developers, by the community</p>
+            <p className='text-white'>For Developers, by the community</p>
         </div>
         {userRole === 'Mentor' &&
           <Link to='/create-blog' className='flex items-center'>

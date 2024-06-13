@@ -41,7 +41,7 @@
 }
 .blog-post--tagline > h1 {
     font-size: 2em;
-    font-weight: 700;
+    font-weight: 800;
     margin-bottom: 0.5em;
 }
 .blog-post--tagline > p {
@@ -50,6 +50,29 @@
     margin-bottom: 0.5em;
     text-align: left;
 }
+
+.blog-post-content {
+    margin: 20px 0;
+    padding: 0 20px;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.blog-post-content h2 {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.blog-post-content p {
+    margin: 10px 0;
+    text-align: justify;
+}
+
+.blog-post-content strong {
+    font-weight: bold;
+}
+
 
 
 

@@ -52,10 +52,12 @@ export const fetchActiveUser = createAsyncThunk("fetchActiveUser", async (_, { r
         return responseData;
     }
 });
+
+
 export const userAuthSlice = createSlice({
     name: "userAuth",
     initialState: {
-        loginStatus: JSON.parse(localStorage.getItem('access_token')) ? true : false, // true or false after API call or first check
+        loginStatus:  Boolean(window.localStorage.getItem('access_token')), // true or false after API call or first check
         userDetails: JSON.parse(localStorage.getItem("profile")) || null, // userName, user Emails etc
     },
     reducers: {

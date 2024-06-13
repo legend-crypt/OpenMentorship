@@ -3,6 +3,8 @@ import '../css/Blog.css';
 import { useParams } from 'react-router-dom';
 import axios from '../utils/axios';
 import { mediaRootUrl } from '../utils/axios';
+import DOMPurify from 'dompurify';
+
 
 
 function Blog() {
@@ -16,7 +18,7 @@ function Blog() {
         .catch((err) => {
             console.log(err);
         })
-    }, [])
+    }, [blogData])
   return (
     <div className='min-h-screen'>
     <div className='blog-post'>
@@ -31,11 +33,11 @@ function Blog() {
                     </span>
                 </span>
             </span>
-            <img src={`${mediaRootUrl}${blogData?.thumbnail}`} alt='thumnail'
+            <img src={`${mediaRootUrl}${blogData?.thumbnail}`} alt='thumbnail'
             className='blog-post--thumnail'/>
         </div>
     </div>
-    <div className='blog-post-content container' dangerouslySetInnerHTML={{__html: blogData?.content}}>
+    <div className='blog-post-content container' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blogData?.content)}}>
     </div>
     </div>
   )
