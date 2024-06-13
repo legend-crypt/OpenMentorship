@@ -18,7 +18,7 @@ def get_blog_information(blog):
         'title': blog.title,
         'content': blog.content,
         'author': blog.author.full_name,
-        'thumbnail': blog.thumbnail.url,
+        'thumbnail': blog.thumbnail.url if blog.thumbnail else None,
         'author_image': blog.author.profile.profile_picture.url
     }
     
