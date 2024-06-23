@@ -19,7 +19,7 @@ def get_blog_information(blog):
         'content': blog.content,
         'author': blog.author.full_name,
         'thumbnail': blog.thumbnail.url if blog.thumbnail else None,
-        'author_image': blog.author.profile.profile_picture.url
+        'author_image': blog.author.profile.profile_picture.url if blog.author.profile else None
     }
     
     

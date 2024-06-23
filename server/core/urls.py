@@ -14,9 +14,9 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # Accounts
-    path('accounts/create/', AccountCreationViewSet.as_view({'post':'create'})),
-    path('accounts/verify-email/', AccountCreationViewSet.as_view({'post':'verify_email'})),
-    path('accounts/send-verification-email/', AccountCreationViewSet.as_view({'post':'send_verification_email'})),
+    path('accounts/create/', AccountCreationViewSet.as_view({'post':'create'}), name='accountcreation-create'),
+    path('accounts/verify-email/', AccountCreationViewSet.as_view({'post':'verify_email'}), name='accountcreation-verify-email'),
+    path('accounts/send-verification-email/', AccountCreationViewSet.as_view({'post':'send_verification_email'}), name='accountcreation-send-verification-email'),
     
     
     #password reset
@@ -51,13 +51,13 @@ urlpatterns = [
     
     
     #blogs
-    path('blogs/', BlogViewSet.as_view({'get': 'list'})),
-    path('blogs/<uuid:id>/', BlogViewSet.as_view({'get': 'retrieve'})),
-    path('blogs/create/', BlogViewSet.as_view({'post': 'create'})),
-    path('blogs/update/<uuid:id>/', BlogViewSet.as_view({'put': 'update'})),
+    path('blogs/', BlogViewSet.as_view({'get': 'list'}), name="blog-list"),
+    path('blogs/<uuid:id>/', BlogViewSet.as_view({'get': 'retrieve'}), name='blog-detail'),
+    path('blogs/create/', BlogViewSet.as_view({'post': 'create'}), name='blog-create'),
+    path('blogs/update/<uuid:id>/', BlogViewSet.as_view({'put': 'update'}), name='blog-update'),
     
     
-    path('login/', SignIn.as_view({'post':'post'})),
+    path('login/', SignIn.as_view({'post':'post'}), name='login'),
     ####websocket
     # path("<str:meeting_id>")
 ]

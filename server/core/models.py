@@ -82,7 +82,7 @@ class AccountUser(AbstractBaseUser):
     
     @property
     def full_name(self):
-        return f"{self.profile.first_name} {self.profile.last_name}"
+        return f"{self.profile.first_name} {self.profile.last_name} " if self.profile else ""
 
 
 class VerificationCode(models.Model):
