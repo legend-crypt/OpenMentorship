@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import "../css/mentor-card.css";
 import axios from "../utils/axios";
 import { useEffect, useState } from "react";
-import { mediaRootUrl } from "../utils/axios";
-
 
 const MentorCard = ({ name, image, mentorEmail, userId}) => {
   const [userMentors, setUserMentors] = useState([]);
@@ -50,7 +48,7 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
 
   return (
     <div className="mentor-card">
-      <img src={`${mediaRootUrl}${image}`} 
+      <img src={`${image}`} 
       alt="Profile" />
       <div className="mentor-details">
         <Link>{name}</Link>

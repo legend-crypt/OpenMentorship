@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "../css/mentor-card.css";
 import axios from "../utils/axios";
 import person from "../assets/images/mentor.jpg";
-import { mediaRootUrl } from '../utils/axios';
 
 
 function StudentCard({name , image, id}) {
@@ -53,7 +52,7 @@ function StudentCard({name , image, id}) {
   }
   return (
     <div className="mentor-card">
-      <img src={image? `${mediaRootUrl}${image}` : person} alt="Profile" />
+      <img src={image? `${image}` : person} alt="Profile" />
       <div className="mentor-details">
         <Link>{name}</Link>
         <span>Fullstack Developer</span>

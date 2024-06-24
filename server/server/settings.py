@@ -163,6 +163,9 @@ USE_TZ = True
 #     },
 # }
 
+STATIC_ROOT = 'static/'
+MEDIA_ROOT = 'media/'
+
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'open-mentors'
@@ -170,16 +173,15 @@ AWS_S3_ENDPOINT_URL = os.getenv('AWS_S3_ENDPOINT_URL')
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
-AWS_LOCATION_STATIC =  'static/'
+AWS_LOCATION =  'static/'
 AWS_LOCATION_MEDIA =  'media/'
 
 AWS_DEFAULT_ACL = 'public-read'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 DEFAULT_FILE_STORAGE = 'core.storages.MediaStorage'
-STATIC_URL = '{}/{}'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION_STATIC)
+STATIC_URL = '{}/{}'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 MEDIA_URL = '{}/{}'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION_MEDIA)
-STATIC_ROOT = 'static/'
-Media_ROOT = 'media/'
+
 
 
 
@@ -203,4 +205,4 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "https://openmentors.vercel.app"
 ]
- 
+  

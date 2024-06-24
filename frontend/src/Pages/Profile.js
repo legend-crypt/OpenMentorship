@@ -3,8 +3,6 @@ import { Formik, Form, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import axios from '../utils/axios';
 import { toast } from 'react-toastify';
-import { mediaRootUrl } from '../utils/axios';
-
 
 export default function Profile() {
   const [userProfile, setUserProfile] = useState(null);
@@ -103,7 +101,7 @@ export default function Profile() {
         {userProfile && (
           <div className='profile__info'>
             <div className='profile_info--image'>
-              <img src={`${mediaRootUrl}${userProfile.profile_picture}`} alt='profile' className='profile' />
+              <img src={`${userProfile.profile_picture}`} alt='profile' className='profile' />
             </div>
             <div className='profile_info--text'>
               <p>
