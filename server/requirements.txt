@@ -15,3 +15,20 @@ pytz==2023.3.post1
 sqlparse==0.4.4; python_version >= '3.5'
 typing-extensions==4.9.0; python_version >= '3.8'
 whitenoise==6.6.0; python_version >= '3.8'
+asgiref==3.7.2
+dj-database-url==2.1.0
+Django==4.2.8
+django-cors-headers==4.3.1
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.3.1
+gunicorn==22.0.0
+packaging==24.0
+Pillow==10.1.0
+psycopg-binary==3.1.18
+psycopg2-binary==2.9.9
+PyJWT==2.8.0
+python-dotenv==1.0.0
+pytz==2023.3.post1
+sqlparse==0.4.4
+typing_extensions==4.9.0
+whitenoise==6.6.0
