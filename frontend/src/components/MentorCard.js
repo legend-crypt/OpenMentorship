@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 import "../css/mentor-card.css";
 import axios from "../utils/axios";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const MentorCard = ({ name, image, mentorEmail, userId}) => {
-  const [userMentors, setUserMentors] = useState([]);
+  const [userMentors, setUserMentors] = useState('');
 
   useEffect(() => {
     axios.get('mentors/students-requests/',
@@ -18,9 +19,8 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
       ))
     })
     .catch((err) => {
-      console.log(err);
     });
-  }, []);
+  }, [userMentors]);
   
   const onclickHandler = (mentorEmail) => {
     const token = localStorage.getItem('access_token');
@@ -38,11 +38,12 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
         }
       )
       .then((res) => {
-        console.log(res);
+        toast.success("Request sent successfully");
+        setUserMentors(res.data.data.mentor.user_id);
       })
 
       .catch((err) => {
-        console.log(err);
+        toast.error(err.response.data.detail);
       });
   };
 
@@ -69,7 +70,6 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
         </div>
         <div className="request-btns">
           <button onClick={() => onclickHandler(mentorEmail)} disabled={userMentors.includes(userId)}>Request</button>
-          {/* <button className="email">Email</button> */}
         </div>
       </div>
     </div>

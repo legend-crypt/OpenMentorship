@@ -3,6 +3,7 @@ import '../css/Blog.css';
 import { useParams } from 'react-router-dom';
 import axios from '../utils/axios';
 import DOMPurify from 'dompurify';
+import { toast } from 'react-toastify';
 
 
 
@@ -13,10 +14,9 @@ function Blog() {
         axios.get(`/blogs/${blogId}/`)
         .then((res) => {
             setBlogData(res.data.data);
-            console.log(res.data.data);
         })
-        .catch((err) => {
-            console.log(err);
+        .catch(() => {
+            toast.error('Something went wrong! Please try again.');
         })
     }, [])
   return (
@@ -37,7 +37,7 @@ function Blog() {
             className='blog-post--thumnail'/>
         </div>
     </div>
-    <div className='blog-post-content container' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blogData?.content)}}>
+    <div className='blog-post-content' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(blogData?.content)}}>
     </div>
     </div>
   )

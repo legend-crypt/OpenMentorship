@@ -25,7 +25,6 @@ function AcceptStudentCard({name , image, id}) {
       });
     })
     .catch(err => {
-      console.log(err);
     })
   },[])
 

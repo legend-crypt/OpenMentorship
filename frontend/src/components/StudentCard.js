@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import "../css/mentor-card.css";
 import axios from "../utils/axios";
 import person from "../assets/images/mentor.jpg";
+import { toast } from 'react-toastify';
 
 
 function StudentCard({name , image, id}) {
 
-  console.log(name, image, id)
   const acceptOnclickHandler = (id) => {
     axios
       .post(
@@ -22,12 +22,12 @@ function StudentCard({name , image, id}) {
           },
         }
       )
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        toast.success("Request accepted successfully");
       })
 
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error('Something went wrong! Please try again.');
       });
   }
 
@@ -42,12 +42,12 @@ function StudentCard({name , image, id}) {
           },
         }
       )
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        toast.success("Request rejected successfully");
       })
 
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error('Something went wrong! Please try again.');
       });
   }
   return (

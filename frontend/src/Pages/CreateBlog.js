@@ -25,7 +25,6 @@ export default function CreateBlog() {
         },
         validationSchema,
         onSubmit: values => {
-            console.log(values);
             axios.post('/blogs/create/', {
                 title: formik.values.title,
                 content: formik.values.content,
@@ -38,7 +37,6 @@ export default function CreateBlog() {
 
                 },
             }).then((res) => {
-                console.log(res)
                 toast.success('Blog created successfully');
                 formik.resetForm();
             }).catch(() => {

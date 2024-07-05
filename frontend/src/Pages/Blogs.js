@@ -35,7 +35,7 @@ export default function Blogs() {
               <button className='p-2 bg-blue-400 rounded mt-4 ml-auto mr-auto text-white'>Create Blog</button>
           </Link>
         }
-        <div className='blogs-container container min-h-screen'>
+        <div className='blogs-container min-h-screen'>
           {loading ? ( 
           <TailSpin
             color="#00BFFF"
@@ -45,17 +45,19 @@ export default function Blogs() {
           />
           ) : (
           <>
-          {blogData.map((data) => (
-            <Link to={`/blog/${data.id}`} key={data.id}>
-              <BlogCard
-              title={data.title}
-              author={data.author}
-              content={data.content}
-              thumbnail={data.thumbnail}
-              authorImage={data.author_image}
-              />
-             </Link>
-          ))}
+          <div className="flex flex-wrap m-4">
+            {blogData.map((data) => (
+              <Link to={`/blog/${data.id}`} key={data.id} className='my-4'>
+                <BlogCard
+                title={data.title}
+                author={data.author}
+                content={data.content}
+                authorImage={data.author_image}
+                thumbnail={data.thumbnail}
+                />
+              </Link>
+            ))}
+          </div>
           </>
           )}
         </div>

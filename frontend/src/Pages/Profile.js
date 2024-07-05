@@ -29,7 +29,6 @@ export default function Profile() {
     const storedProfile = JSON.parse(localStorage.getItem('profile'));
     const access_token = JSON.parse(localStorage.getItem('access_token'));
     setAccessToken(access_token);
-    // console.log(accessToken);
 
     if(accessToken) {
       storedProfile? 

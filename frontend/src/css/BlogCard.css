@@ -20,6 +20,7 @@
     color: rgb(80, 81, 82);
     text-align: justify;
     line-height: 1.4;
+    word-spacing: normal;
 }
 
 .blog-card-img {
@@ -31,7 +32,6 @@
 
 .blog-card-details {
     padding: 0.5rem;
-    text-align: left;
 }
 
 .blog-card-footer {
