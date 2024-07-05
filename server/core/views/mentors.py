@@ -46,12 +46,22 @@ class MentorViewset(viewsets.ViewSet):
                     "detail": "Request already sent",
                 }
                 return Response(context, status=status.HTTP_208_ALREADY_REPORTED)
+            elif user == mentor:
+                context = {
+                    "detail": "You can't send a request to yourself",
+                }
+                return Response(context, status=status.HTTP_400_BAD_REQUEST)
+            elif MentorRequest.objects.filter(student=user):
+                context = {
+                    "detail": "You can't send more than one request",
+                }
+                return Response(context, status=status.HTTP_400_BAD_REQUEST)
             else:
-                student = user
-                mentor_request = create_mentor_request(student, mentor)
-
+                mentor_request = create_mentor_request(user, mentor)
+                data = MentorRequestSerializer(mentor_request).data
                 context = {
                     "detail": "Request successfully sent",
+                    "data": data
                 }
                 return Response(context, status=status.HTTP_201_CREATED)
         return Response({"error": "Request not sent"}, status=status.HTTP_400_BAD_REQUEST)

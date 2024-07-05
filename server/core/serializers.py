@@ -32,7 +32,7 @@ class MentorRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = MentorRequest
-        fields = ['mentor_session_id', 'status', 'mentor', 'time','student', 'created_at']
+        fields = ['mentor_request_id', 'status', 'mentor', 'student', 'created_at']
 
 class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
