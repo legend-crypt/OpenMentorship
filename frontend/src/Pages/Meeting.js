@@ -25,7 +25,7 @@ useEffect(() => {
       setMeetings(res.data.data);
       setLoading(false);
     })
-    .catch(err => {
+    .catch(() => {
       toast.error('Failed to retrieve meetings');
       setLoading(false);
     });

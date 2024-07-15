@@ -73,7 +73,8 @@ export const userAuthSlice = createSlice({
         // removes all login credentials including local storage data
         logOutUser: (state) => {
             // clear local storage items
-            localStorage.clear()
+            localStorage.removeItem("access_token");
+            localStorage.removeItem("profile");
             state.loginStatus = false
             state.userDetails = null;
         },

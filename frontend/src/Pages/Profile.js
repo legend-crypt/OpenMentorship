@@ -5,15 +5,14 @@ import axios from '../utils/axios';
 import { toast } from 'react-toastify';
 
 export default function Profile() {
-  const [userProfile, setUserProfile] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
+  const [userProfile, setUserProfile] = useState(JSON.parse(localStorage.getItem('profile')));
+  const accessToken = JSON.parse(localStorage.getItem('access_token'));
 
 
   const initialValues = {
       first_name: userProfile ? userProfile.first_name : '',
       last_name: userProfile ? userProfile.last_name : '',
       bio: userProfile ? userProfile.bio : '',
-      profile_picture: userProfile ? userProfile.profile_picture : '',
   };
 
 
@@ -26,14 +25,7 @@ export default function Profile() {
 
 
   useEffect(() => {
-    const storedProfile = JSON.parse(localStorage.getItem('profile'));
-    const access_token = JSON.parse(localStorage.getItem('access_token'));
-    setAccessToken(access_token);
-
-    if(accessToken) {
-      storedProfile? 
-    setUserProfile(storedProfile)
-    : axios.get('profile/retrieve/', config)
+    !userProfile && axios.get('profile/retrieve/', config)
     .then((response) => {
       if (response.status === 200) {
         setUserProfile(response.data?.data);
@@ -43,9 +35,8 @@ export default function Profile() {
     .catch((error) => {
       toast.error('Failed to retrieve profile', error.message);
     });
-    }
 
-  }, [accessToken]); 
+  }, [userProfile]); 
 
 
 

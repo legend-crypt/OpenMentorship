@@ -16,14 +16,13 @@
 
 import React, { useState } from 'react';
 import axios from '../utils/axios';
-import { randomID } from '../Pages/CallRoom';
 import { toast } from 'react-toastify';
+import { v4 as uuid } from 'uuid';
 
 
-
-export default function Modal({ isOpen, onClose, title, content, confirmText, isDateTimeInput, menteeId }) {
+export default function Modal({ onClose, title, content, confirmText, isDateTimeInput, menteeId }) {
     const [dateTime, setDateTime] = useState("");
-    const roomID = randomID(5);
+    const roomID = uuid();
     const url = window.location.protocol + '//' + 
     window.location.host + '/call-room' +
      '?roomID=' + roomID;
