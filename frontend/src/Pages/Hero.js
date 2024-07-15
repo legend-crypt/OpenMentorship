@@ -11,6 +11,7 @@ import { useSpring, animated } from 'react-spring';
 import CarouselFadeExample from './CarouselFadeExample';
 import img from "../assets/images/hero.svg";
 import { useSelector } from 'react-redux';
+import Testimonials from '../components/Testimonials';
 
 
 export default function Hero() {
@@ -83,6 +84,7 @@ export default function Hero() {
                 </div>
             </div>
           </section>
+          <Testimonials />
         </animated.main>
       </div>
 
