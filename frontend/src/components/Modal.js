@@ -26,6 +26,7 @@ export default function Modal({ onClose, title, content, confirmText, isDateTime
     const url = window.location.protocol + '//' + 
     window.location.host + '/call-room' +
      '?roomID=' + roomID;
+    console.log(roomID) 
     const config = {
         headers : {
             Authorization: `Bearer ${JSON.parse(localStorage.getItem("access_token"))}`,

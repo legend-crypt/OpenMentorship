@@ -39,7 +39,7 @@ function StudentsRequest() {
   return (
     <div className="container page-margin">
         {/* min-h-screen */}
-      <div class="container--grid-uneven min-h-screen">
+      <div className="container--grid-uneven min-h-screen">
         <div className="requests container--grid">
           {students.length > 0 ? 
             (students.map((data) => (

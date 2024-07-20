@@ -8,7 +8,6 @@ import Profile from './Pages/Profile';
 import Verification from './Pages/Verification';
 import ProtectedPages from './components/protected/ProtectedPages';
 import CallRoom from './Pages/CallRoom';
-import HomeHeader from './components/HomeHeader';
 import Footer from './components/Footer';
 import Meeting from './Pages/Meeting';
 import OSProject from './Pages/OSProject';
@@ -18,13 +17,14 @@ import StudentsRequest from './Pages/StudentsRequest';
 import CreateBlog from './Pages/CreateBlog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import NavBar from './components/NavBar';
 
 
 function App() {
   return (
     <div className="App">
-      <HomeHeader />
-      <ToastContainer />
+      <NavBar />
+      <div><ToastContainer /></div>
       <Routes>
           <Route path="/" element={<Hero />} />
           <Route path="/signIn" element={<SignIn />} />

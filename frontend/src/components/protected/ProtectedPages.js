@@ -21,7 +21,7 @@ const ProtectedPages = ({Component }) => {
     
     return (
         <>
-            return <>{loginStatus ? Component: null}</>
+            <>{loginStatus ? Component: null}</>
 
         </>
     )
