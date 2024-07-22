@@ -18,6 +18,7 @@ import CreateBlog from './Pages/CreateBlog';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import NavBar from './components/NavBar';
+import NotFound from './Pages/NotFound';
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route path="/blogs" element={<Blogs />} />
           <Route path="/blog/:blogId" element={<Blog/>}/>
           <Route path='/create-blog' element={<ProtectedPages Component={<CreateBlog />} />} />
+          <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>

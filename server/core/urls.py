@@ -56,7 +56,7 @@ urlpatterns = [
     path('blogs/create/', BlogViewSet.as_view({'post': 'create'}), name='blog-create'),
     path('blogs/update/<uuid:id>/', BlogViewSet.as_view({'put': 'update'}), name='blog-update'),
     
-    
+    #SignIN
     path('login/', SignIn.as_view({'post':'post'}), name='login'),
     ####websocket
     # path("<str:meeting_id>")
