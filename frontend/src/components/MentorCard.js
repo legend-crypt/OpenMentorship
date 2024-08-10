@@ -4,26 +4,26 @@ import axios from "../utils/axios";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
-const MentorCard = ({ name, image, mentorEmail, userId}) => {
-  const [userMentors, setUserMentors] = useState('');
+const MentorCard = ({ name, image, mentorEmail, userId }) => {
+  const [userMentors, setUserMentors] = useState("");
 
   useEffect(() => {
-    axios.get('mentors/students-requests/',
-    {
-      headers: {
-        Authorization: `Bearer ${JSON.parse(localStorage.getItem('access_token'))}`
-      }
-    }).then((res) => {
-      res.data.data.map((data) => (
-        setUserMentors(data.user_id)
-      ))
-    })
-    .catch((err) => {
-    });
+    axios
+      .get("mentors/students-requests/", {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(
+            localStorage.getItem("access_token")
+          )}`,
+        },
+      })
+      .then((res) => {
+        res.data.data.map((data) => setUserMentors(data.user_id));
+      })
+      .catch((err) => {});
   }, [userMentors]);
-  
+
   const onclickHandler = (mentorEmail) => {
-    const token = localStorage.getItem('access_token');
+    const token = localStorage.getItem("access_token");
     axios
       .post(
         `mentors/create/`,
@@ -49,8 +49,7 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
 
   return (
     <div className="mentor-card">
-      <img src={`${image}`} 
-      alt="Profile" />
+      <img src={`${image}`} alt="Profile" />
       <div className="mentor-details">
         <Link>{name}</Link>
         <span>Fullstack Developer</span>
@@ -69,7 +68,9 @@ const MentorCard = ({ name, image, mentorEmail, userId}) => {
           </div>
         </div>
         <div className="request-btns">
-          <button onClick={() => onclickHandler(mentorEmail)} disabled={userMentors.includes(userId)}>Request</button>
+          {!userMentors.includes(userId) ? (
+            <button onClick={() => onclickHandler(mentorEmail)}>Request</button>
+          ) : null}
         </div>
       </div>
     </div>
