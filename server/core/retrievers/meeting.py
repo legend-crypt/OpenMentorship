@@ -1,5 +1,6 @@
 from core.models import Meeting
 
+
 def get_user_meetings(user):
     """Get user meetings
 
@@ -18,8 +19,8 @@ def get_user_meetings(user):
 
     except Meeting.DoesNotExist:
         return None
-    
-    
+
+
 def get_meeting_by_id(id):
     """Get meeting by id
 
@@ -33,8 +34,8 @@ def get_meeting_by_id(id):
         return Meeting.objects.get(id=id)
     except Meeting.DoesNotExist:
         return None
-    
-    
+
+
 def get_meeting_information(meeting_obj):
     """Get meeting information
 
@@ -46,17 +47,24 @@ def get_meeting_information(meeting_obj):
     """
     meetings = []
     for meeting in meeting_obj:
-        meetings.append({
-            "id": meeting.meeting_id,
-            "mentor": meeting.mentor.full_name,
-            "mentee": meeting.mentee.full_name,
-            "mentee_id": meeting.mentee.user_id,
-            "time": meeting.meeting_time,
-            "meeting_link": meeting.meeting_link,
-            "mentor_image": meeting.mentor.profile.profile_picture.url,
-            "mentee_image": meeting.mentee.profile.profile_picture.url
-
-            
-            
-        })
+        meetings.append(
+            {
+                "id": meeting.meeting_id,
+                "mentor": meeting.mentor.full_name,
+                "mentee": meeting.mentee.full_name,
+                "mentee_id": meeting.mentee.user_id,
+                "time": meeting.meeting_time,
+                "meeting_link": meeting.meeting_link,
+                "mentor_image": (
+                    meeting.mentor.profile.profile_picture.url
+                    if meeting.mentor.profile
+                    else None
+                ),
+                "mentee_image": (
+                    meeting.mentee.profile.profile_picture.url
+                    if meeting.mentee.profile
+                    else None
+                ),
+            }
+        )
     return meetings
