@@ -1,19 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import google from '../assets/images/google.svg';
-import basicValidationSchema from '../schema/basicValidationSchema';
-import '../css/style.css';
-import '../css/signup.css';
-import { toast } from 'react-toastify';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import google from "../assets/images/google.svg";
+import basicValidationSchema from "../schema/basicValidationSchema";
+import "../css/style.css";
+import "../css/signup.css";
+import { toast } from "react-toastify";
+import axios from "../utils/axios";
 
 export default function SignUp() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem('email', JSON.stringify(email));
+    localStorage.setItem("email", JSON.stringify(email));
   }, [email]);
 
   const handleSubmit = async (event) => {
@@ -26,20 +27,18 @@ export default function SignUp() {
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/api/accounts/create/', {
-        method: 'POST',
+      const response = await axios.post("accounts/create/", formData, {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        toast.success('You have successfully registered');
-        navigate('/verification');
+      if (response.status === 201) {
+        toast.success("You have successfully registered");
+        navigate("/verification");
       } else {
-        const data = await response.json();
-        toast.error(data.error);
+        // const data = await response.json();
+        toast.error(response.data.error);
       }
     } catch (error) {
       toast.error("An error occurred. Please try again.");
@@ -70,19 +69,21 @@ export default function SignUp() {
             />
           </div>
           <div className="field">
-          <select
-            className="form__field"
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-          >
-            <option value="" disabled hidden style= {{color: 'grey'}}>Select a Role</option>
-            <option value="Mentee">Mentee</option>
-            <option value="Mentor">Mentor</option>
-          </select>
-        </div>
-        <button type="submit" id="btn__cta" className="form__field">
-          Sign Up
-        </button>
+            <select
+              className="form__field"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+            >
+              <option value="" disabled hidden style={{ color: "grey" }}>
+                Select a Role
+              </option>
+              <option value="Mentee">Mentee</option>
+              <option value="Mentor">Mentor</option>
+            </select>
+          </div>
+          <button type="submit" id="btn__cta" className="form__field">
+            Sign Up
+          </button>
         </form>
         {/* <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'3px' }}>
           <p className="continue-with">
@@ -90,7 +91,7 @@ export default function SignUp() {
             <img src={google} className="oauth-svg" alt="Google" />
           </p>
         </div> */}
-        
+
         <p>
           Already have an account? <Link to="/signIn">Login In</Link>
         </p>
