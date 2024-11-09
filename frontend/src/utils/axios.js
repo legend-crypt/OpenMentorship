@@ -11,10 +11,17 @@
   Note: This configuration promotes reusability and maintainability by encapsulating the common settings for API requests in a separate file.
 */
 
-import axios from "axios";
+import axios from 'axios';
+let AXIOS_BASE_URL;
+if (window.location.origin === 'http://localhost:3000') {
+  AXIOS_BASE_URL = 'http://127.0.0.1:8000/api/';
+} else {
+  AXIOS_BASE_URL = `${window.location.origin}/api/`;
+}
 
 const instance = axios.create({
-  baseURL: process.env.PRODUCTION_URL,
+  baseURL: AXIOS_BASE_URL,
+  // "https://openmentorship.onrender.com/api/",
   // baseURL: "http://127.0.0.1:8000/api/",
 });
 

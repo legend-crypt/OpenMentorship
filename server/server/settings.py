@@ -31,7 +31,7 @@ SECRET_KEY = "django-insecure-2gm$*pt@dgy^vu%!4u8x&an817l8e1%ongk58yx2a%4nfmp0!s
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["openmentorship.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS").split(",")
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "rest_framework",
     "core",
@@ -172,8 +173,9 @@ USE_TZ = True
 #     },
 # }
 
-STATIC_ROOT = "static/"
-MEDIA_ROOT = "media/"
+# STATIC_ROOT = "static/"
+# MEDIA_ROOT = "media/"
+
 
 AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
@@ -182,8 +184,8 @@ AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": "max-age=86400",
 }
-AWS_LOCATION = "static/"
-AWS_LOCATION_MEDIA = "media/"
+AWS_LOCATION = "staticfiles/"
+AWS_LOCATION_MEDIA = "staticfiles/"
 
 AWS_DEFAULT_ACL = "public-read"
 STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
@@ -191,6 +193,20 @@ DEFAULT_FILE_STORAGE = "core.storages.MediaStorage"
 STATIC_URL = "{}/{}".format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
 MEDIA_URL = "{}/{}".format(AWS_S3_ENDPOINT_URL, AWS_LOCATION_MEDIA)
 
+##Docker settings
+# MEDIA_ROOT = BASE_DIR / "media"
+# STATIC_ROOT = BASE_DIR / "staticfiles"
+
+# STATIC_URL = "/staticfiles/"
+# MEDIA_URL = "media/"
+# STORAGES = {
+#     "default": {
+#         "BACKEND": "django.core.files.storage.FileSystemStorage",
+#     },
+#     "staticfiles": {
+#         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+#     },
+# }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -208,4 +224,4 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://openmentors.vercel.app"]
+CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOW_ORIGINS").split(",")

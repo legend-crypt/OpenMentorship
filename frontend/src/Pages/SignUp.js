@@ -82,7 +82,7 @@ export default function SignUp() {
             </select>
           </div>
           <button type="submit" id="btn__cta" className="form__field">
-            Sign Up
+            Signup
           </button>
         </form>
         {/* <div className="field" style={{ textAlign: 'center', backgroundColor: '#4285f4',  margin:'3px' }}>
@@ -93,7 +93,10 @@ export default function SignUp() {
         </div> */}
 
         <p>
-          Already have an account? <Link to="/signIn">Login In</Link>
+          Already have an account?{" "}
+          <Link className="text-blue-600" to="/signIn">
+            Login
+          </Link>
         </p>
       </div>
     </div>
