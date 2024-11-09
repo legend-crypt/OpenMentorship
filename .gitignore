@@ -51,5 +51,8 @@ yarn-error.log*
 server/db.sqlite3
 server/.dockerignore
 server/.env
-venv/
+.venv/
 server/db*
+om_env
+*.conf
+init-letencrypt.sh
