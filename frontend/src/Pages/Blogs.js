@@ -49,7 +49,7 @@ export default function Blogs() {
         ) : (
           <>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
-              {blogData.map((data) => (
+              {blogData?.map((data) => (
                 <Link to={`/blog/${data.id}`} key={data.id} className="my-4">
                   <BlogCard
                     title={data.title}
